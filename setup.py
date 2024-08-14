@@ -16,6 +16,7 @@ setup(
         # List your package dependencies here, e.g.
         'pytest>=8.3.2',
         'pytest-cov>=5.0.0',
+        'twine>=5.1.1',
     ],
     classifiers=[
         'Programming Language :: Python :: 3',

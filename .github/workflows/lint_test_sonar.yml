@@ -23,15 +23,13 @@ jobs:
         with:
           python-version: '3.12.4'
       - name: Install setuptools
-        run: |
-          python3 -m pip install --upgrade pip
-          pip3 install setuptools
+        run: ./scripts.sh setup
       - name: Install dependencies
-        run: python3 setup.py install
+        run: ./scripts.sh install
       - name: Run Build
-        run: python3 setup.py sdist bdist_wheel
+        run: ./scripts.sh build
       - name: Run Tests
-        run: pytest --cov=pcp_serversdk_python --cov-report xml tests/
+        run: ./scripts.sh test
       - name: Run SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
