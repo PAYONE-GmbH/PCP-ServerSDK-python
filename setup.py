@@ -14,7 +14,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         # List your package dependencies here, e.g.
-        # 'requests>=2.25.1',
+        'pytest>=8.3.2',
+        'pytest-cov>=5.0.0',
     ],
     classifiers=[
         'Programming Language :: Python :: 3',
