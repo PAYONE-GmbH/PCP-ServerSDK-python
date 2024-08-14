@@ -1,0 +1,29 @@
+name: Quality Check (Build, Lint, Format, Test, Sonarcloud)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.4' 
+      - name: Install dependencies
+        run: python3 setup.py install
+      - name: Run Tests
+        run: pytest --cov=pcp_serversdk_python --cov-report lcov --cov-report html tests/
+     

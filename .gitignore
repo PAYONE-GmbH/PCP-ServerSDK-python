@@ -1,0 +1,13 @@
+__pycache__
+.DS_Store
+
+# tests
+.pytest_cache
+htmlcov
+coverage.lcov
+.coverage
+
+pcp_serversdk_python/bin
+pcp_serversdk_python/include
+pcp_serversdk_python/lib
+pcp_serversdk_python/pyvenv.cfg
