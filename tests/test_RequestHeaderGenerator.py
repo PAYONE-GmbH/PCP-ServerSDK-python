@@ -70,7 +70,7 @@ def test_add_server_meta_info_if_missing(communicator_configuration):
     updated_headers = updated_request.headers
     server_meta_info_header_base64 = updated_headers.get('X-GCS-ServerMetaInfo')
     meta = ServerMetaInfo()
-    json_string = json.dumps(meta.__dict__)  # Assuming ServerMetaInfo has a to_json method, otherwise use json.dumps(meta.__dict__)
+    json_string = json.dumps(meta.__dict__) 
     expected_as_base64 = base64.b64encode(json_string.encode('utf-8'))
     assert server_meta_info_header_base64 == expected_as_base64
 
