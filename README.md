@@ -94,14 +94,15 @@ Please make sure to follow the coding standards and write appropriate tests for 
 # setup python environment
 python3 -m venv pcp_serversdk_python
 # install deps
-pcp_serversdk_python/bin/pip install pytest
 pcp_serversdk_python/bin/pip install setuptools
+# build
+./build.sh
 ```
 
 ### Run tests
 
 ```sh
-pcp_serversdk_python/bin/pytest --cov=pcp_serversdk_python --cov-report lcov --cov-report html tests/
+./test.sh
 ```
 
 ### Releasing the library

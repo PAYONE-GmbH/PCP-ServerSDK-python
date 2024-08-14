@@ -21,17 +21,18 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12.4' 
+          python-version: '3.12.4'
       - name: Install setuptools
         run: |
           python3 -m pip install --upgrade pip
           pip3 install setuptools
       - name: Install dependencies
         run: python3 setup.py install
+      - name: Run Build
+        run: python3 setup.py sdist bdist_wheel
       - name: Run Tests
-        run: pytest --cov=pcp_serversdk_python --cov-report xml --cov-report html tests/
+        run: pytest --cov=pcp_serversdk_python --cov-report xml tests/
       - name: Run SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-     
