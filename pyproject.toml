@@ -3,3 +3,7 @@
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.coverage.run]
+source = ['pcp_serversdk_python']
+relative_files = true
