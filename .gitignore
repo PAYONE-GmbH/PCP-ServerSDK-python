@@ -1,5 +1,7 @@
 __pycache__
 .DS_Store
+node_modules
+3
 
 # tests
 .pytest_cache
