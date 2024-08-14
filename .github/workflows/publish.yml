@@ -1,0 +1,27 @@
+name: Publish package to PyPi
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.4'
+      - name: Install setuptools
+        run: ./scripts.sh setup
+      - name: Install dependencies
+        run: ./scripts.sh install
+      - name: Run Build
+        run: ./scripts.sh build
+      - name: Run Tests
+        run: ./scripts.sh publish ${{ secrets.PYPI_TOKEN }}

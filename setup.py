@@ -11,9 +11,9 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/PAYONE-GmbH/PCP-ServerSDK-python',
+    keywords='payone, pcp, server, python, sdk',
     packages=find_packages(),
     install_requires=[
-        # List your package dependencies here, e.g.
         'pytest>=8.3.2',
         'pytest-cov>=5.0.0',
         'twine>=5.1.1',
