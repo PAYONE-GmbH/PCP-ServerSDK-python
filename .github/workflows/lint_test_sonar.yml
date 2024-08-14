@@ -30,4 +30,8 @@ jobs:
         run: python3 setup.py install
       - name: Run Tests
         run: pytest --cov=pcp_serversdk_python --cov-report lcov --cov-report html tests/
+      - name: Run SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
      
