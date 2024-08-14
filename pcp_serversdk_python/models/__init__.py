@@ -1,3 +1,4 @@
-from .address import Address
+from .Address import Address
+from .ErrorResponse import ErrorResponse
 
-__all__ = ['Address']
+__all__ = ['Address', 'ErrorResponse']

@@ -10,9 +10,10 @@ from pcp_serversdk_python.utils.ServerMetaInfo import ServerMetaInfo
 
 
 class RequestInit:
-    def __init__(self, method='GET', headers=None):
+    def __init__(self, method='GET', headers=None, body=None):
         self.method = method
         self.headers = headers or {}
+        self.body = body or {}
 
 class RequestHeaderGenerator:
     SERVER_META_INFO_HEADER_NAME = 'X-GCS-ServerMetaInfo'

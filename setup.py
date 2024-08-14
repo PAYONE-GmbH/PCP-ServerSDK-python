@@ -17,6 +17,7 @@ setup(
         'pytest>=8.3.2',
         'pytest-cov>=5.0.0',
         'twine>=5.1.1',
+        'httpx>=0.27.0',
     ],
     classifiers=[
         'Programming Language :: Python :: 3',
