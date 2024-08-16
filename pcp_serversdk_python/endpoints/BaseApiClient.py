@@ -1,9 +1,13 @@
 import json
 import httpx
 from typing import Any, Dict, Optional, TypeVar, Callable, Type, Union
+from dacite import from_dict
 
 
-from pcp_serversdk_python import CommunicatorConfiguration, RequestHeaderGenerator, ApiErrorResponseException,ApiResponseRetrievalException,ErrorResponse,JSONSerializer
+from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
+from pcp_serversdk_python.RequestHeaderGenerator import RequestHeaderGenerator
+from pcp_serversdk_python.errors import ApiErrorResponseException, ApiResponseRetrievalException
+from pcp_serversdk_python.models import ErrorResponse
 
 
 T = TypeVar('T')
@@ -57,10 +61,11 @@ class BaseApiClient:
         if self.requestHeaderGenerator:
             request = self.requestHeaderGenerator.generateAdditionalRequestHeaders(request)
         response = await self.getResponse(request)
-        print(response.json())
         await self.handleError(response)
         try:
-            return JSONSerializer.deserialize_from_json(response.text, type)
+            print(response.json())
+            data = json.loads(response.text)
+            return from_dict(data_class=type, data=data)
         except json.JSONDecodeError as e:
             raise AssertionError(self.JSON_PARSE_ERROR) from e
 
@@ -73,7 +78,8 @@ class BaseApiClient:
         if not response_body:
             raise ApiResponseRetrievalException(response.status_code, response_body)
         try:
-            error = JSONSerializer.deserialize_from_json(response_body, ErrorResponse)
+            data = json.loads(response.text)
+            error = from_dict(data_class=ErrorResponse, data=data)          
             raise ApiErrorResponseException(response.status_code, response_body, error.errors)
         except json.JSONDecodeError as e:
             raise ApiResponseRetrievalException(response.status_code, response_body, e)

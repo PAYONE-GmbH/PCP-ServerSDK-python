@@ -5,7 +5,7 @@ import base64
 import json
 import httpx
 
-from pcp_serversdk_python import CommunicatorConfiguration, RequestHeaderGenerator, RequestInit, ServerMetaInfo 
+from pcp_serversdk_python import CommunicatorConfiguration, RequestHeaderGenerator, ServerMetaInfo 
 
 @pytest.fixture
 def communicatorConfiguration():

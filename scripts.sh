@@ -10,7 +10,6 @@ setup() {
 # Function to install dependencies
 install() {
     echo "Installing dependencies..."
-    pcp_serversdk_python/bin/pip install setuptools
     pcp_serversdk_python/bin/python3 setup.py install
     echo "Dependencies installed."
 }

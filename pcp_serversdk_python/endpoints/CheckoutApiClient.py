@@ -6,7 +6,7 @@ from urllib.parse import urljoin
 
 from .BaseApiClient import BaseApiClient, MERCHANT_ID_REQUIRED_ERROR, COMMERCE_CASE_ID_REQUIRED_ERROR, CHECKOUT_ID_REQUIRED_ERROR
 from pcp_serversdk_python import CommunicatorConfiguration,GetCheckoutsQuery
-
+from ..models import Address
 
 
 
@@ -73,7 +73,7 @@ class CheckoutApiClient(BaseApiClient):
 
         req = httpx.Request("GET", url, headers={})
 
-        return await self.makeApiCall(req)
+        return await self.makeApiCallWithType(req, Address)
 
     # async def update_checkout_request(
     #     self,
