@@ -158,7 +158,7 @@ class GetCheckoutsQuery:
         self.company_information = company_information
         return self
 
-    def to_query_map(self) -> Dict[str, str]:
+    def toQueryMap(self) -> Dict[str, str]:
         query = {}
 
         if self.offset is not None:

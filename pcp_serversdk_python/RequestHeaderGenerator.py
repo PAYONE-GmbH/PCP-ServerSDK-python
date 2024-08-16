@@ -2,6 +2,7 @@ import hmac
 import hashlib
 import base64
 import json
+import httpx
 from datetime import datetime, timezone
 from urllib.parse import urlparse, quote
 
@@ -27,21 +28,21 @@ class RequestHeaderGenerator:
     def __init__(self, config: CommunicatorConfiguration):
         self.config = config
 
-    def generate_additional_request_headers(self, url: str, request: RequestInit) -> RequestInit:
+    def generateAdditionalRequestHeaders(self, request: httpx.Request) -> httpx.Request:
         headers = request.headers.copy()
         if self.DATE_HEADER_NAME not in headers:
             headers[self.DATE_HEADER_NAME] = datetime.now(timezone.utc).strftime('%a, %d %b %Y %H:%M:%S GMT')
         if self.SERVER_META_INFO_HEADER_NAME not in headers:
-            headers[self.SERVER_META_INFO_HEADER_NAME] = self.get_server_meta_info()
+            headers[self.SERVER_META_INFO_HEADER_NAME] = self.getServerMetaInfo()
         if self.CLIENT_META_INFO_HEADER_NAME not in headers:
-            headers[self.CLIENT_META_INFO_HEADER_NAME] = self.get_client_meta_info()
+            headers[self.CLIENT_META_INFO_HEADER_NAME] = self.getClientMetaInfo()
         if self.AUTHORIZATION_HEADER_NAME not in headers:
-            headers[self.AUTHORIZATION_HEADER_NAME] = self.get_auth_header(url, request, headers)
+            headers[self.AUTHORIZATION_HEADER_NAME] = self.getAuthHeader(request, headers)
 
         request.headers = headers
         return request
 
-    def get_auth_header(self, url: str, request: RequestInit, headers: dict) -> str:
+    def getAuthHeader(self, request: httpx.Request, headers: dict) -> str:
         stringToSign = f"{request.method}\n"
 
         if self.CONTENT_TYPE_HEADER_NAME in headers:
@@ -53,10 +54,9 @@ class RequestHeaderGenerator:
         if self.CLIENT_META_INFO_HEADER_NAME in headers:
             stringToSign += f"{self.CLIENT_META_INFO_HEADER_NAME.lower()}:{headers[self.CLIENT_META_INFO_HEADER_NAME]}\n"
         if self.SERVER_META_INFO_HEADER_NAME in headers:
-            print(headers[self.SERVER_META_INFO_HEADER_NAME])
             stringToSign += f"{self.SERVER_META_INFO_HEADER_NAME.lower()}:{headers[self.SERVER_META_INFO_HEADER_NAME]}\n"
 
-        urlInternal = urlparse(url)
+        urlInternal = urlparse(request.url.__str__())
         stringToSign += urlInternal.path
         if urlInternal.query:
             stringToSign += f"{quote(urlInternal.query)}"
@@ -68,11 +68,11 @@ class RequestHeaderGenerator:
         hmac_instance = hmac.new(self.config.getApiSecret().encode(), target.encode(), hashlib.sha256)
         return base64.b64encode(hmac_instance.digest()).decode()
 
-    def get_server_meta_info(self) -> str:
+    def getServerMetaInfo(self) -> str:
         meta = ServerMetaInfo()
         json_string = json.dumps(meta.__dict__)  # Assuming ServerMetaInfo has a dictionary representation
-        return base64.b64encode(json_string.encode('utf-8'))
+        return base64.b64encode(json_string.encode('utf-8')).decode('utf-8')
 
-    def get_client_meta_info(self) -> str:
+    def getClientMetaInfo(self) -> str:
         encoded_bytes = base64.b64encode(b'"[]"')
-        return encoded_bytes
+        return encoded_bytes.decode('utf-8')
