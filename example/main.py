@@ -14,6 +14,9 @@ from pcp_serversdk_python import (
     CheckoutApiClient,
     CreateCheckoutRequest,
     AmountOfMoney,
+    PatchCheckoutRequest,
+    Shipping,
+    AddressPersonal,
 )
 
 API_KEY = os.environ["API_KEY"]
@@ -25,23 +28,62 @@ CHECKOUT_ID = os.environ["CHECKOUT_ID"]
 
 async def main():
     # Call a function from module1
+
     communicatorConfiguration = CommunicatorConfiguration(
         API_KEY, API_SECRET, "https://api.preprod.commerce.payone.com"
     )
     checkoutApiClient = CheckoutApiClient(communicatorConfiguration)
 
+    # All checkouts:
+    print("All checkouts:")
+    checkouts = await checkoutApiClient.getCheckoutsRequest(MERCHANT_ID)
+    print(checkouts)
+    print("---")
+
+    # Create a checkout:
+    print("Create Checkout:")
     createCheckoutPayload = CreateCheckoutRequest()
     createCheckoutPayload.amountOfMoney = AmountOfMoney(amount=1000, currencyCode="EUR")
     createCheckoutResponse = await checkoutApiClient.createCheckoutRequest(
         MERCHANT_ID, COMMERCE_CASE_ID, createCheckoutPayload
     )
     print(createCheckoutResponse)
+    print("---")
 
-    # checkouts = await checkoutApiClient.getCheckoutsRequest(MERCHANT_ID)
-    # print(checkouts)
+    # Patch a checkout:
+    print("Patch Checkout:")
+    patchCheckoutPayload = PatchCheckoutRequest()
+    shipping = Shipping()
+    address = AddressPersonal()
+    address.city = "Cologne"
+    shipping.address = address
+    patchCheckoutPayload.shipping = shipping
 
-    # checkout = await checkoutApiClient.getCheckoutRequest(MERCHANT_ID, COMMERCE_CASE_ID, CHECKOUT_ID)
-    # print(checkout)
+    patchCheckoutResponse = await checkoutApiClient.updateCheckoutRequest(
+        MERCHANT_ID,
+        COMMERCE_CASE_ID,
+        createCheckoutResponse.checkoutId,
+        patchCheckoutPayload,
+    )
+
+    print(patchCheckoutResponse)
+    print("---")
+
+    # Get a checkout:
+    print("Get Checkout:")
+    checkout = await checkoutApiClient.getCheckoutRequest(
+        MERCHANT_ID, COMMERCE_CASE_ID, createCheckoutResponse.checkoutId
+    )
+    print(checkout)
+    print("---")
+
+    # Delete a checkout:
+    print("Delete Checkout:")
+    deleteCheckoutResponse = await checkoutApiClient.removeCheckoutRequest(
+        MERCHANT_ID, COMMERCE_CASE_ID, createCheckoutResponse.checkoutId
+    )
+    print(deleteCheckoutResponse)
+    print("---")
 
 
 if __name__ == "__main__":

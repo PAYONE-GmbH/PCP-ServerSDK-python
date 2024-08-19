@@ -67,7 +67,7 @@ class BaseApiClient:
                 request
             )
         response = await self.getResponse(request)
-        print(response.json())
+
         await self.handleError(response)
 
     async def makeApiCallWithType(self, request: httpx.Request, type: Type[T]) -> T:
@@ -78,7 +78,7 @@ class BaseApiClient:
         response = await self.getResponse(request)
         await self.handleError(response)
         try:
-            print(response.json())
+
             data = json.loads(response.text)
             return fromDictWithEnum(data_class=type, data=data)
         except json.JSONDecodeError as e:
