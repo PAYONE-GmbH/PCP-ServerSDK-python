@@ -5,8 +5,8 @@ import httpx
 from urllib.parse import urljoin
 
 from .BaseApiClient import BaseApiClient, MERCHANT_ID_REQUIRED_ERROR, COMMERCE_CASE_ID_REQUIRED_ERROR, CHECKOUT_ID_REQUIRED_ERROR
-from pcp_serversdk_python import CommunicatorConfiguration,GetCheckoutsQuery
-from ..models import Address
+from pcp_serversdk_python import CommunicatorConfiguration, GetCheckoutsQuery
+from ..models import CheckoutsResponse
 
 
 
@@ -56,12 +56,11 @@ class CheckoutApiClient(BaseApiClient):
 
     #     return await self.makeApiCallWithType(req, CheckoutResponse)
 
-    # TODO: Add models when ready
     async def getCheckoutsRequest(
         self,
         merchant_id: str,
         query_params: Optional[GetCheckoutsQuery] = None
-    ) -> None:
+    ) -> CheckoutsResponse:
         if not merchant_id:
             raise TypeError(MERCHANT_ID_REQUIRED_ERROR)
 
@@ -73,7 +72,7 @@ class CheckoutApiClient(BaseApiClient):
 
         req = httpx.Request("GET", url, headers={})
 
-        return await self.makeApiCallWithType(req, Address)
+        return await self.makeApiCallWithType(req, CheckoutsResponse)
 
     # async def update_checkout_request(
     #     self,

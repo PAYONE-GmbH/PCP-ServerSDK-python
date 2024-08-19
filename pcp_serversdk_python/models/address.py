@@ -2,7 +2,7 @@
 from typing import Optional
 from dataclasses import dataclass
 
-@dataclass
+@dataclass(kw_only=True)
 class Address:
     additionalInfo: Optional[str] = None,
     city: Optional[str] = None,

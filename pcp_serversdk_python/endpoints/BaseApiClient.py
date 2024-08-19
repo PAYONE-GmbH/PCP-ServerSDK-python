@@ -1,7 +1,8 @@
+from enum import Enum
 import json
 import httpx
 from typing import Any, Dict, Optional, TypeVar, Callable, Type, Union
-from dacite import from_dict
+from dacite import from_dict,Config
 
 
 from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
@@ -12,8 +13,10 @@ from pcp_serversdk_python.models import ErrorResponse
 
 T = TypeVar('T')
 
+def fromDictWithEnum(data_class: Type[T],data: Dict[str, Any], ) -> T:
+    return from_dict(data_class=data_class, data=data, config=Config(cast=[Enum]))
 
-def is_error_response(parsed: Any) -> bool:
+def isErrorResponse(parsed: Any) -> bool:
     if not isinstance(parsed, dict):
         return False
     if 'errorId' in parsed and not isinstance(parsed['errorId'], str):
@@ -65,7 +68,7 @@ class BaseApiClient:
         try:
             print(response.json())
             data = json.loads(response.text)
-            return from_dict(data_class=type, data=data)
+            return fromDictWithEnum(data_class=type, data=data)
         except json.JSONDecodeError as e:
             raise AssertionError(self.JSON_PARSE_ERROR) from e
 
@@ -79,7 +82,7 @@ class BaseApiClient:
             raise ApiResponseRetrievalException(response.status_code, response_body)
         try:
             data = json.loads(response.text)
-            error = from_dict(data_class=ErrorResponse, data=data)          
+            error = fromDictWithEnum(data_class=ErrorResponse, data=data)          
             raise ApiErrorResponseException(response.status_code, response_body, error.errors)
         except json.JSONDecodeError as e:
             raise ApiResponseRetrievalException(response.status_code, response_body, e)
