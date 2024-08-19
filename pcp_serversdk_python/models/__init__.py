@@ -54,6 +54,7 @@ from .MandateRecurrenceType import *
 from .MerchantAction import *
 from .MobilePaymentMethodSpecificInput import *
 from .MobilePaymentMethodSpecificOutput import *
+from .Network import *
 from .Order import *
 from .OrderItem import *
 from .OrderLineDetailsInput import *
@@ -112,6 +113,7 @@ from .ThreeDSecureResults import *
 from .TransactionChannel import *
 from .UnscheduledCardOnFileRequestor import *
 from .UnscheduledCardOnFileSequenceIndicator import *
+from .applepay import *
 
 __all__ = [
     "APIError",
@@ -169,6 +171,7 @@ __all__ = [
     "MerchantAction",
     "MobilePaymentMethodSpecificInput",
     "MobilePaymentMethodSpecificOutput",
+    "Network",
     "Order",
     "OrderItem",
     "OrderLineDetailsInput",
@@ -228,3 +231,5 @@ __all__ = [
     "UnscheduledCardOnFileRequestor",
     "UnscheduledCardOnFileSequenceIndicator",
 ]
+
+__all__.extend(applepay.__all__)
