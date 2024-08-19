@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class ReturnType(Enum):
-    Full = 'FULL'
-    Partial = 'PARTIAL'
+    Full = "FULL"
+    Partial = "PARTIAL"

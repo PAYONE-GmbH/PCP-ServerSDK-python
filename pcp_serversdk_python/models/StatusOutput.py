@@ -2,6 +2,7 @@ from typing import Optional
 from dataclasses import dataclass
 from .PaymentStatus import PaymentStatus
 
+
 @dataclass(kw_only=True)
 class StatusOutput:
     paymentStatus: Optional[PaymentStatus] = None

@@ -12,6 +12,7 @@ from .ShoppingCartResult import ShoppingCartResult
 from .StatusCheckout import StatusCheckout
 from .StatusOutput import StatusOutput
 
+
 @dataclass(kw_only=True)
 class CreateCheckoutResponse:
     checkoutId: Optional[str] = None

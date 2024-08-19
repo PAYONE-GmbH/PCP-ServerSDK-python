@@ -4,6 +4,7 @@ from .CardPaymentDetails import CardPaymentDetails
 from .PaymentChannel import PaymentChannel
 from .PaymentEvent import PaymentEvent
 
+
 @dataclass(kw_only=True)
 class PaymentInformationResponse:
     commerceCaseId: Optional[str] = None

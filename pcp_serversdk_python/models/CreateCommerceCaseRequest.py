@@ -4,6 +4,7 @@ from .CreateCheckoutRequest import CreateCheckoutRequest
 from .CreationDateTime import CreationDateTime
 from .Customer import Customer
 
+
 @dataclass(kw_only=True)
 class CreateCommerceCaseRequest:
     merchantReference: Optional[str] = None

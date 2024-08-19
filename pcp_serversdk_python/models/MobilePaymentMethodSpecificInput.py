@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from .AuthorizationMode import AuthorizationMode
 from .PaymentProduct320SpecificInput import PaymentProduct320SpecificInput
 
+
 @dataclass(kw_only=True)
 class MobilePaymentMethodSpecificInput:
     paymentProductId: Optional[int] = None

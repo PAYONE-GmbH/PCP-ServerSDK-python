@@ -5,6 +5,7 @@ from .CompanyInformation import CompanyInformation
 from .ContactDetails import ContactDetails
 from .PersonalInformation import PersonalInformation
 
+
 @dataclass(kw_only=True)
 class Customer:
     companyInformation: Optional[CompanyInformation] = None

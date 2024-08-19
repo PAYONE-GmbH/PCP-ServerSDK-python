@@ -4,6 +4,7 @@ from .CancellationReason import CancellationReason
 from .DeliveryInformation import DeliveryInformation
 from .PaymentReferences import PaymentReferences
 
+
 @dataclass(kw_only=True)
 class CapturePaymentRequest:
     amount: Optional[int] = None

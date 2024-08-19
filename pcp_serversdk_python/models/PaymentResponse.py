@@ -4,6 +4,7 @@ from .PaymentOutput import PaymentOutput
 from .PaymentStatusOutput import PaymentStatusOutput
 from .StatusValue import StatusValue
 
+
 @dataclass(kw_only=True)
 class PaymentResponse:
     paymentOutput: Optional[PaymentOutput] = None

@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from .Address import Address
 from .PaymentProduct840CustomerAccount import PaymentProduct840CustomerAccount
 
+
 @dataclass(kw_only=True)
 class PaymentProduct840SpecificOutput:
     billingAddress: Optional[Address] = None

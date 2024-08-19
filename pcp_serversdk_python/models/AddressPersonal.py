@@ -2,6 +2,7 @@ from typing import Optional
 from dataclasses import dataclass
 from .PersonalName import PersonalName
 
+
 @dataclass(kw_only=True)
 class AddressPersonal:
     additionalInfo: Optional[str] = None

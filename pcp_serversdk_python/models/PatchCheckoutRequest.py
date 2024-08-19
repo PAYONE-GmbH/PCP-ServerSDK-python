@@ -7,6 +7,7 @@ from .References import References
 from .Shipping import Shipping
 from .ShoppingCartPatch import ShoppingCartPatch
 
+
 @dataclass(kw_only=True)
 class PatchCheckoutRequest:
     amountOfMoney: Optional[AmountOfMoney] = None

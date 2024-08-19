@@ -7,7 +7,10 @@ from .PaymentChannel import PaymentChannel
 from .PaymentEvent import PaymentEvent
 from .RedirectPaymentMethodSpecificInput import RedirectPaymentMethodSpecificInput
 from .References import References
-from .SepaDirectDebitPaymentMethodSpecificInput import SepaDirectDebitPaymentMethodSpecificInput
+from .SepaDirectDebitPaymentMethodSpecificInput import (
+    SepaDirectDebitPaymentMethodSpecificInput,
+)
+
 
 @dataclass(kw_only=True)
 class PaymentExecution:
@@ -15,9 +18,15 @@ class PaymentExecution:
     paymentId: Optional[str] = None
     cardPaymentMethodSpecificInput: Optional[CardPaymentMethodSpecificInput] = None
     mobilePaymentMethodSpecificInput: Optional[MobilePaymentMethodSpecificInput] = None
-    redirectPaymentMethodSpecificInput: Optional[RedirectPaymentMethodSpecificInput] = None
-    sepaDirectDebitPaymentMethodSpecificInput: Optional[SepaDirectDebitPaymentMethodSpecificInput] = None
-    financingPaymentMethodSpecificInput: Optional[FinancingPaymentMethodSpecificInput] = None
+    redirectPaymentMethodSpecificInput: Optional[RedirectPaymentMethodSpecificInput] = (
+        None
+    )
+    sepaDirectDebitPaymentMethodSpecificInput: Optional[
+        SepaDirectDebitPaymentMethodSpecificInput
+    ] = None
+    financingPaymentMethodSpecificInput: Optional[
+        FinancingPaymentMethodSpecificInput
+    ] = None
     paymentChannel: Optional[PaymentChannel] = None
     references: Optional[References] = None
     events: Optional[List[PaymentEvent]] = None

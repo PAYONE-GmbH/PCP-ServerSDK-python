@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from .AmountOfMoney import AmountOfMoney
 from .PaymentReferences import PaymentReferences
 
+
 @dataclass(kw_only=True)
 class CaptureOutput:
     amountOfMoney: Optional[AmountOfMoney] = None

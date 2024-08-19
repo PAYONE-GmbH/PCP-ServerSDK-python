@@ -35,7 +35,6 @@ python3 -m pip install "pcp_serversdk_python"
 
 ## Usage
 
-
 To use this SDK you need to construct a `CommunicatorConfiguration` which encapsulate everything needed to connect to the PAYONE Commerce Platform.
 
 ```python
@@ -76,7 +75,6 @@ Network errors are not wrap, you can should handle the standard `IOExeption`.
 ### Client Side
 
 For most [payment methods](https://docs.payone.com/pcp/commerce-platform-payment-methods) some information from the client is needed, e.g. payment information given by Apple when a payment via ApplePay suceeds. PAYONE provides client side SDKs which helps you interact the third party payment providers. You can find the SDKs under the [PAYONE GitHub organization](https://github.com/PAYONE-GmbH). Either way ensure to never store or even send credit card information to your server. The PAYONE Commerce Platform never needs access to the credit card information. The client side is responsible for safely retrieving a credit card token. This token must be used with this SDK.
-
 
 ### Apple Pay
 

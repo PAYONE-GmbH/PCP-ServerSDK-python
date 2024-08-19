@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from .CardFraudResults import CardFraudResults
 from .ThreeDSecureResults import ThreeDSecureResults
 
+
 @dataclass(kw_only=True)
 class MobilePaymentMethodSpecificOutput:
     paymentProductId: Optional[int] = None

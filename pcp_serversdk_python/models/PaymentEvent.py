@@ -5,6 +5,7 @@ from .CancellationReason import CancellationReason
 from .PaymentType import PaymentType
 from .StatusValue import StatusValue
 
+
 @dataclass(kw_only=True)
 class PaymentEvent:
     type: Optional[PaymentType] = None

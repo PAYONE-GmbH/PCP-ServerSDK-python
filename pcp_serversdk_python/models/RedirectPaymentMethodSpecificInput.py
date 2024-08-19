@@ -1,7 +1,10 @@
 from typing import Optional
 from dataclasses import dataclass
 from .RedirectionData import RedirectionData
-from .RedirectPaymentProduct840SpecificInput import RedirectPaymentProduct840SpecificInput
+from .RedirectPaymentProduct840SpecificInput import (
+    RedirectPaymentProduct840SpecificInput,
+)
+
 
 @dataclass(kw_only=True)
 class RedirectPaymentMethodSpecificInput:
@@ -10,5 +13,7 @@ class RedirectPaymentMethodSpecificInput:
     reportingToken: Optional[str] = None
     tokenize: Optional[bool] = None
     paymentProductId: Optional[int] = None
-    paymentProduct840SpecificInput: Optional[RedirectPaymentProduct840SpecificInput] = None
+    paymentProduct840SpecificInput: Optional[RedirectPaymentProduct840SpecificInput] = (
+        None
+    )
     redirectionData: Optional[RedirectionData] = None

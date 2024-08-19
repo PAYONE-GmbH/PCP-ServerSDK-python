@@ -4,6 +4,7 @@ from .CreateCheckoutResponse import CreateCheckoutResponse
 from .CreationDateTime import CreationDateTime
 from .Customer import Customer
 
+
 @dataclass(kw_only=True)
 class CreateCommerceCaseResponse:
     commerceCaseId: Optional[str] = None

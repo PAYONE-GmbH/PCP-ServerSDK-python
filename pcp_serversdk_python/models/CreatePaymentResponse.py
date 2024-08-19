@@ -4,6 +4,7 @@ from .MerchantAction import MerchantAction
 from .PaymentCreationOutput import PaymentCreationOutput
 from .PaymentResponse import PaymentResponse
 
+
 @dataclass(kw_only=True)
 class CreatePaymentResponse:
     creationOutput: Optional[PaymentCreationOutput] = None

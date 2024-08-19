@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class MandateRecurrenceType(Enum):
-    UNIQUE = 'UNIQUE'
-    RECURRING = 'RECURRING'
+    UNIQUE = "UNIQUE"
+    RECURRING = "RECURRING"

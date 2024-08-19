@@ -5,6 +5,7 @@ from .OrderType import OrderType
 from .PaymentMethodSpecificInput import PaymentMethodSpecificInput
 from .References import References
 
+
 @dataclass(kw_only=True)
 class OrderRequest:
     orderType: Optional[OrderType] = None

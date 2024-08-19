@@ -4,6 +4,7 @@ from .CancellationReason import CancellationReason
 from .DeliverItem import DeliverItem
 from .DeliverType import DeliverType
 
+
 @dataclass(kw_only=True)
 class DeliverRequest:
     deliverType: Optional[DeliverType] = None

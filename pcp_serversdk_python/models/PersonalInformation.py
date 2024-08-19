@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from .Gender import Gender
 from .PersonalName import PersonalName
 
+
 @dataclass(kw_only=True)
 class PersonalInformation:
     dateOfBirth: Optional[str] = None

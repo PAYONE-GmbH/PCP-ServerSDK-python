@@ -1,7 +1,8 @@
 import json
 from typing import Type, TypeVar, Any
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class JSONSerializer:
     @staticmethod
@@ -10,7 +11,9 @@ class JSONSerializer:
         try:
             return json.dumps(obj, default=lambda o: o.__dict__, indent=4)
         except TypeError as e:
-            raise ValueError(f"Object of type {type(obj).__name__} is not JSON serializable") from e
+            raise ValueError(
+                f"Object of type {type(obj).__name__} is not JSON serializable"
+            ) from e
 
     @staticmethod
     def deserialize_from_json(json_str: str, clazz: Type[T]) -> T:

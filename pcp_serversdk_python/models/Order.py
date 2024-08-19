@@ -6,6 +6,7 @@ from .References import References
 from .Shipping import Shipping
 from .ShoppingCartInput import ShoppingCartInput
 
+
 @dataclass(kw_only=True)
 class Order:
     amountOfMoney: Optional[AmountOfMoney] = None

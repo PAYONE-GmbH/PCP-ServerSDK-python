@@ -2,6 +2,7 @@ from typing import Optional
 from dataclasses import dataclass
 from .PaymentProduct3391SpecificInput import PaymentProduct3391SpecificInput
 
+
 @dataclass(kw_only=True)
 class CompleteFinancingPaymentMethodSpecificInput:
     paymentProductId: Optional[int] = None

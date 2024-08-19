@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class CancelType(Enum):
-    FULL = 'FULL'
-    PARTIAL = 'PARTIAL'
+    FULL = "FULL"
+    PARTIAL = "PARTIAL"

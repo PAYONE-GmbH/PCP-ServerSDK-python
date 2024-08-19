@@ -2,6 +2,7 @@ from typing import Optional
 from dataclasses import dataclass
 from .ProductType import ProductType
 
+
 @dataclass(kw_only=True)
 class OrderLineDetailsInput:
     productCode: Optional[str] = None

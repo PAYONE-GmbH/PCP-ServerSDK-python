@@ -6,7 +6,10 @@ from .CardOnFileRecurringFrequency import CardOnFileRecurringFrequency
 from .CardRecurrenceDetails import CardRecurrenceDetails
 from .TransactionChannel import TransactionChannel
 from .UnscheduledCardOnFileRequestor import UnscheduledCardOnFileRequestor
-from .UnscheduledCardOnFileSequenceIndicator import UnscheduledCardOnFileSequenceIndicator
+from .UnscheduledCardOnFileSequenceIndicator import (
+    UnscheduledCardOnFileSequenceIndicator,
+)
+
 
 @dataclass(kw_only=True)
 class CardPaymentMethodSpecificInput:
@@ -16,7 +19,9 @@ class CardPaymentMethodSpecificInput:
     reportingToken: Optional[str] = None
     transactionChannel: Optional[TransactionChannel] = None
     unscheduledCardOnFileRequestor: Optional[UnscheduledCardOnFileRequestor] = None
-    unscheduledCardOnFileSequenceIndicator: Optional[UnscheduledCardOnFileSequenceIndicator] = None
+    unscheduledCardOnFileSequenceIndicator: Optional[
+        UnscheduledCardOnFileSequenceIndicator
+    ] = None
     paymentProductId: Optional[int] = None
     card: Optional[CardInfo] = None
     returnUrl: Optional[str] = None

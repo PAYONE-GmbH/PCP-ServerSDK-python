@@ -4,6 +4,7 @@ from .CheckoutResponse import CheckoutResponse
 from .CreationDateTime import CreationDateTime
 from .Customer import Customer
 
+
 @dataclass(kw_only=True)
 class CommerceCaseResponse:
     merchantReference: Optional[str] = None

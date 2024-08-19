@@ -3,6 +3,7 @@ from .BankAccountInformation import BankAccountInformation
 from .MandateRecurrenceType import MandateRecurrenceType
 from typing import Optional
 
+
 @dataclass(kw_only=True)
 class ProcessingMandateInformation:
     bankAccountIban: Optional[BankAccountInformation] = None

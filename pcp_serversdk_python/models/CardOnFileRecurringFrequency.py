@@ -1,8 +1,9 @@
 from enum import Enum
 
+
 class CardOnFileRecurringFrequency(Enum):
-    YEARLY = 'Yearly'
-    QUARTERLY = 'Quarterly'
-    MONTHLY = 'Monthly'
-    WEEKLY = 'Weekly'
-    DAILY = 'Daily'
+    YEARLY = "Yearly"
+    QUARTERLY = "Quarterly"
+    MONTHLY = "Monthly"
+    WEEKLY = "Weekly"
+    DAILY = "Daily"

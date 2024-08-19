@@ -4,6 +4,7 @@ from .PaymentStatusOutput import PaymentStatusOutput
 from .RefundOutput import RefundOutput
 from .StatusValue import StatusValue
 
+
 @dataclass(kw_only=True)
 class RefundPaymentResponse:
     refundOutput: Optional[RefundOutput] = None
