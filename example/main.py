@@ -32,6 +32,12 @@ async def main():
     communicatorConfiguration = CommunicatorConfiguration(
         API_KEY, API_SECRET, "https://api.preprod.commerce.payone.com"
     )
+
+    await runCheckouts(communicatorConfiguration)
+
+
+async def runCheckouts(communicatorConfiguration: CommunicatorConfiguration):
+
     checkoutApiClient = CheckoutApiClient(communicatorConfiguration)
 
     # All checkouts:
