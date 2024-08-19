@@ -4,7 +4,7 @@ setup() {
     echo "Setting up the environment..."
     python3 -m venv pcp_serversdk_python
     source pcp_serversdk_python/bin/activate
-    python3 -m pip install setuptools
+    pcp_serversdk_python/bin/pip install setuptools
     echo "Environment set up."
 }
 
