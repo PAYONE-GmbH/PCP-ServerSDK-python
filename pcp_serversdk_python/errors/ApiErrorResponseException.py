@@ -1,7 +1,7 @@
 from typing import List
 
 from pcp_serversdk_python.errors.ApiException import ApiException
-from pcp_serversdk_python.errors.ApiError import APIError
+from ..models import APIError
 
 
 class ApiErrorResponseException(ApiException):
