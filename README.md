@@ -29,7 +29,9 @@ Welcome to the Python SDK for the PAYONE Commerce Platform! This repository cont
 
 ## Installation
 
-TODO
+```sh
+python3 -m pip install "pcp_serversdk_python"
+```
 
 ## Usage
 
@@ -37,19 +39,27 @@ TODO
 To use this SDK you need to construct a `CommunicatorConfiguration` which encapsulate everything needed to connect to the PAYONE Commerce Platform.
 
 ```python
-# TODO
+from pcp_serversdk_python import CommunicatorConfiguration
+
+API_KEY = os.environ['API_KEY']
+API_SECRET = os.environ['API_SECRET']
+
+communicatorConfiguration = CommunicatorConfiguration(API_KEY, API_SECRET, "https://api.preprod.commerce.payone.com")
 ```
 
 With the configuration you can create an API client for each reource you want to interact with. For example to create a commerce case you can use the `CommerceCaseApiClient`.
 
 ```python
-# TODO
+from pcp_serversdk_python import CommunicatorConfiguration, CheckoutApiClient
+
+commerceCaseClient = CommerceCaseApiClient(communicatorConfiguration)
 ```
 
 All payloads and reponses are availabe as java classes within the `com.payone.commerce.platform.lib.models.*` package. The serialization and deserialization is handled by the SDK internally. For example, to create an empty commerce case you can pass a `CreateCommerceCaseRequest` instance:
 
 ```python
-# TODO
+createCommerceCaseRequest = CreateCommerceCaseRequest()
+createCommerceCaseResponse = commerceCaseClient.createCommerceCaseRequest('merchant_id', createCommerceCaseRequest);
 ```
 
 The models directly map to the API as described in [PAYONE Commerce Platform API Reference](https://docs.payone.com/pcp/commerce-platform-api). For an in depth example you can take a look at the [demo app](#demo-app).
@@ -76,6 +86,12 @@ When a client is successfully made a payment via ApplePay it receives a [ApplePa
 # TODO
 ```
 
+### Run the example app
+
+```sh
+API_KEY=api_key API_SECRET=api_secret MERCHANT_ID=123 COMMERCE_CASE_ID=234 CHECKOUT_ID=345 python3 example/main.py
+```
+
 ## Contributing
 
 We welcome contributions from the community. If you want to contribute, please follow these steps:
@@ -92,17 +108,17 @@ Please make sure to follow the coding standards and write appropriate tests for 
 
 ```sh
 # setup python environment
-python3 -m venv pcp_serversdk_python
+./scripts.sh setup
 # install deps
-pcp_serversdk_python/bin/pip install setuptools
+./scripts.sh install
 # build
-./build.sh
+./scripts.sh build
 ```
 
 ### Run tests
 
 ```sh
-./test.sh
+./scripts.sh test
 ```
 
 ### Releasing the library
