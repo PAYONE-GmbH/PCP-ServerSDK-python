@@ -10,7 +10,7 @@ class OrderLineDetailsInput:
     productType: Optional[ProductType] = None
     quantity: int
     taxAmount: Optional[int] = None
-    productURL: Optional[str] = None
+    productUrl: Optional[str] = None
     productImageUrl: Optional[str] = None
     productCategoryPath: Optional[str] = None
     merchantShopDeliveryReference: Optional[str] = None
