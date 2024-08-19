@@ -25,6 +25,9 @@ from pcp_serversdk_python import (
     OrderLineDetailsInput,
     Customer,
     Address,
+    PatchCheckoutRequest,
+    Shipping,
+    AddressPersonal,
 )
 
 API_KEY = os.environ["API_KEY"]
@@ -35,29 +38,73 @@ CHECKOUT_ID = os.environ["CHECKOUT_ID"]
 
 API_URL = "https://api.preprod.commerce.payone.com"
 
+COMMUNICATOR_CONFIGURATION = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
+
 
 async def main():
-    # Call a function from module1
-    communicatorConfiguration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
-    checkoutApiClient = CheckoutApiClient(communicatorConfiguration)
+    await run_checkouts()
+    await run_commerce_case_without_payment_execution()
 
-    createCheckoutPayload = CreateCheckoutRequest()
-    createCheckoutPayload.amountOfMoney = AmountOfMoney(amount=1000, currencyCode="EUR")
-    createCheckoutResponse = await checkoutApiClient.createCheckoutRequest(
-        MERCHANT_ID, COMMERCE_CASE_ID, createCheckoutPayload
+
+async def run_checkouts():
+
+    checkout_api_client = CheckoutApiClient(COMMUNICATOR_CONFIGURATION)
+
+    # All checkouts:
+    print("All checkouts:")
+    checkouts = await checkout_api_client.getCheckoutsRequest(MERCHANT_ID)
+    print(checkouts)
+    print("---")
+
+    # Create a checkout:
+    print("Create Checkout:")
+    create_checkout_payload = CreateCheckoutRequest()
+    create_checkout_payload.amountOfMoney = AmountOfMoney(
+        amount=1000, currencyCode="EUR"
     )
-    print(createCheckoutResponse)
+    create_checkout_response = await checkout_api_client.createCheckoutRequest(
+        MERCHANT_ID, COMMERCE_CASE_ID, create_checkout_payload
+    )
+    print(create_checkout_response)
+    print("---")
 
-    await runCommerceCaseWithoutPaymentExecution()
+    # Patch a checkout:
+    print("Patch Checkout:")
+    patch_checkout_payload = PatchCheckoutRequest()
+    shipping = Shipping()
+    address = AddressPersonal()
+    address.city = "Cologne"
+    shipping.address = address
+    patch_checkout_payload.shipping = shipping
 
-    # checkouts = await checkoutApiClient.getCheckoutsRequest(MERCHANT_ID)
-    # print(checkouts)
+    patch_checkout_response = await checkout_api_client.updateCheckoutRequest(
+        MERCHANT_ID,
+        COMMERCE_CASE_ID,
+        create_checkout_response.checkoutId,
+        patch_checkout_payload,
+    )
 
-    # checkout = await checkoutApiClient.getCheckoutRequest(MERCHANT_ID, COMMERCE_CASE_ID, CHECKOUT_ID)
-    # print(checkout)
+    print(patch_checkout_response)
+    print("---")
+
+    # Get a checkout:
+    print("Get Checkout:")
+    checkout = await checkout_api_client.getCheckoutRequest(
+        MERCHANT_ID, COMMERCE_CASE_ID, create_checkout_response.checkoutId
+    )
+    print(checkout)
+    print("---")
+
+    # Delete a checkout:
+    print("Delete Checkout:")
+    delete_checkout_response = await checkout_api_client.removeCheckoutRequest(
+        MERCHANT_ID, COMMERCE_CASE_ID, create_checkout_response.checkoutId
+    )
+    print(delete_checkout_response)
+    print("---")
 
 
-async def runCommerceCaseWithoutPaymentExecution():
+async def run_commerce_case_without_payment_execution():
     communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
     commerce_case_api_client = CommerceCaseApiClient(communicator_configuration)
 

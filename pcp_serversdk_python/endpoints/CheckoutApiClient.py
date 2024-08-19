@@ -17,6 +17,7 @@ from ..models import (
     CheckoutResponse,
     CreateCheckoutRequest,
     CreateCheckoutResponse,
+    PatchCheckoutRequest,
 )
 
 
@@ -81,50 +82,53 @@ class CheckoutApiClient(BaseApiClient):
 
         return await self.makeApiCallWithType(req, CheckoutsResponse)
 
-    # async def update_checkout_request(
-    #     self,
-    #     merchant_id: str,
-    #     commerce_case_id: str,
-    #     checkout_id: str,
-    #     payload: PatchCheckoutRequest
-    # ) -> None:
-    #     if not merchant_id:
-    #         raise TypeError(MERCHANT_ID_REQUIRED_ERROR)
-    #     if not commerce_case_id:
-    #         raise TypeError(COMMERCE_CASE_ID_REQUIRED_ERROR)
-    #     if not checkout_id:
-    #         raise TypeError(CHECKOUT_ID_REQUIRED_ERROR)
+    async def updateCheckoutRequest(
+        self,
+        merchant_id: str,
+        commerce_case_id: str,
+        checkout_id: str,
+        payload: PatchCheckoutRequest,
+    ) -> None:
+        if not merchant_id:
+            raise TypeError(MERCHANT_ID_REQUIRED_ERROR)
+        if not commerce_case_id:
+            raise TypeError(COMMERCE_CASE_ID_REQUIRED_ERROR)
+        if not checkout_id:
+            raise TypeError(CHECKOUT_ID_REQUIRED_ERROR)
 
-    #     url = urljoin(self.getConfig().getHost(), f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}")
+        url = urljoin(
+            self.getConfig().getHost(),
+            f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}",
+        )
 
-    #     request_init = {
-    #         "method": "PATCH",
-    #         "headers": {
-    #             "Content-Type": "application/json"
-    #         },
-    #         "body": json.dumps(payload)
-    #     }
+        req = httpx.Request(
+            "PATCH",
+            url,
+            headers={"Content-Type": "application/json"},
+            data=json.dumps(asdict(payload)),
+        )
 
-    #     await self.makeApiCall(url, request_init, BaseApiClient.parse_void)
+        await self.makeApiCall(req)
 
-    # async def remove_checkout_request(
-    #     self,
-    #     merchant_id: str,
-    #     commerce_case_id: str,
-    #     checkout_id: str
-    # ) -> None:
-    #     if not merchant_id:
-    #         raise TypeError(MERCHANT_ID_REQUIRED_ERROR)
-    #     if not commerce_case_id:
-    #         raise TypeError(COMMERCE_CASE_ID_REQUIRED_ERROR)
-    #     if not checkout_id:
-    #         raise TypeError(CHECKOUT_ID_REQUIRED_ERROR)
+    async def removeCheckoutRequest(
+        self, merchant_id: str, commerce_case_id: str, checkout_id: str
+    ) -> None:
+        if not merchant_id:
+            raise TypeError(MERCHANT_ID_REQUIRED_ERROR)
+        if not commerce_case_id:
+            raise TypeError(COMMERCE_CASE_ID_REQUIRED_ERROR)
+        if not checkout_id:
+            raise TypeError(CHECKOUT_ID_REQUIRED_ERROR)
 
-    #     url = urljoin(self.getConfig().getHost(), f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}")
+        url = urljoin(
+            self.getConfig().getHost(),
+            f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}",
+        )
 
-    #     request_init = {
-    #         "method": "DELETE",
-    #         "headers": {}
-    #     }
+        req = httpx.Request(
+            "DELETE",
+            url,
+            headers={},
+        )
 
-    #     await self.makeApiCall(url, request_init, BaseApiClient.parse_void)
+        await self.makeApiCall(req)
