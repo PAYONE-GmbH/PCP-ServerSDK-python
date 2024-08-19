@@ -75,11 +75,15 @@ class BaseApiClient:
             request = self.requestHeaderGenerator.generateAdditionalRequestHeaders(
                 request
             )
+        print("1")
         response = await self.getResponse(request)
+        print("2")
         await self.handleError(response)
         try:
-
+            print("3")
+            print(response.text)
             data = json.loads(response.text)
+            print("4")
             return fromDictWithEnum(data_class=type, data=data)
         except json.JSONDecodeError as e:
             raise AssertionError(self.JSON_PARSE_ERROR) from e
@@ -108,4 +112,6 @@ class BaseApiClient:
                 headers=request.headers,
                 content=request.content,
             )
+
+        print(response)
         return response

@@ -19,6 +19,8 @@ setup(
         "twine>=5.1.1",
         "httpx>=0.27.0",
         "dacite>=1.8.1",
+        "pytest-mock>=3.14.0",
+        "pytest-asyncio>=0.23.8",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
