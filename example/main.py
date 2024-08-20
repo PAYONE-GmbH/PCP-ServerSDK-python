@@ -4,20 +4,33 @@ import sys
 import os
 import asyncio
 from datetime import datetime, timezone
+import uuid
+
+from pcp_serversdk_python.endpoints import OrderManagementCheckoutActionsApiClient
 
 # Add the parent directory to sys.path so my_package can be found
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 
 from pcp_serversdk_python import (
+    BankAccountInformation,
+    CancelRequest,
+    CheckoutReferences,
     CommunicatorConfiguration,
     CheckoutApiClient,
     CreateCheckoutRequest,
     CommerceCaseApiClient,
     CreateCommerceCaseRequest,
     AmountOfMoney,
+    DeliverRequest,
+    OrderRequest,
     PersonalInformation,
     ContactDetails,
+    ProcessingMandateInformation,
+    References,
+    ReturnRequest,
+    SepaDirectDebitPaymentMethodSpecificInput,
+    SepaDirectDebitPaymentProduct771SpecificInput,
     Shipping,
     ShoppingCartInput,
     CartItemInput,
@@ -28,6 +41,7 @@ from pcp_serversdk_python import (
     PatchCheckoutRequest,
     Shipping,
     AddressPersonal,
+    PaymentMethodSpecificInput,
 )
 
 API_KEY = os.environ["API_KEY"]
@@ -40,15 +54,21 @@ API_URL = "https://api.preprod.commerce.payone.com"
 
 COMMUNICATOR_CONFIGURATION = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
 
-UNIQUE_MERCHANT_REFERENCE = "merchantReference_123456789"
+# orderRequest.orderReferences.merchantReference size must be between 0 and 20
+# orderRequest.paymentMethodSpecificInput.sepaDirectDebitPaymentMethodSpecificInput.paymentProduct771SpecificInput.mandate.uniqueMandateReference must match \"^[A-Za-z0-9\\+\\-\\.()]{1,35}$\"
+UNIQUE_MERCHANT_REFERENCE = str(uuid.uuid4())[:8]
 
 
 async def main():
-    await run_checkouts()
-    # await run_create_commerce_case() # Please update the merchantReference to a unique value before running this test function
-    await run_get_list_of_commerce_cases()
-    await run_get_commerce_case()
-    await run_update_commerce_case_request()
+    # await run_checkouts()
+    await run_create_commerce_case()  # Get your COMMERCE_CASE_ID and CHECKOUT_ID from here
+    # await run_get_list_of_commerce_cases()
+    # await run_get_commerce_case()
+    # await run_update_commerce_case_request()
+    # await run_create_order()
+    # await run_deliver_order()
+    # await run_return_order()
+    # await run_cancel_order()
 
 
 async def run_checkouts():
@@ -166,6 +186,10 @@ async def run_create_commerce_case():
 
     print("Created commerce case:")
     print(create_commerce_case_response)
+    print("Commerce case ID:")
+    print(create_commerce_case_response.commerceCaseId)
+    print("Checkout ID:")
+    print(create_commerce_case_response.checkout.checkoutId)
 
 
 async def run_get_list_of_commerce_cases():
@@ -209,6 +233,122 @@ async def run_update_commerce_case_request():
         MERCHANT_ID, COMMERCE_CASE_ID, updated_customer
     )
     print("Successfully updated commerce case!")
+
+
+async def run_create_order():
+    communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
+    order_management_checkout_actions_api_client = (
+        OrderManagementCheckoutActionsApiClient(communicator_configuration)
+    )
+
+    # first create a checkout that has the allowed payment action ORDER_MANAGEMENT
+    create_checkout_payload = CreateCheckoutRequest()
+
+    create_checkout_payload.references = CheckoutReferences(
+        merchantReference="c-" + UNIQUE_MERCHANT_REFERENCE
+    )
+    create_checkout_payload.amountOfMoney = AmountOfMoney(
+        amount=2300, currencyCode="EUR"
+    )
+    create_checkout_payload.shipping = Shipping(
+        address=Address(
+            countryCode="DE",
+            zip="40474",
+            city="Düsseldorf",
+            street="Cecilienallee",
+            houseNumber="2",
+        )
+    )
+    create_checkout_payload.shoppingCart = ShoppingCartInput(
+        items=[
+            CartItemInput(
+                invoiceData=CartItemInvoiceData(
+                    description="T-Shirt - Scaleshape Logo - S",
+                ),
+                orderLineDetails=OrderLineDetailsInput(
+                    productPrice=2300,
+                    quantity=1,
+                    productType="GOODS",
+                ),
+            )
+        ]
+    )
+
+    order_request = OrderRequest(
+        orderReferences=References(
+            merchantReference="o-" + UNIQUE_MERCHANT_REFERENCE,
+        ),
+        paymentMethodSpecificInput=PaymentMethodSpecificInput(
+            sepaDirectDebitPaymentMethodSpecificInput=SepaDirectDebitPaymentMethodSpecificInput(
+                paymentProductId=771,
+                paymentProduct771SpecificInput=SepaDirectDebitPaymentProduct771SpecificInput(
+                    mandate=ProcessingMandateInformation(
+                        bankAccountIban=BankAccountInformation(
+                            iban="DE75512108001245126199",
+                            accountHolder="Rich Harris",
+                        ),
+                        dateOfSignature="20240730",
+                        recurrenceType="UNIQUE",
+                        uniqueMandateReference="m-" + UNIQUE_MERCHANT_REFERENCE,
+                        creditorId="DE98ZZZ09999999999",
+                    )
+                ),
+            )
+        ),
+    )
+
+    order_response = await order_management_checkout_actions_api_client.create_order(
+        MERCHANT_ID, COMMERCE_CASE_ID, CHECKOUT_ID, order_request
+    )
+    print("Order response:")
+    print(order_response)
+
+
+async def run_deliver_order():
+    communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
+    order_management_checkout_actions_api_client = (
+        OrderManagementCheckoutActionsApiClient(communicator_configuration)
+    )
+
+    deliver_request = DeliverRequest(deliverType="FULL", isFinal=True)
+
+    deliver_response = await order_management_checkout_actions_api_client.deliver_order(
+        MERCHANT_ID, COMMERCE_CASE_ID, CHECKOUT_ID, deliver_request
+    )
+    print("Deliver response:")
+    print(deliver_response)
+
+
+# only works for orders that have been delivered
+async def run_return_order():
+    communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
+    order_management_checkout_actions_api_client = (
+        OrderManagementCheckoutActionsApiClient(communicator_configuration)
+    )
+
+    return_request = ReturnRequest(returnType="FULL", returnReason="Not as expected")
+
+    return_response = await order_management_checkout_actions_api_client.return_order(
+        MERCHANT_ID, COMMERCE_CASE_ID, CHECKOUT_ID, return_request
+    )
+    print("Return response:")
+    print(return_response)
+
+
+# only successful with a checkout that has the status COMPLETED
+async def run_cancel_order():
+    communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
+    order_management_checkout_actions_api_client = (
+        OrderManagementCheckoutActionsApiClient(communicator_configuration)
+    )
+
+    cancel_request = CancelRequest(cancelType="FULL")
+
+    cancel_response = await order_management_checkout_actions_api_client.cancel_order(
+        MERCHANT_ID, COMMERCE_CASE_ID, CHECKOUT_ID, cancel_request
+    )
+    print("Cancel response:")
+    print(cancel_response)
 
 
 if __name__ == "__main__":

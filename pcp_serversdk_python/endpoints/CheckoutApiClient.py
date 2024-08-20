@@ -73,8 +73,8 @@ class CheckoutApiClient(BaseApiClient):
         url = urljoin(self.get_config().get_host(), f"/v1/{merchant_id}/checkouts")
 
         if query_params:
-            queryString = query_params.to_query_map()
-            url = f"{url}?{queryString}"
+            query_string = query_params.to_query_map()
+            url = f"{url}?{query_string}"
 
         req = httpx.Request("GET", url, headers={})
 

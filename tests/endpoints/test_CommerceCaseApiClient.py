@@ -149,7 +149,6 @@ async def test_update_commerce_case_request(
     await commerce_case_api_client.update_commerce_case_request(
         "merchantId", "commerceCaseId", Customer()
     )
-    assert True
 
 
 @pytest.mark.asyncio
