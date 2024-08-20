@@ -4,7 +4,7 @@ from urllib.parse import urljoin
 
 import httpx
 
-from pcp_serversdk_python import (
+from ..models import (
     CancelPaymentRequest,
     CancelPaymentResponse,
     CapturePaymentRequest,

@@ -3,19 +3,22 @@ import httpx
 import json
 from dataclasses import asdict
 
-from pcp_serversdk_python import (
+from pcp_serversdk_python.models import (
     CancelPaymentRequest,
     CancelPaymentResponse,
     CapturePaymentRequest,
     CapturePaymentResponse,
-    CommunicatorConfiguration,
     CompletePaymentRequest,
     CompletePaymentResponse,
     CreatePaymentResponse,
-    PaymentExecutionApiClient,
     PaymentExecutionRequest,
     RefundPaymentResponse,
     RefundRequest,
+)
+
+from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
+from pcp_serversdk_python.endpoints.PaymentExecutionApiClient import (
+    PaymentExecutionApiClient,
 )
 
 
