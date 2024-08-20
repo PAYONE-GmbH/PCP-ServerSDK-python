@@ -48,6 +48,7 @@ class BaseApiClient:
     MERCHANT_ID_REQUIRED_ERROR = "Merchant ID is required"
     COMMERCE_CASE_ID_REQUIRED_ERROR = "Commerce Case ID is required"
     CHECKOUT_ID_REQUIRED_ERROR = "Checkout ID is required"
+    PAYMENT_INFORMATION_ID_REQUIRED_ERROR = "Payment Information ID is required"
 
     def __init__(self, config: CommunicatorConfiguration):
         self.config = config
