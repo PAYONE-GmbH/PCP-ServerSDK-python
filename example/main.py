@@ -13,8 +13,10 @@ from pcp_serversdk_python.endpoints import (
     CheckoutApiClient,
     CommerceCaseApiClient,
     PaymentInformationApiClient,
+    OrderManagementCheckoutActionsApiClient,
 )
 from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
+
 
 from pcp_serversdk_python.models import (
     BankAccountInformation,
@@ -45,7 +47,6 @@ from pcp_serversdk_python.models import (
     PatchCheckoutRequest,
     AddressPersonal,
     PaymentMethodSpecificInput,
-    OrderManagementCheckoutActionsApiClient,
 )
 
 API_KEY = os.environ["API_KEY"]
@@ -65,7 +66,7 @@ UNIQUE_MERCHANT_REFERENCE = str(uuid.uuid4())[:8]
 
 
 async def main():
-    # await run_checkouts()
+    await run_checkouts()
     # await run_create_commerce_case()  # Get your COMMERCE_CASE_ID and CHECKOUT_ID from here
     # await run_get_list_of_commerce_cases()
     # await run_get_commerce_case()
@@ -75,7 +76,7 @@ async def main():
     # await run_return_order()
     # await run_cancel_order()
     # await run_create_payment_information()
-    await run_get_payment_information()
+    # await run_get_payment_information()
 
 
 async def run_checkouts():

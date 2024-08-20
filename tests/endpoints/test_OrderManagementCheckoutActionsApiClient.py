@@ -3,12 +3,10 @@ import httpx
 import json
 from dataclasses import asdict
 
-from pcp_serversdk_python.CommunicatorConfiguration import (   
-    CommunicatorConfiguration
-)
+from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
 from pcp_serversdk_python.endpoints import OrderManagementCheckoutActionsApiClient
 from pcp_serversdk_python.models import (
-     CancelRequest,
+    CancelRequest,
     CancelResponse,
     DeliverRequest,
     DeliverResponse,

@@ -13,15 +13,7 @@ setup(
     url="https://github.com/PAYONE-GmbH/PCP-ServerSDK-python",
     keywords="payone, pcp, server, python, sdk",
     packages=find_packages(),
-    install_requires=[
-        "pytest>=8.3.2",
-        "pytest-cov>=5.0.0",
-        "twine>=5.1.1",
-        "httpx>=0.27.0",
-        "dacite>=1.8.1",
-        "pytest-mock>=3.14.0",
-        "pytest-asyncio>=0.23.8",
-    ],
+    install_requires=open("requirements.txt").read().splitlines(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

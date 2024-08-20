@@ -5,16 +5,13 @@ import httpx
 from urllib.parse import urljoin
 from dataclasses import asdict
 
-from pcp_serversdk_python import PaymentInformationResponse
 
 from .BaseApiClient import (
     BaseApiClient,
 )
 from ..CommunicatorConfiguration import CommunicatorConfiguration
 from ..queries import GetCheckoutsQuery
-from ..models import (
-    PaymentInformationRequest,
-)
+from ..models import PaymentInformationRequest, PaymentInformationResponse
 
 
 class PaymentInformationApiClient(BaseApiClient):

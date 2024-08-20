@@ -3,15 +3,16 @@ import httpx
 import json
 from dataclasses import asdict
 
-from pcp_serversdk_python import (
+from pcp_serversdk_python.models import (
     AmountOfMoney,
-    CommunicatorConfiguration,
     PaymentChannel,
-    PaymentInformationApiClient,
     PaymentInformationRequest,
     PaymentInformationResponse,
     PaymentType,
 )
+
+from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
+from pcp_serversdk_python.endpoints import PaymentInformationApiClient
 
 
 @pytest.fixture
