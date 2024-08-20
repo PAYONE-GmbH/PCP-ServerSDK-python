@@ -52,9 +52,9 @@ class PaymentInformationApiClient(BaseApiClient):
         checkout_id: str,
         payment_information_id: str,
     ):
-        self._validate_inputs(merchant_id, commerce_case_id, checkout_id)
-        if not payment_information_id:
-            raise ValueError(self.PAYMENT_INFORMATION_ID_REQUIRED_ERROR)
+        self._validate_inputs(
+            merchant_id, commerce_case_id, checkout_id, payment_information_id
+        )
 
         url = urljoin(
             self.get_config().get_host(),
@@ -70,6 +70,7 @@ class PaymentInformationApiClient(BaseApiClient):
         merchant_id: str,
         commerce_case_id: str,
         checkout_id: str,
+        payment_information_id: str = None,
     ):
         if not merchant_id:
             raise ValueError(self.MERCHANT_ID_REQUIRED_ERROR)
@@ -77,3 +78,6 @@ class PaymentInformationApiClient(BaseApiClient):
             raise ValueError(self.COMMERCE_CASE_ID_REQUIRED_ERROR)
         if not checkout_id:
             raise ValueError(self.CHECKOUT_ID_REQUIRED_ERROR)
+        # Check the payment_information_id only if it is provided
+        if payment_information_id is not None and not payment_information_id:
+            raise ValueError(self.PAYMENT_INFORMATION_ID_REQUIRED_ERROR)

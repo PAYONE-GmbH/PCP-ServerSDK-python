@@ -26,8 +26,7 @@ class CommerceCaseApiClient(BaseApiClient):
     async def create_commerce_case_request(
         self, merchant_id: str, payload: CreateCommerceCaseRequest
     ) -> CreateCommerceCaseResponse:
-        if not merchant_id:
-            raise ValueError(self.MERCHANT_ID_REQUIRED_ERROR)
+        self._validate_inputs(merchant_id)
 
         url = urljoin(
             self.get_config().get_host(),
@@ -46,10 +45,7 @@ class CommerceCaseApiClient(BaseApiClient):
     async def get_commerce_case_request(
         self, merchant_id: str, commerce_case_id: str
     ) -> CommerceCaseResponse:
-        if not merchant_id:
-            raise ValueError(self.MERCHANT_ID_REQUIRED_ERROR)
-        if not commerce_case_id:
-            raise ValueError(self.COMMERCE_CASE_ID_REQUIRED_ERROR)
+        self._validate_inputs(merchant_id, commerce_case_id)
 
         url = urljoin(
             self.get_config().get_host(),
@@ -63,8 +59,7 @@ class CommerceCaseApiClient(BaseApiClient):
     async def get_commerce_cases_request(
         self, merchant_id: str, query_params: Optional[GetCommerceCasesQuery] = None
     ) -> List[CommerceCaseResponse]:
-        if not merchant_id:
-            raise ValueError(self.MERCHANT_ID_REQUIRED_ERROR)
+        self._validate_inputs(merchant_id)
 
         url = urljoin(self.get_config().get_host(), f"/v1/{merchant_id}/commerce-cases")
 
@@ -79,10 +74,7 @@ class CommerceCaseApiClient(BaseApiClient):
     async def update_commerce_case_request(
         self, merchant_id: str, commerce_case_id: str, payload: Customer
     ):
-        if not merchant_id:
-            raise ValueError(self.MERCHANT_ID_REQUIRED_ERROR)
-        if not commerce_case_id:
-            raise ValueError(self.COMMERCE_CASE_ID_REQUIRED_ERROR)
+        self._validate_inputs(merchant_id, commerce_case_id)
 
         url = urljoin(
             self.get_config().get_host(),
@@ -97,3 +89,14 @@ class CommerceCaseApiClient(BaseApiClient):
         )
 
         return await self.make_api_call(req)
+
+    def _validate_inputs(
+        self,
+        merchant_id: str,
+        commerce_case_id: str = None,
+    ):
+        if not merchant_id:
+            raise ValueError(self.MERCHANT_ID_REQUIRED_ERROR)
+        # Check the commerce_case_id only if it is provided
+        if commerce_case_id is not None and not commerce_case_id:
+            raise ValueError(self.COMMERCE_CASE_ID_REQUIRED_ERROR)
