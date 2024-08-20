@@ -4,7 +4,6 @@ from urllib.parse import urljoin
 
 import httpx
 
-from ..CommunicatorConfiguration import CommunicatorConfiguration
 from ..models import (
     CancelRequest,
     CancelResponse,
@@ -21,11 +20,6 @@ from .BaseApiClient import (
 
 
 class OrderManagementCheckoutActionsApiClient(BaseApiClient):
-    CONTENT_TYPE = "application/json"
-
-    def __init__(self, config: CommunicatorConfiguration):
-        super().__init__(config)
-
     async def create_order(
         self,
         merchant_id: str,

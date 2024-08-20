@@ -42,6 +42,7 @@ def is_error_response(parsed: Any) -> bool:
 
 
 class BaseApiClient:
+    CONTENT_TYPE = "application/json"
     MERCHANT_ID_REQUIRED_ERROR = "Merchant ID is required"
     COMMERCE_CASE_ID_REQUIRED_ERROR = "Commerce Case ID is required"
     CHECKOUT_ID_REQUIRED_ERROR = "Checkout ID is required"

@@ -4,7 +4,6 @@ from urllib.parse import urljoin
 
 import httpx
 
-from ..CommunicatorConfiguration import CommunicatorConfiguration
 from ..models import PaymentInformationRequest, PaymentInformationResponse
 from .BaseApiClient import (
     BaseApiClient,
@@ -12,9 +11,6 @@ from .BaseApiClient import (
 
 
 class PaymentInformationApiClient(BaseApiClient):
-    def __init__(self, config: CommunicatorConfiguration):
-        super().__init__(config)
-
     async def create_payment_information(
         self,
         merchant_id: str,

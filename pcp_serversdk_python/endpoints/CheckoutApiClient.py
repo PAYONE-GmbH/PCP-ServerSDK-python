@@ -5,7 +5,6 @@ from urllib.parse import urljoin
 
 import httpx
 
-from ..CommunicatorConfiguration import CommunicatorConfiguration
 from ..models import (
     CheckoutResponse,
     CheckoutsResponse,
@@ -20,9 +19,6 @@ from .BaseApiClient import (
 
 
 class CheckoutApiClient(BaseApiClient):
-    def __init__(self, config: CommunicatorConfiguration):
-        super().__init__(config)
-
     async def create_checkout_request(
         self, merchant_id: str, commerce_case_id: str, payload: CreateCheckoutRequest
     ) -> CreateCheckoutResponse:
