@@ -1,15 +1,15 @@
 import pytest
-from pcp_serversdk_python.models import (
-    MobilePaymentMethodSpecificInput,
-    ApplePayPayment,
-    Network,
-    ApplePaymentTokenVersion,
-)
 
+from pcp_serversdk_python.models import (
+    ApplePaymentTokenVersion,
+    ApplePayPayment,
+    MobilePaymentMethodSpecificInput,
+    Network,
+)
 from pcp_serversdk_python.transformer.Applepay import (
     network_from_string,
-    version_from_string,
     transform_apple_pay_payment_to_mobile_payment_method_specific_input,
+    version_from_string,
 )
 
 

@@ -1,26 +1,26 @@
-import pytest
-import httpx
 import json
 from dataclasses import asdict
 
-from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
-from pcp_serversdk_python.queries import GetCheckoutsQuery
-from pcp_serversdk_python.endpoints import CheckoutApiClient
+import httpx
+import pytest
 
+from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
+from pcp_serversdk_python.endpoints import CheckoutApiClient
 from pcp_serversdk_python.models import (
-    CreateCheckoutRequest,
-    CreateCheckoutResponse,
+    AmountOfMoney,
+    CartItemInvoiceData,
+    CartItemResult,
+    CheckoutReferences,
     CheckoutResponse,
     CheckoutsResponse,
-    PatchCheckoutRequest,
-    AmountOfMoney,
-    ShoppingCartResult,
-    CartItemResult,
-    CartItemInvoiceData,
+    CreateCheckoutRequest,
+    CreateCheckoutResponse,
     OrderLineDetailsResult,
+    PatchCheckoutRequest,
+    ShoppingCartResult,
     StatusCheckout,
-    CheckoutReferences,
 )
+from pcp_serversdk_python.queries import GetCheckoutsQuery
 
 
 @pytest.fixture

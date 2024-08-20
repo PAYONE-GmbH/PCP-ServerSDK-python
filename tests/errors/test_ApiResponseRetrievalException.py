@@ -1,7 +1,7 @@
+from pcp_serversdk_python.errors.ApiException import ApiException
 from pcp_serversdk_python.errors.ApiResponseRetrievalException import (
     ApiResponseRetrievalException,
 )
-from pcp_serversdk_python.errors.ApiException import ApiException
 
 
 def test_api_response_retrieval_exception_initialization():

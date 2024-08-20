@@ -1,9 +1,9 @@
-import pytest
-
-from datetime import datetime, timezone
 import base64
 import json
+from datetime import datetime, timezone
+
 import httpx
+import pytest
 
 from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
 from pcp_serversdk_python.RequestHeaderGenerator import RequestHeaderGenerator

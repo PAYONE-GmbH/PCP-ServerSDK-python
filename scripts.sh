@@ -33,6 +33,7 @@ test() {
 lint() {
     echo "Running lint..."
     pcp_serversdk_python/bin/ruff check ./pcp_serversdk_python
+    pcp_serversdk_python/bin/ruff check ./tests
     echo "Lint complete."
 }
 

@@ -1,18 +1,17 @@
-import pytest
-import httpx
 import json
 from dataclasses import asdict
 
-from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
+import httpx
+import pytest
 
+from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
+from pcp_serversdk_python.endpoints import CommerceCaseApiClient
 from pcp_serversdk_python.models import (
     CommerceCaseResponse,
     CreateCommerceCaseRequest,
     CreateCommerceCaseResponse,
     Customer,
 )
-
-from pcp_serversdk_python.endpoints import CommerceCaseApiClient
 from pcp_serversdk_python.queries import GetCommerceCasesQuery
 
 
