@@ -69,7 +69,7 @@ class CommerceCaseApiClient(BaseApiClient):
         url = urljoin(self.get_config().get_host(), f"/v1/{merchant_id}/commerce-cases")
 
         if query_params:
-            query_string = query_params.toQueryMap()
+            query_string = query_params.to_query_map()
             url = f"{url}?{query_string}"
 
         req = httpx.Request("GET", url, headers={})

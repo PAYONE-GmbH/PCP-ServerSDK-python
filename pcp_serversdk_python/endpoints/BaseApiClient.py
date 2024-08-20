@@ -1,9 +1,19 @@
-from enum import Enum
 import json
-import httpx
-from typing import Any, Dict, Optional, TypeVar, Callable, Type, Union
-from dacite import from_dict, Config
+from enum import Enum
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+    get_args,
+    get_origin,
+)
 
+import httpx
+from dacite import Config, from_dict
 
 from ..CommunicatorConfiguration import CommunicatorConfiguration
 from ..RequestHeaderGenerator import RequestHeaderGenerator
@@ -72,7 +82,15 @@ class BaseApiClient:
             print(response.text)
             data = json.loads(response.text)
             print("4")
-            return from_dict_with_enum(data_class=type, data=data)
+            # Check if the expected type is a List
+            if get_origin(type) is list:
+                item_type = get_args(type)[0]  # Extract the type of the list's elements
+                return [
+                    from_dict_with_enum(data_class=item_type, data=item)
+                    for item in data
+                ]
+            else:
+                return from_dict_with_enum(data_class=type, data=data)
         except json.JSONDecodeError as e:
             raise AssertionError(self.JSON_PARSE_ERROR) from e
 
