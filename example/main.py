@@ -5,21 +5,29 @@ import os
 import asyncio
 import uuid
 
-
 # Add the parent directory to sys.path so my_package can be found
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from pcp_serversdk_python.endpoints import OrderManagementCheckoutActionsApiClient,CheckoutApiClient ,   CommerceCaseApiClient
+from pcp_serversdk_python.endpoints import (
+    OrderManagementCheckoutActionsApiClient,
+    CheckoutApiClient,
+    CommerceCaseApiClient,
+    PaymentInformationApiClient,
+)
 from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
+
 from pcp_serversdk_python.models import (
     BankAccountInformation,
     CancelRequest,
     CheckoutReferences,
-    CreateCheckoutRequest, 
+    CreateCheckoutRequest,
     CreateCommerceCaseRequest,
     AmountOfMoney,
     DeliverRequest,
     OrderRequest,
+    PaymentChannel,
+    PaymentInformationRequest,
+    PaymentType,
     PersonalInformation,
     ContactDetails,
     ProcessingMandateInformation,
@@ -37,6 +45,7 @@ from pcp_serversdk_python.models import (
     PatchCheckoutRequest,
     AddressPersonal,
     PaymentMethodSpecificInput,
+    OrderManagementCheckoutActionsApiClient,
 )
 
 API_KEY = os.environ["API_KEY"]
@@ -44,6 +53,7 @@ API_SECRET = os.environ["API_SECRET"]
 MERCHANT_ID = os.environ["MERCHANT_ID"]
 COMMERCE_CASE_ID = os.environ["COMMERCE_CASE_ID"]
 CHECKOUT_ID = os.environ["CHECKOUT_ID"]
+PAYMENT_INFORMATION_ID = os.environ["PAYMENT_INFORMATION_ID"]
 
 API_URL = "https://api.preprod.commerce.payone.com"
 
@@ -56,7 +66,7 @@ UNIQUE_MERCHANT_REFERENCE = str(uuid.uuid4())[:8]
 
 async def main():
     # await run_checkouts()
-    await run_create_commerce_case()  # Get your COMMERCE_CASE_ID and CHECKOUT_ID from here
+    # await run_create_commerce_case()  # Get your COMMERCE_CASE_ID and CHECKOUT_ID from here
     # await run_get_list_of_commerce_cases()
     # await run_get_commerce_case()
     # await run_update_commerce_case_request()
@@ -64,6 +74,8 @@ async def main():
     # await run_deliver_order()
     # await run_return_order()
     # await run_cancel_order()
+    # await run_create_payment_information()
+    await run_get_payment_information()
 
 
 async def run_checkouts():
@@ -230,6 +242,7 @@ async def run_update_commerce_case_request():
     print("Successfully updated commerce case!")
 
 
+# Run run_create_commerce_case first and use the CHECKOUT_ID and COMMERCE_CASE_ID from the response
 async def run_create_order():
     communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
     order_management_checkout_actions_api_client = (
@@ -299,6 +312,7 @@ async def run_create_order():
     print(order_response)
 
 
+# Run run_create_order first
 async def run_deliver_order():
     communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
     order_management_checkout_actions_api_client = (
@@ -314,7 +328,7 @@ async def run_deliver_order():
     print(deliver_response)
 
 
-# only works for orders that have been delivered
+# only works for orders that have been delivered. Run run_create_order and run_deliver_order first
 async def run_return_order():
     communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
     order_management_checkout_actions_api_client = (
@@ -344,6 +358,44 @@ async def run_cancel_order():
     )
     print("Cancel response:")
     print(cancel_response)
+
+
+# Run run_create_commerce_case first and use the COMMERCE_CASE_ID and CHECKOUT_ID from the response
+async def run_create_payment_information():
+    communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
+    payment_information_api_client = PaymentInformationApiClient(
+        communicator_configuration
+    )
+
+    create_request = PaymentInformationRequest(
+        amountOfMoney=AmountOfMoney(amount=1000, currencyCode="EUR"),
+        type=PaymentType.Sale,
+        paymentChannel=PaymentChannel.ECOMMERCE,
+        paymentProductId=771,
+        merchantReference="p-" + UNIQUE_MERCHANT_REFERENCE,
+    )
+
+    create_response = await payment_information_api_client.create_payment_information(
+        MERCHANT_ID, COMMERCE_CASE_ID, CHECKOUT_ID, create_request
+    )
+    print("Create payment information response:")
+    print(create_response)
+    print("Payment information ID:")
+    print(create_response.paymentInformationId)
+
+
+# Run run_create_payment_information first and use the PAYMENT_INFORMATION_ID from the response
+async def run_get_payment_information():
+    communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
+    payment_information_api_client = PaymentInformationApiClient(
+        communicator_configuration
+    )
+
+    get_response = await payment_information_api_client.get_payment_information(
+        MERCHANT_ID, COMMERCE_CASE_ID, CHECKOUT_ID, PAYMENT_INFORMATION_ID
+    )
+    print("Get payment information response:")
+    print(get_response)
 
 
 if __name__ == "__main__":
