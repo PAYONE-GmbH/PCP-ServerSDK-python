@@ -17,7 +17,9 @@ from pcp_serversdk_python.models import (
 )
 
 from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
-from pcp_serversdk_python.endpoints import PaymentExecutionApiClient
+from pcp_serversdk_python.endpoints import (
+    PaymentExecutionApiClient,
+)
 
 
 @pytest.fixture
