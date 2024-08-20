@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class PaymentStatus(Enum):
+class PaymentStatus(str, Enum):
     WAITING_FOR_PAYMENT = "WAITING_FOR_PAYMENT"
     PAYMENT_NOT_COMPLETED = "PAYMENT_NOT_COMPLETED"
     PAYMENT_COMPLETED = "PAYMENT_COMPLETED"

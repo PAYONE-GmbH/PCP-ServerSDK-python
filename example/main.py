@@ -52,7 +52,7 @@ async def run_checkouts():
 
     # All checkouts:
     print("All checkouts:")
-    checkouts = await checkout_api_client.getCheckoutsRequest(MERCHANT_ID)
+    checkouts = await checkout_api_client.get_checkouts_request(MERCHANT_ID)
     print(checkouts)
     print("---")
 
@@ -62,7 +62,7 @@ async def run_checkouts():
     create_checkout_payload.amountOfMoney = AmountOfMoney(
         amount=1000, currencyCode="EUR"
     )
-    create_checkout_response = await checkout_api_client.createCheckoutRequest(
+    create_checkout_response = await checkout_api_client.create_checkout_request(
         MERCHANT_ID, COMMERCE_CASE_ID, create_checkout_payload
     )
     print(create_checkout_response)
@@ -77,7 +77,7 @@ async def run_checkouts():
     shipping.address = address
     patch_checkout_payload.shipping = shipping
 
-    patch_checkout_response = await checkout_api_client.updateCheckoutRequest(
+    patch_checkout_response = await checkout_api_client.update_checkout_request(
         MERCHANT_ID,
         COMMERCE_CASE_ID,
         create_checkout_response.checkoutId,
@@ -89,7 +89,7 @@ async def run_checkouts():
 
     # Get a checkout:
     print("Get Checkout:")
-    checkout = await checkout_api_client.getCheckoutRequest(
+    checkout = await checkout_api_client.get_checkout_request(
         MERCHANT_ID, COMMERCE_CASE_ID, create_checkout_response.checkoutId
     )
     print(checkout)
@@ -97,7 +97,7 @@ async def run_checkouts():
 
     # Delete a checkout:
     print("Delete Checkout:")
-    delete_checkout_response = await checkout_api_client.removeCheckoutRequest(
+    delete_checkout_response = await checkout_api_client.remove_checkout_request(
         MERCHANT_ID, COMMERCE_CASE_ID, create_checkout_response.checkoutId
     )
     print(delete_checkout_response)

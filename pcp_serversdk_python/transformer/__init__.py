@@ -1,5 +1,7 @@
-from .Applepay import transformApplePayPaymentToMobilePaymentMethodSpecificInput
+from .Applepay import (
+    transform_apple_pay_payment_to_mobile_payment_method_specific_input,
+)
 
 __all__ = [
-    "transformApplePayPaymentToMobilePaymentMethodSpecificInput",
+    "transform_apple_pay_payment_to_mobile_payment_method_specific_input",
 ]

@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class StatusValue(Enum):
+class StatusValue(str, Enum):
     CREATED = "CREATED"
     CANCELLED = "CANCELLED"
     REJECTED = "REJECTED"

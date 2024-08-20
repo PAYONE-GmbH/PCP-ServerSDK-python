@@ -2,44 +2,46 @@ import pytest
 from pcp_serversdk_python import CommunicatorConfiguration  # Update import as needed
 
 
-def testCommunicatorConfigurationInitialization():
+def test_communicator_configuration_initialization():
     api_key = "testApiKey"
     api_secret = "testApiSecret"
     host = "https://example.com"
 
-    config = CommunicatorConfiguration(apiKey=api_key, apiSecret=api_secret, host=host)
+    config = CommunicatorConfiguration(
+        api_key=api_key, api_secret=api_secret, host=host
+    )
 
     # Check initialization
-    assert config.apiKey == api_key
-    assert config.apiSecret == api_secret
+    assert config.api_key == api_key
+    assert config.api_secret == api_secret
     assert config.host == host
 
 
-def testGetApiKey():
+def test_get_api_key():
     api_key = "testApiKey"
     config = CommunicatorConfiguration(
-        apiKey=api_key, apiSecret="testApiSecret", host="https://example.com"
+        api_key=api_key, api_secret="testApiSecret", host="https://example.com"
     )
 
-    # Check getApiKey method
-    assert config.getApiKey() == api_key
+    # Check get_api_key method
+    assert config.get_api_key() == api_key
 
 
-def testGetApiSecret():
+def test_get_api_secret():
     api_secret = "testApiSecret"
     config = CommunicatorConfiguration(
-        apiKey="testApiKey", apiSecret=api_secret, host="https://example.com"
+        api_key="testApiKey", api_secret=api_secret, host="https://example.com"
     )
 
-    # Check getApiSecret method
-    assert config.getApiSecret() == api_secret
+    # Check get_api_secret method
+    assert config.get_api_secret() == api_secret
 
 
-def testGetHost():
+def test_get_host():
     host = "https://example.com"
     config = CommunicatorConfiguration(
-        apiKey="testApiKey", apiSecret="testApiSecret", host=host
+        api_key="testApiKey", api_secret="testApiSecret", host=host
     )
 
-    # Check getHost method
-    assert config.getHost() == host
+    # Check get_host method
+    assert config.get_host() == host

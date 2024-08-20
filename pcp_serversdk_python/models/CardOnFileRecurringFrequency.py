@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class CardOnFileRecurringFrequency(Enum):
+class CardOnFileRecurringFrequency(str, Enum):
     YEARLY = "Yearly"
     QUARTERLY = "Quarterly"
     MONTHLY = "Monthly"

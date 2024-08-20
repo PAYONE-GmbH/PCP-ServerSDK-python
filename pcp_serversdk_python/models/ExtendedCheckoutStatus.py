@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class ExtendedCheckoutStatus(Enum):
+class ExtendedCheckoutStatus(str, Enum):
     OPEN = "OPEN"
     DELETED = "DELETED"
     PENDING_COMPLETION = "PENDING_COMPLETION"

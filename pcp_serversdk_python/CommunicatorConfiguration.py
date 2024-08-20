@@ -1,14 +1,14 @@
 class CommunicatorConfiguration:
-    def __init__(self, apiKey: str, apiSecret: str, host: str):
-        self.apiKey = apiKey
-        self.apiSecret = apiSecret
+    def __init__(self, api_key: str, api_secret: str, host: str):
+        self.api_key = api_key
+        self.api_secret = api_secret
         self.host = host
 
-    def getApiKey(self) -> str:
-        return self.apiKey
+    def get_api_key(self) -> str:
+        return self.api_key
 
-    def getApiSecret(self) -> str:
-        return self.apiSecret
+    def get_api_secret(self) -> str:
+        return self.api_secret
 
-    def getHost(self) -> str:
+    def get_host(self) -> str:
         return self.host

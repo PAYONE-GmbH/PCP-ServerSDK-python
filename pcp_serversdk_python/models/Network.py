@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Network(Enum):
+class Network(str, Enum):
     MASTERCARD = "MASTERCARD"
     VISA = "VISA"
     AMEX = "AMEX"

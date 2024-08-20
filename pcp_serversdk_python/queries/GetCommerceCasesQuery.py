@@ -16,75 +16,77 @@ class GetCommerceCasesQuery:
     includePaymentChannel: Optional[List[PaymentChannel]] = field(default_factory=list)
 
     # Setters
-    def setOffset(self, offset: int) -> "GetCommerceCasesQuery":
+    def set_offset(self, offset: int) -> "GetCommerceCasesQuery":
         self.offset = offset
         return self
 
-    def setSize(self, size: int) -> "GetCommerceCasesQuery":
+    def set_size(self, size: int) -> "GetCommerceCasesQuery":
         self.size = size
         return self
 
-    def setFromDate(self, fromDate: str) -> "GetCommerceCasesQuery":
+    def set_from_date(self, fromDate: str) -> "GetCommerceCasesQuery":
         self.fromDate = fromDate
         return self
 
-    def setToDate(self, toDate: str) -> "GetCommerceCasesQuery":
+    def set_to_date(self, toDate: str) -> "GetCommerceCasesQuery":
         self.toDate = toDate
         return self
 
-    def setCommerceCaseId(self, commerceCaseId: str) -> "GetCommerceCasesQuery":
+    def set_commerce_case_id(self, commerceCaseId: str) -> "GetCommerceCasesQuery":
         self.commerceCaseId = commerceCaseId
         return self
 
-    def setMerchantReference(self, merchantReference: str) -> "GetCommerceCasesQuery":
+    def set_merchant_reference(self, merchantReference: str) -> "GetCommerceCasesQuery":
         self.merchantReference = merchantReference
         return self
 
-    def setMerchantCustomerId(self, merchantCustomerId: str) -> "GetCommerceCasesQuery":
+    def set_merchant_customer_id(
+        self, merchantCustomerId: str
+    ) -> "GetCommerceCasesQuery":
         self.merchantCustomerId = merchantCustomerId
         return self
 
-    def setIncludeCheckoutStatus(
+    def set_include_checkout_status(
         self, includeCheckoutStatus: List[StatusCheckout]
     ) -> "GetCommerceCasesQuery":
         self.includeCheckoutStatus = includeCheckoutStatus
         return self
 
-    def setIncludePaymentChannel(
+    def set_include_payment_channel(
         self, includePaymentChannel: List[PaymentChannel]
     ) -> "GetCommerceCasesQuery":
         self.includePaymentChannel = includePaymentChannel
         return self
 
     # Getters
-    def getOffset(self) -> Optional[int]:
+    def get_offset(self) -> Optional[int]:
         return self.offset
 
-    def getSize(self) -> Optional[int]:
+    def get_size(self) -> Optional[int]:
         return self.size
 
-    def getFromDate(self) -> Optional[str]:
+    def get_from_date(self) -> Optional[str]:
         return self.fromDate
 
-    def getToDate(self) -> Optional[str]:
+    def get_to_date(self) -> Optional[str]:
         return self.toDate
 
-    def getCommerceCaseId(self) -> Optional[str]:
+    def get_commerce_case_id(self) -> Optional[str]:
         return self.commerceCaseId
 
-    def getMerchantReference(self) -> Optional[str]:
+    def get_merchant_reference(self) -> Optional[str]:
         return self.merchantReference
 
-    def getMerchantCustomerId(self) -> Optional[str]:
+    def get_merchant_customer_id(self) -> Optional[str]:
         return self.merchantCustomerId
 
-    def getIncludeCheckoutStatus(self) -> List[StatusCheckout]:
+    def get_include_checkout_status(self) -> List[StatusCheckout]:
         return self.includeCheckoutStatus
 
-    def getIncludePaymentChannel(self) -> List[PaymentChannel]:
+    def get_include_payment_channel(self) -> List[PaymentChannel]:
         return self.includePaymentChannel
 
-    def toQueryMap(self) -> Dict[str, str]:
+    def to_query_map(self) -> Dict[str, str]:
         query = {}
 
         if self.offset is not None:

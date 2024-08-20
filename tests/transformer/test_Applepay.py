@@ -7,30 +7,30 @@ from pcp_serversdk_python import (
 )
 
 from pcp_serversdk_python.transformer.Applepay import (
-    networkFromString,
-    versionFromString,
-    transformApplePayPaymentToMobilePaymentMethodSpecificInput,
+    network_from_string,
+    version_from_string,
+    transform_apple_pay_payment_to_mobile_payment_method_specific_input,
 )
 
 
-def test_networkFromString():
-    assert networkFromString("mastercard") == Network.MASTERCARD
-    assert networkFromString("VISA") == Network.VISA
-    assert networkFromString("AmEx") == Network.AMEX
-    assert networkFromString("GIROCARD") == Network.GIROCARD
-    assert networkFromString("discover") == Network.DISCOVER
-    assert networkFromString("JCB") == Network.JCB
+def test_network_from_string():
+    assert network_from_string("mastercard") == Network.MASTERCARD
+    assert network_from_string("VISA") == Network.VISA
+    assert network_from_string("AmEx") == Network.AMEX
+    assert network_from_string("GIROCARD") == Network.GIROCARD
+    assert network_from_string("discover") == Network.DISCOVER
+    assert network_from_string("JCB") == Network.JCB
     with pytest.raises(TypeError):
-        networkFromString("UNKNOWN")
+        network_from_string("UNKNOWN")
 
 
-def test_versionFromString():
-    assert versionFromString("EC_V1") == ApplePaymentTokenVersion.EC_V1
+def test_version_from_string():
+    assert version_from_string("EC_V1") == ApplePaymentTokenVersion.EC_V1
     with pytest.raises(TypeError):
-        versionFromString("UNKNOWN")
+        version_from_string("UNKNOWN")
 
 
-def test_transformApplePayPaymentToMobilePaymentMethodSpecificInput():
+def test_transform_apple_pay_payment_to_mobile_payment_method_specific_input():
     payment = ApplePayPayment(
         token={
             "paymentData": {
@@ -66,6 +66,8 @@ def test_transformApplePayPaymentToMobilePaymentMethodSpecificInput():
         },
     )
 
-    result = transformApplePayPaymentToMobilePaymentMethodSpecificInput(payment)
+    result = transform_apple_pay_payment_to_mobile_payment_method_specific_input(
+        payment
+    )
 
     assert result == expected_output

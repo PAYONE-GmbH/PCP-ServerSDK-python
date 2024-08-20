@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class ApplePayPaymentMethodType(Enum):
+class ApplePayPaymentMethodType(str, Enum):
     DEBIT = "debit"
     CREDIT = "credit"
     PREPAID = "prepaid"

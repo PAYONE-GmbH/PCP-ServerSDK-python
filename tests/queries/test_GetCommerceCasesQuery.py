@@ -9,17 +9,19 @@ from pcp_serversdk_python import (
 
 def testToQueryMap():
     query = GetCommerceCasesQuery()
-    query.setOffset(1)
-    query.setSize(10)
-    query.setFromDate("2021-01-01")
-    query.setToDate("2021-01-31")
-    query.setCommerceCaseId("123456")
-    query.setMerchantReference("7890")
-    query.setMerchantCustomerId("1234")
-    query.setIncludeCheckoutStatus([StatusCheckout.BILLED, StatusCheckout.CHARGEBACKED])
-    query.setIncludePaymentChannel([PaymentChannel.ECOMMERCE, PaymentChannel.POS])
+    query.set_offset(1)
+    query.set_size(10)
+    query.set_from_date("2021-01-01")
+    query.set_to_date("2021-01-31")
+    query.set_commerce_case_id("123456")
+    query.set_merchant_reference("7890")
+    query.set_merchant_customer_id("1234")
+    query.set_include_checkout_status(
+        [StatusCheckout.BILLED, StatusCheckout.CHARGEBACKED]
+    )
+    query.set_include_payment_channel([PaymentChannel.ECOMMERCE, PaymentChannel.POS])
 
-    queryMap = query.toQueryMap()
+    queryMap = query.to_query_map()
 
     assert queryMap.get("offset") == "1"
     assert queryMap.get("size") == "10"
@@ -34,28 +36,30 @@ def testToQueryMap():
 
 def testGetters():
     query = GetCommerceCasesQuery()
-    query.setOffset(1)
-    query.setSize(10)
-    query.setFromDate("2021-01-01")
-    query.setToDate("2021-01-31")
-    query.setCommerceCaseId("123456")
-    query.setMerchantReference("7890")
-    query.setMerchantCustomerId("1234")
-    query.setIncludeCheckoutStatus([StatusCheckout.BILLED, StatusCheckout.CHARGEBACKED])
-    query.setIncludePaymentChannel([PaymentChannel.ECOMMERCE, PaymentChannel.POS])
+    query.set_offset(1)
+    query.set_size(10)
+    query.set_from_date("2021-01-01")
+    query.set_to_date("2021-01-31")
+    query.set_commerce_case_id("123456")
+    query.set_merchant_reference("7890")
+    query.set_merchant_customer_id("1234")
+    query.set_include_checkout_status(
+        [StatusCheckout.BILLED, StatusCheckout.CHARGEBACKED]
+    )
+    query.set_include_payment_channel([PaymentChannel.ECOMMERCE, PaymentChannel.POS])
 
-    assert query.getOffset() == 1
-    assert query.getSize() == 10
-    assert query.getFromDate() == "2021-01-01"
-    assert query.getToDate() == "2021-01-31"
-    assert query.getCommerceCaseId() == "123456"
-    assert query.getMerchantReference() == "7890"
-    assert query.getMerchantCustomerId() == "1234"
-    assert query.getIncludeCheckoutStatus() == [
+    assert query.get_offset() == 1
+    assert query.get_size() == 10
+    assert query.get_from_date() == "2021-01-01"
+    assert query.get_to_date() == "2021-01-31"
+    assert query.get_commerce_case_id() == "123456"
+    assert query.get_merchant_reference() == "7890"
+    assert query.get_merchant_customer_id() == "1234"
+    assert query.get_include_checkout_status() == [
         StatusCheckout.BILLED,
         StatusCheckout.CHARGEBACKED,
     ]
-    assert query.getIncludePaymentChannel() == [
+    assert query.get_include_payment_channel() == [
         PaymentChannel.ECOMMERCE,
         PaymentChannel.POS,
     ]
@@ -63,6 +67,6 @@ def testGetters():
 
 def testNulls():
     query = GetCommerceCasesQuery()
-    queryMap = query.toQueryMap()
+    queryMap = query.to_query_map()
 
     assert len(queryMap) == 0

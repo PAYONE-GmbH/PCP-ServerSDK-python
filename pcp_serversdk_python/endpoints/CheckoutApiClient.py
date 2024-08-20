@@ -25,7 +25,7 @@ class CheckoutApiClient(BaseApiClient):
     def __init__(self, config: CommunicatorConfiguration):
         super().__init__(config)
 
-    async def createCheckoutRequest(
+    async def create_checkout_request(
         self, merchant_id: str, commerce_case_id: str, payload: CreateCheckoutRequest
     ) -> CreateCheckoutResponse:
         if not merchant_id:
@@ -34,7 +34,7 @@ class CheckoutApiClient(BaseApiClient):
             raise TypeError(COMMERCE_CASE_ID_REQUIRED_ERROR)
 
         url = urljoin(
-            self.getConfig().getHost(),
+            self.get_config().get_host(),
             f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts",
         )
 
@@ -45,9 +45,9 @@ class CheckoutApiClient(BaseApiClient):
             data=json.dumps(asdict(payload)),
         )
 
-        return await self.makeApiCallWithType(req, CreateCheckoutResponse)
+        return await self.make_api_call_with_type(req, CreateCheckoutResponse)
 
-    async def getCheckoutRequest(
+    async def get_checkout_request(
         self, merchant_id: str, commerce_case_id: str, checkout_id: str
     ) -> CheckoutResponse:
         if not merchant_id:
@@ -58,31 +58,31 @@ class CheckoutApiClient(BaseApiClient):
             raise TypeError(CHECKOUT_ID_REQUIRED_ERROR)
 
         url = urljoin(
-            self.getConfig().getHost(),
+            self.get_config().get_host(),
             f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}",
         )
 
         req = httpx.Request("GET", url, headers={})
 
-        return await self.makeApiCallWithType(req, CheckoutResponse)
+        return await self.make_api_call_with_type(req, CheckoutResponse)
 
-    async def getCheckoutsRequest(
+    async def get_checkouts_request(
         self, merchant_id: str, query_params: Optional[GetCheckoutsQuery] = None
     ) -> CheckoutsResponse:
         if not merchant_id:
             raise TypeError(MERCHANT_ID_REQUIRED_ERROR)
 
-        url = urljoin(self.getConfig().getHost(), f"/v1/{merchant_id}/checkouts")
+        url = urljoin(self.get_config().get_host(), f"/v1/{merchant_id}/checkouts")
 
         if query_params:
-            queryString = query_params.toQueryMap()
+            queryString = query_params.to_query_map()
             url = f"{url}?{queryString}"
 
         req = httpx.Request("GET", url, headers={})
 
-        return await self.makeApiCallWithType(req, CheckoutsResponse)
+        return await self.make_api_call_with_type(req, CheckoutsResponse)
 
-    async def updateCheckoutRequest(
+    async def update_checkout_request(
         self,
         merchant_id: str,
         commerce_case_id: str,
@@ -97,7 +97,7 @@ class CheckoutApiClient(BaseApiClient):
             raise TypeError(CHECKOUT_ID_REQUIRED_ERROR)
 
         url = urljoin(
-            self.getConfig().getHost(),
+            self.get_config().get_host(),
             f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}",
         )
 
@@ -108,9 +108,9 @@ class CheckoutApiClient(BaseApiClient):
             data=json.dumps(asdict(payload)),
         )
 
-        await self.makeApiCall(req)
+        await self.make_api_call(req)
 
-    async def removeCheckoutRequest(
+    async def remove_checkout_request(
         self, merchant_id: str, commerce_case_id: str, checkout_id: str
     ) -> None:
         if not merchant_id:
@@ -121,7 +121,7 @@ class CheckoutApiClient(BaseApiClient):
             raise TypeError(CHECKOUT_ID_REQUIRED_ERROR)
 
         url = urljoin(
-            self.getConfig().getHost(),
+            self.get_config().get_host(),
             f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}",
         )
 
@@ -131,4 +131,4 @@ class CheckoutApiClient(BaseApiClient):
             headers={},
         )
 
-        await self.makeApiCall(req)
+        await self.make_api_call(req)

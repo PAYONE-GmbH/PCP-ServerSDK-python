@@ -10,41 +10,43 @@ from pcp_serversdk_python import (
 
 def testToQueryMap():
     query = GetCheckoutsQuery()
-    query.setOffset(1)
-    query.setSize(10)
-    query.setFromDate("2021-01-01")
-    query.setToDate("2021-01-31")
-    query.setFromCheckoutAmount(100)
-    query.setToCheckoutAmount(200)
-    query.setFromOpenAmount(50)
-    query.setToOpenAmount(150)
-    query.setFromCollectedAmount(10)
-    query.setToCollectedAmount(20)
-    query.setFromCancelledAmount(5)
-    query.setToCancelledAmount(15)
-    query.setFromRefundAmount(1)
-    query.setToRefundAmount(2)
-    query.setFromChargebackAmount(100)
-    query.setToChargebackAmount(200)
-    query.setCheckoutId("123456")
-    query.setMerchantReference("7890")
-    query.setMerchantCustomerId("1234")
-    query.setIncludePaymentProductId([12, 456])
-    query.setIncludeCheckoutStatus([StatusCheckout.BILLED, StatusCheckout.CHARGEBACKED])
-    query.setIncludeExtendedCheckoutStatus(
+    query.set_offset(1)
+    query.set_size(10)
+    query.set_from_date("2021-01-01")
+    query.set_to_date("2021-01-31")
+    query.set_from_checkout_amount(100)
+    query.set_to_checkout_amount(200)
+    query.set_from_open_amount(50)
+    query.set_to_open_amount(150)
+    query.set_from_collected_amount(10)
+    query.set_to_collected_amount(20)
+    query.set_from_cancelled_amount(5)
+    query.set_to_cancelled_amount(15)
+    query.set_from_refund_amount(1)
+    query.set_to_refund_amount(2)
+    query.set_from_chargeback_amount(100)
+    query.set_to_chargeback_amount(200)
+    query.set_checkout_id("123456")
+    query.set_merchant_reference("7890")
+    query.set_merchant_customer_id("1234")
+    query.set_include_payment_product_id([12, 456])
+    query.set_include_checkout_status(
+        [StatusCheckout.BILLED, StatusCheckout.CHARGEBACKED]
+    )
+    query.set_include_extended_checkout_status(
         [ExtendedCheckoutStatus.OPEN, ExtendedCheckoutStatus.DELETED]
     )
-    query.setIncludePaymentChannel([PaymentChannel.ECOMMERCE, PaymentChannel.POS])
-    query.setPaymentReference("1234")
-    query.setPaymentId("5678")
-    query.setFirstName("John")
-    query.setSurname("Doe")
-    query.setEmail("john.doe@example.com")
-    query.setPhoneNumber("1234567890")
-    query.setDateOfBirth("1980-01-01")
-    query.setCompanyInformation("Company Inc.")
+    query.set_include_payment_channel([PaymentChannel.ECOMMERCE, PaymentChannel.POS])
+    query.set_payment_reference("1234")
+    query.set_payment_id("5678")
+    query.set_first_name("John")
+    query.set_surname("Doe")
+    query.set_email("john.doe@example.com")
+    query.set_phone_number("1234567890")
+    query.set_date_of_birth("1980-01-01")
+    query.set_company_information("Company Inc.")
 
-    query_map = query.toQueryMap()
+    query_map = query.to_query_map()
 
     assert query_map.get("offset") == "1"
     assert query_map.get("size") == "10"
@@ -81,84 +83,86 @@ def testToQueryMap():
 
 def testGetters():
     query = GetCheckoutsQuery()
-    query.setOffset(1)
-    query.setSize(10)
-    query.setFromDate("2021-01-01")
-    query.setToDate("2021-01-31")
-    query.setFromCheckoutAmount(100)
-    query.setToCheckoutAmount(200)
-    query.setFromOpenAmount(50)
-    query.setToOpenAmount(150)
-    query.setFromCollectedAmount(10)
-    query.setToCollectedAmount(20)
-    query.setFromCancelledAmount(5)
-    query.setToCancelledAmount(15)
-    query.setFromRefundAmount(1)
-    query.setToRefundAmount(2)
-    query.setFromChargebackAmount(100)
-    query.setToChargebackAmount(200)
-    query.setCheckoutId("123456")
-    query.setMerchantReference("7890")
-    query.setMerchantCustomerId("1234")
-    query.setIncludePaymentProductId([12, 456])
-    query.setIncludeCheckoutStatus([StatusCheckout.BILLED, StatusCheckout.CHARGEBACKED])
-    query.setIncludeExtendedCheckoutStatus(
+    query.set_offset(1)
+    query.set_size(10)
+    query.set_from_date("2021-01-01")
+    query.set_to_date("2021-01-31")
+    query.set_from_checkout_amount(100)
+    query.set_to_checkout_amount(200)
+    query.set_from_open_amount(50)
+    query.set_to_open_amount(150)
+    query.set_from_collected_amount(10)
+    query.set_to_collected_amount(20)
+    query.set_from_cancelled_amount(5)
+    query.set_to_cancelled_amount(15)
+    query.set_from_refund_amount(1)
+    query.set_to_refund_amount(2)
+    query.set_from_chargeback_amount(100)
+    query.set_to_chargeback_amount(200)
+    query.set_checkout_id("123456")
+    query.set_merchant_reference("7890")
+    query.set_merchant_customer_id("1234")
+    query.set_include_payment_product_id([12, 456])
+    query.set_include_checkout_status(
+        [StatusCheckout.BILLED, StatusCheckout.CHARGEBACKED]
+    )
+    query.set_include_extended_checkout_status(
         [ExtendedCheckoutStatus.OPEN, ExtendedCheckoutStatus.DELETED]
     )
-    query.setIncludePaymentChannel([PaymentChannel.ECOMMERCE, PaymentChannel.POS])
-    query.setPaymentReference("1234")
-    query.setPaymentId("5678")
-    query.setFirstName("John")
-    query.setSurname("Doe")
-    query.setEmail("john.doe@example.com")
-    query.setPhoneNumber("1234567890")
-    query.setDateOfBirth("1980-01-01")
-    query.setCompanyInformation("Company Inc.")
+    query.set_include_payment_channel([PaymentChannel.ECOMMERCE, PaymentChannel.POS])
+    query.set_payment_reference("1234")
+    query.set_payment_id("5678")
+    query.set_first_name("John")
+    query.set_surname("Doe")
+    query.set_email("john.doe@example.com")
+    query.set_phone_number("1234567890")
+    query.set_date_of_birth("1980-01-01")
+    query.set_company_information("Company Inc.")
 
-    assert query.getOffset() == 1
-    assert query.getSize() == 10
-    assert query.getFromDate() == "2021-01-01"
-    assert query.getToDate() == "2021-01-31"
-    assert query.getFromCheckoutAmount() == 100
-    assert query.getToCheckoutAmount() == 200
-    assert query.getFromOpenAmount() == 50
-    assert query.getToOpenAmount() == 150
-    assert query.getFromCollectedAmount() == 10
-    assert query.getToCollectedAmount() == 20
-    assert query.getFromCancelledAmount() == 5
-    assert query.getToCancelledAmount() == 15
-    assert query.getFromRefundAmount() == 1
-    assert query.getToRefundAmount() == 2
-    assert query.getFromChargebackAmount() == 100
-    assert query.getToChargebackAmount() == 200
-    assert query.getCheckoutId() == "123456"
-    assert query.getMerchantReference() == "7890"
-    assert query.getMerchantCustomerId() == "1234"
-    assert query.getIncludePaymentProductId() == [12, 456]
-    assert query.getIncludeCheckoutStatus() == [
+    assert query.get_offset() == 1
+    assert query.get_size() == 10
+    assert query.get_from_date() == "2021-01-01"
+    assert query.get_to_date() == "2021-01-31"
+    assert query.get_from_checkout_amount() == 100
+    assert query.get_to_checkout_amount() == 200
+    assert query.get_from_open_amount() == 50
+    assert query.get_to_open_amount() == 150
+    assert query.get_from_collected_amount() == 10
+    assert query.get_to_collected_amount() == 20
+    assert query.get_from_cancelled_amount() == 5
+    assert query.get_to_cancelled_amount() == 15
+    assert query.get_from_refund_amount() == 1
+    assert query.get_to_refund_amount() == 2
+    assert query.get_from_chargeback_amount() == 100
+    assert query.get_to_chargeback_amount() == 200
+    assert query.get_checkout_id() == "123456"
+    assert query.get_merchant_reference() == "7890"
+    assert query.get_merchant_customer_id() == "1234"
+    assert query.get_include_payment_product_id() == [12, 456]
+    assert query.get_include_checkout_status() == [
         StatusCheckout.BILLED,
         StatusCheckout.CHARGEBACKED,
     ]
-    assert query.getIncludeExtendedCheckoutStatus() == [
+    assert query.get_include_extended_checkout_status() == [
         ExtendedCheckoutStatus.OPEN,
         ExtendedCheckoutStatus.DELETED,
     ]
-    assert query.getIncludePaymentChannel() == [
+    assert query.get_include_payment_channel() == [
         PaymentChannel.ECOMMERCE,
         PaymentChannel.POS,
     ]
-    assert query.getPaymentReference() == "1234"
-    assert query.getPaymentId() == "5678"
-    assert query.getFirstName() == "John"
-    assert query.getSurname() == "Doe"
-    assert query.getEmail() == "john.doe@example.com"
-    assert query.getPhoneNumber() == "1234567890"
-    assert query.getDateOfBirth() == "1980-01-01"
-    assert query.getCompanyInformation() == "Company Inc."
+    assert query.get_payment_reference() == "1234"
+    assert query.get_payment_id() == "5678"
+    assert query.get_first_name() == "John"
+    assert query.get_surname() == "Doe"
+    assert query.get_email() == "john.doe@example.com"
+    assert query.get_phone_number() == "1234567890"
+    assert query.get_date_of_birth() == "1980-01-01"
+    assert query.get_company_information() == "Company Inc."
 
 
 def testNulls():
     query = GetCheckoutsQuery()
-    query_map = query.toQueryMap()
+    query_map = query.to_query_map()
 
     assert len(query_map) == 0

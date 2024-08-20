@@ -1,6 +1,6 @@
 from enum import Enum
 
 
-class UnscheduledCardOnFileSequenceIndicator(Enum):
+class UnscheduledCardOnFileSequenceIndicator(str, Enum):
     FIRST = "first"
     SUBSEQUENT = "subsequent"

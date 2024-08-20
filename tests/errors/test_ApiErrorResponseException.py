@@ -2,7 +2,7 @@ import pytest
 from pcp_serversdk_python import ApiErrorResponseException, APIError
 
 
-def testApiErrorResponseExceptionInitialization():
+def test_api_error_response_exception_initialization():
     status_code = 404
     response_body = "Not Found"
     errors = [APIError(id="error_id", errorCode="error_message")]
@@ -17,7 +17,7 @@ def testApiErrorResponseExceptionInitialization():
     assert exception.errors == errors
 
 
-def testApiErrorResponseExceptionInitializationWithDefaults():
+def test_api_error_response_exception_initialization_with_defaults():
     status_code = 404
     response_body = "Not Found"
 
@@ -31,7 +31,7 @@ def testApiErrorResponseExceptionInitializationWithDefaults():
     assert exception.errors == []
 
 
-def testGetErrors():
+def test_get_errors():
     errors = [APIError(id="error_id", errorCode="error_message")]
     exception = ApiErrorResponseException(
         status_code=404, response_body="Not Found", errors=errors

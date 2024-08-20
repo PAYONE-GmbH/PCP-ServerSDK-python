@@ -17,6 +17,8 @@ from pcp_serversdk_python import (
     CartItemResult,
     CartItemInvoiceData,
     OrderLineDetailsResult,
+    StatusCheckout,
+    CheckoutReferences,
 )
 
 
@@ -61,58 +63,68 @@ async def test_create_checkout_request_success(checkout_api_client, mock_httpx_c
         mock_response
     )
 
-    response = await checkout_api_client.createCheckoutRequest(
+    response = await checkout_api_client.create_checkout_request(
         "merchantId", "commerceCaseId", CreateCheckoutRequest()
     )
     assert response == expected_response
 
 
-# @pytest.mark.asyncio
-# async def test_get_checkout_request_success(checkout_api_client, mock_httpx_client):
-#     expected_response = CheckoutResponse(
-#         commerceCaseId="commerceCaseId",
-#         checkoutId="checkoutId",
-#         merchantCustomerId="cust-1234",
-#         references={"merchantReference": "com-12345"},
-#         amountOfMoney={"currencyCode": "YEN", "amount": 1000},
-#         checkoutStatus="OPEN",  # Adjust based on actual enum or value
-#     )
+@pytest.mark.asyncio
+async def test_get_checkout_request_success(checkout_api_client, mock_httpx_client):
+    expected_response = CheckoutResponse(
+        commerceCaseId="commerceCaseId",
+        checkoutId="checkoutId",
+        merchantCustomerId="cust-1234",
+        references=CheckoutReferences(merchantReference="com-12345"),
+        amountOfMoney=AmountOfMoney(currencyCode="EUR", amount=1000),
+        checkoutStatus=StatusCheckout.OPEN,
+    )
 
-#     mock_httpx_client.return_value.request.return_value = httpx.Response(
-#         200, text=json.dumps(asdict(expected_response))
-#     )
+    res = json.dumps(asdict(expected_response))
 
-#     response = await checkout_api_client.getCheckoutRequest(
-#         "merchantId", "commerceCaseId", "checkoutId"
-#     )
-#     assert response == expected_response
+    mock_response = httpx.Response(200, text=res)
+
+    mock_httpx_client.return_value.__aenter__.return_value.request.return_value = (
+        mock_response
+    )
+
+    response = await checkout_api_client.get_checkout_request(
+        "merchantId", "commerceCaseId", "checkoutId"
+    )
+    assert response == expected_response
 
 
-# @pytest.mark.asyncio
-# async def test_get_checkouts_request_success(checkout_api_client, mock_httpx_client):
-#     query_params = GetCheckoutsQuery()
-#     query_params.set_size(20)
-#     query_params.set_offset(60)
-#     query_params.set_checkout_id("checkoutId")
+@pytest.mark.asyncio
+async def test_get_checkouts_request_success(checkout_api_client, mock_httpx_client):
+    query_params = GetCheckoutsQuery()
+    query_params.set_size(20)
+    query_params.set_offset(60)
+    query_params.set_checkout_id("checkoutId")
 
-#     expected_response = CheckoutsResponse(
-#         numberOfCheckouts=1,
-#         checkouts=[
-#             {
-#                 "commerceCaseId": "commerceCaseId",
-#                 "checkoutId": "checkoutId",
-#                 "merchantCustomerId": "cust-1100",
-#                 "amountOfMoney": {"currencyCode": "USD", "amount": 1250},
-#             }
-#         ],
-#     )
+    expected_response = CheckoutsResponse(
+        numberOfCheckouts=1,
+        checkouts=[
+            CheckoutResponse(
+                commerceCaseId="commerceCaseId",
+                checkoutId="checkoutId",
+                merchantCustomerId="cust-1100",
+                amountOfMoney=AmountOfMoney(currencyCode="USD", amount=1250),
+            )
+        ],
+    )
 
-#     mock_httpx_client.return_value.request.return_value = httpx.Response(
-#         200, text=json.dumps(asdict(expected_response))
-#     )
+    res = json.dumps(asdict(expected_response))
 
-#     response = await checkout_api_client.getCheckoutsRequest("merchantId", query_params)
-#     assert response == expected_response
+    mock_response = httpx.Response(200, text=res)
+
+    mock_httpx_client.return_value.__aenter__.return_value.request.return_value = (
+        mock_response
+    )
+
+    response = await checkout_api_client.get_checkouts_request(
+        "merchantId", query_params
+    )
+    assert response == expected_response
 
 
 # @pytest.mark.asyncio

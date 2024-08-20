@@ -43,233 +43,239 @@ class GetCheckoutsQuery:
 
     # Setters (already provided)
 
-    def setOffset(self, offset: int) -> "GetCheckoutsQuery":
+    def set_offset(self, offset: int) -> "GetCheckoutsQuery":
         self.offset = offset
         return self
 
-    def setSize(self, size: int) -> "GetCheckoutsQuery":
+    def set_size(self, size: int) -> "GetCheckoutsQuery":
         self.size = size
         return self
 
-    def setFromDate(self, fromDate: str) -> "GetCheckoutsQuery":
+    def set_from_date(self, fromDate: str) -> "GetCheckoutsQuery":
         self.fromDate = fromDate
         return self
 
-    def setToDate(self, toDate: str) -> "GetCheckoutsQuery":
+    def set_to_date(self, toDate: str) -> "GetCheckoutsQuery":
         self.toDate = toDate
         return self
 
-    def setFromCheckoutAmount(self, fromCheckoutAmount: int) -> "GetCheckoutsQuery":
+    def set_from_checkout_amount(self, fromCheckoutAmount: int) -> "GetCheckoutsQuery":
         self.fromCheckoutAmount = fromCheckoutAmount
         return self
 
-    def setToCheckoutAmount(self, toCheckoutAmount: int) -> "GetCheckoutsQuery":
+    def set_to_checkout_amount(self, toCheckoutAmount: int) -> "GetCheckoutsQuery":
         self.toCheckoutAmount = toCheckoutAmount
         return self
 
-    def setFromOpenAmount(self, fromOpenAmount: int) -> "GetCheckoutsQuery":
+    def set_from_open_amount(self, fromOpenAmount: int) -> "GetCheckoutsQuery":
         self.fromOpenAmount = fromOpenAmount
         return self
 
-    def setToOpenAmount(self, toOpenAmount: int) -> "GetCheckoutsQuery":
+    def set_to_open_amount(self, toOpenAmount: int) -> "GetCheckoutsQuery":
         self.toOpenAmount = toOpenAmount
         return self
 
-    def setFromCollectedAmount(self, fromCollectedAmount: int) -> "GetCheckoutsQuery":
+    def set_from_collected_amount(
+        self, fromCollectedAmount: int
+    ) -> "GetCheckoutsQuery":
         self.fromCollectedAmount = fromCollectedAmount
         return self
 
-    def setToCollectedAmount(self, toCollectedAmount: int) -> "GetCheckoutsQuery":
+    def set_to_collected_amount(self, toCollectedAmount: int) -> "GetCheckoutsQuery":
         self.toCollectedAmount = toCollectedAmount
         return self
 
-    def setFromCancelledAmount(self, fromCancelledAmount: int) -> "GetCheckoutsQuery":
+    def set_from_cancelled_amount(
+        self, fromCancelledAmount: int
+    ) -> "GetCheckoutsQuery":
         self.fromCancelledAmount = fromCancelledAmount
         return self
 
-    def setToCancelledAmount(self, toCancelledAmount: int) -> "GetCheckoutsQuery":
+    def set_to_cancelled_amount(self, toCancelledAmount: int) -> "GetCheckoutsQuery":
         self.toCancelledAmount = toCancelledAmount
         return self
 
-    def setFromRefundAmount(self, fromRefundAmount: int) -> "GetCheckoutsQuery":
+    def set_from_refund_amount(self, fromRefundAmount: int) -> "GetCheckoutsQuery":
         self.fromRefundAmount = fromRefundAmount
         return self
 
-    def setToRefundAmount(self, toRefundAmount: int) -> "GetCheckoutsQuery":
+    def set_to_refund_amount(self, toRefundAmount: int) -> "GetCheckoutsQuery":
         self.toRefundAmount = toRefundAmount
         return self
 
-    def setFromChargebackAmount(self, fromChargebackAmount: int) -> "GetCheckoutsQuery":
+    def set_from_chargeback_amount(
+        self, fromChargebackAmount: int
+    ) -> "GetCheckoutsQuery":
         self.fromChargebackAmount = fromChargebackAmount
         return self
 
-    def setToChargebackAmount(self, toChargebackAmount: int) -> "GetCheckoutsQuery":
+    def set_to_chargeback_amount(self, toChargebackAmount: int) -> "GetCheckoutsQuery":
         self.toChargebackAmount = toChargebackAmount
         return self
 
-    def setCheckoutId(self, checkoutId: str) -> "GetCheckoutsQuery":
+    def set_checkout_id(self, checkoutId: str) -> "GetCheckoutsQuery":
         self.checkoutId = checkoutId
         return self
 
-    def setMerchantReference(self, merchantReference: str) -> "GetCheckoutsQuery":
+    def set_merchant_reference(self, merchantReference: str) -> "GetCheckoutsQuery":
         self.merchantReference = merchantReference
         return self
 
-    def setMerchantCustomerId(self, merchantCustomerId: str) -> "GetCheckoutsQuery":
+    def set_merchant_customer_id(self, merchantCustomerId: str) -> "GetCheckoutsQuery":
         self.merchantCustomerId = merchantCustomerId
         return self
 
-    def setIncludePaymentProductId(
+    def set_include_payment_product_id(
         self, includePaymentProductId: List[int]
     ) -> "GetCheckoutsQuery":
         self.includePaymentProductId = includePaymentProductId
         return self
 
-    def setIncludeCheckoutStatus(
+    def set_include_checkout_status(
         self, includeCheckoutStatus: List[StatusCheckout]
     ) -> "GetCheckoutsQuery":
         self.includeCheckoutStatus = includeCheckoutStatus
         return self
 
-    def setIncludeExtendedCheckoutStatus(
+    def set_include_extended_checkout_status(
         self, includeExtendedCheckoutStatus: List[ExtendedCheckoutStatus]
     ) -> "GetCheckoutsQuery":
         self.includeExtendedCheckoutStatus = includeExtendedCheckoutStatus
         return self
 
-    def setIncludePaymentChannel(
+    def set_include_payment_channel(
         self, includePaymentChannel: List[PaymentChannel]
     ) -> "GetCheckoutsQuery":
         self.includePaymentChannel = includePaymentChannel
         return self
 
-    def setPaymentReference(self, paymentReference: str) -> "GetCheckoutsQuery":
+    def set_payment_reference(self, paymentReference: str) -> "GetCheckoutsQuery":
         self.paymentReference = paymentReference
         return self
 
-    def setPaymentId(self, paymentId: str) -> "GetCheckoutsQuery":
+    def set_payment_id(self, paymentId: str) -> "GetCheckoutsQuery":
         self.paymentId = paymentId
         return self
 
-    def setFirstName(self, firstName: str) -> "GetCheckoutsQuery":
+    def set_first_name(self, firstName: str) -> "GetCheckoutsQuery":
         self.firstName = firstName
         return self
 
-    def setSurname(self, surname: str) -> "GetCheckoutsQuery":
+    def set_surname(self, surname: str) -> "GetCheckoutsQuery":
         self.surname = surname
         return self
 
-    def setEmail(self, email: str) -> "GetCheckoutsQuery":
+    def set_email(self, email: str) -> "GetCheckoutsQuery":
         self.email = email
         return self
 
-    def setPhoneNumber(self, phoneNumber: str) -> "GetCheckoutsQuery":
+    def set_phone_number(self, phoneNumber: str) -> "GetCheckoutsQuery":
         self.phoneNumber = phoneNumber
         return self
 
-    def setDateOfBirth(self, dateOfBirth: str) -> "GetCheckoutsQuery":
+    def set_date_of_birth(self, dateOfBirth: str) -> "GetCheckoutsQuery":
         self.dateOfBirth = dateOfBirth
         return self
 
-    def setCompanyInformation(self, companyInformation: str) -> "GetCheckoutsQuery":
+    def set_company_information(self, companyInformation: str) -> "GetCheckoutsQuery":
         self.companyInformation = companyInformation
         return self
 
     # Getters
-    def getOffset(self) -> Optional[int]:
+    def get_offset(self) -> Optional[int]:
         return self.offset
 
-    def getSize(self) -> Optional[int]:
+    def get_size(self) -> Optional[int]:
         return self.size
 
-    def getFromDate(self) -> Optional[str]:
+    def get_from_date(self) -> Optional[str]:
         return self.fromDate
 
-    def getToDate(self) -> Optional[str]:
+    def get_to_date(self) -> Optional[str]:
         return self.toDate
 
-    def getFromCheckoutAmount(self) -> Optional[int]:
+    def get_from_checkout_amount(self) -> Optional[int]:
         return self.fromCheckoutAmount
 
-    def getToCheckoutAmount(self) -> Optional[int]:
+    def get_to_checkout_amount(self) -> Optional[int]:
         return self.toCheckoutAmount
 
-    def getFromOpenAmount(self) -> Optional[int]:
+    def get_from_open_amount(self) -> Optional[int]:
         return self.fromOpenAmount
 
-    def getToOpenAmount(self) -> Optional[int]:
+    def get_to_open_amount(self) -> Optional[int]:
         return self.toOpenAmount
 
-    def getFromCollectedAmount(self) -> Optional[int]:
+    def get_from_collected_amount(self) -> Optional[int]:
         return self.fromCollectedAmount
 
-    def getToCollectedAmount(self) -> Optional[int]:
+    def get_to_collected_amount(self) -> Optional[int]:
         return self.toCollectedAmount
 
-    def getFromCancelledAmount(self) -> Optional[int]:
+    def get_from_cancelled_amount(self) -> Optional[int]:
         return self.fromCancelledAmount
 
-    def getToCancelledAmount(self) -> Optional[int]:
+    def get_to_cancelled_amount(self) -> Optional[int]:
         return self.toCancelledAmount
 
-    def getFromRefundAmount(self) -> Optional[int]:
+    def get_from_refund_amount(self) -> Optional[int]:
         return self.fromRefundAmount
 
-    def getToRefundAmount(self) -> Optional[int]:
+    def get_to_refund_amount(self) -> Optional[int]:
         return self.toRefundAmount
 
-    def getFromChargebackAmount(self) -> Optional[int]:
+    def get_from_chargeback_amount(self) -> Optional[int]:
         return self.fromChargebackAmount
 
-    def getToChargebackAmount(self) -> Optional[int]:
+    def get_to_chargeback_amount(self) -> Optional[int]:
         return self.toChargebackAmount
 
-    def getCheckoutId(self) -> Optional[str]:
+    def get_checkout_id(self) -> Optional[str]:
         return self.checkoutId
 
-    def getMerchantReference(self) -> Optional[str]:
+    def get_merchant_reference(self) -> Optional[str]:
         return self.merchantReference
 
-    def getMerchantCustomerId(self) -> Optional[str]:
+    def get_merchant_customer_id(self) -> Optional[str]:
         return self.merchantCustomerId
 
-    def getIncludePaymentProductId(self) -> List[int]:
+    def get_include_payment_product_id(self) -> List[int]:
         return self.includePaymentProductId
 
-    def getIncludeCheckoutStatus(self) -> List[StatusCheckout]:
+    def get_include_checkout_status(self) -> List[StatusCheckout]:
         return self.includeCheckoutStatus
 
-    def getIncludeExtendedCheckoutStatus(self) -> List[ExtendedCheckoutStatus]:
+    def get_include_extended_checkout_status(self) -> List[ExtendedCheckoutStatus]:
         return self.includeExtendedCheckoutStatus
 
-    def getIncludePaymentChannel(self) -> List[PaymentChannel]:
+    def get_include_payment_channel(self) -> List[PaymentChannel]:
         return self.includePaymentChannel
 
-    def getPaymentReference(self) -> Optional[str]:
+    def get_payment_reference(self) -> Optional[str]:
         return self.paymentReference
 
-    def getPaymentId(self) -> Optional[str]:
+    def get_payment_id(self) -> Optional[str]:
         return self.paymentId
 
-    def getFirstName(self) -> Optional[str]:
+    def get_first_name(self) -> Optional[str]:
         return self.firstName
 
-    def getSurname(self) -> Optional[str]:
+    def get_surname(self) -> Optional[str]:
         return self.surname
 
-    def getEmail(self) -> Optional[str]:
+    def get_email(self) -> Optional[str]:
         return self.email
 
-    def getPhoneNumber(self) -> Optional[str]:
+    def get_phone_number(self) -> Optional[str]:
         return self.phoneNumber
 
-    def getDateOfBirth(self) -> Optional[str]:
+    def get_date_of_birth(self) -> Optional[str]:
         return self.dateOfBirth
 
-    def getCompanyInformation(self) -> Optional[str]:
+    def get_company_information(self) -> Optional[str]:
         return self.companyInformation
 
-    def toQueryMap(self) -> Dict[str, str]:
+    def to_query_map(self) -> Dict[str, str]:
         query = {}
 
         if self.offset is not None:

@@ -31,7 +31,7 @@ class CommerceCaseApiClient(BaseApiClient):
             raise ValueError(MERCHANT_ID_REQUIRED_ERROR)
 
         url = urljoin(
-            self.getConfig().getHost(),
+            self.get_config().get_host(),
             f"/v1/{merchant_id}/commerce-cases",
         )
 
@@ -42,7 +42,7 @@ class CommerceCaseApiClient(BaseApiClient):
             data=json.dumps(asdict(payload)),
         )
 
-        return await self.makeApiCallWithType(req, CreateCommerceCaseResponse)
+        return await self.make_api_call_with_type(req, CreateCommerceCaseResponse)
 
     async def get_commerce_case_request(
         self, merchant_id: str, commerce_case_id: str
@@ -53,13 +53,13 @@ class CommerceCaseApiClient(BaseApiClient):
             raise ValueError(COMMERCE_CASE_ID_REQUIRED_ERROR)
 
         url = urljoin(
-            self.getConfig().getHost(),
+            self.get_config().get_host(),
             f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}",
         )
 
         req = httpx.Request("GET", url, headers={})
 
-        return await self.makeApiCallWithType(req, CommerceCaseResponse)
+        return await self.make_api_call_with_type(req, CommerceCaseResponse)
 
     async def get_commerce_cases_request(
         self, merchant_id: str, query_params: Optional[GetCommerceCasesQuery] = None
@@ -67,7 +67,7 @@ class CommerceCaseApiClient(BaseApiClient):
         if not merchant_id:
             raise ValueError(MERCHANT_ID_REQUIRED_ERROR)
 
-        url = urljoin(self.getConfig().getHost(), f"/v1/{merchant_id}/commerce-cases")
+        url = urljoin(self.get_config().get_host(), f"/v1/{merchant_id}/commerce-cases")
 
         if query_params:
             query_string = query_params.toQueryMap()
@@ -75,7 +75,7 @@ class CommerceCaseApiClient(BaseApiClient):
 
         req = httpx.Request("GET", url, headers={})
 
-        return await self.makeApiCallWithType(req, List[CommerceCaseResponse])
+        return await self.make_api_call_with_type(req, List[CommerceCaseResponse])
 
     async def update_commerce_case_request(
         self, merchant_id: str, commerce_case_id: str, payload: Customer
@@ -86,7 +86,7 @@ class CommerceCaseApiClient(BaseApiClient):
             raise ValueError(COMMERCE_CASE_ID_REQUIRED_ERROR)
 
         url = urljoin(
-            self.getConfig().getHost(),
+            self.get_config().get_host(),
             f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}",
         )
 
@@ -97,4 +97,4 @@ class CommerceCaseApiClient(BaseApiClient):
             data=json.dumps({"customer": asdict(payload)}),
         )
 
-        return await self.makeApiCall(req)
+        return await self.make_api_call(req)

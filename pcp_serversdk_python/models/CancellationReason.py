@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class CancellationReason(Enum):
+class CancellationReason(str, Enum):
     CONSUMER_REQUEST = "CONSUMER_REQUEST"
     UNDELIVERABLE = "UNDELIVERABLE"
     DUPLICATE = "DUPLICATE"

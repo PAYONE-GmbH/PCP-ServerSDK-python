@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class CartItemStatus(Enum):
+class CartItemStatus(str, Enum):
     ORDERED = "ORDERED"
     DELIVERED = "DELIVERED"
     CANCELLED = "CANCELLED"

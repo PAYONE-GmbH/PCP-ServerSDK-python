@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class StatusCategoryValue(Enum):
+class StatusCategoryValue(str, Enum):
     Created = "CREATED"
     Unsuccessful = "UNSUCCESSFUL"
     PendingPayment = "PENDING_PAYMENT"
