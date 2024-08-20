@@ -73,15 +73,10 @@ class BaseApiClient:
             request = self.request_header_generator.generate_additional_request_headers(
                 request
             )
-        print("1")
         response = await self.get_response(request)
-        print("2")
         await self.handle_error(response)
         try:
-            print("3")
-            print(response.text)
             data = json.loads(response.text)
-            print("4")
             # Check if the expected type is a List
             if get_origin(type) is list:
                 item_type = get_args(type)[0]  # Extract the type of the list's elements
@@ -119,5 +114,4 @@ class BaseApiClient:
                 content=request.content,
             )
 
-        print(response)
         return response

@@ -40,10 +40,15 @@ API_URL = "https://api.preprod.commerce.payone.com"
 
 COMMUNICATOR_CONFIGURATION = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
 
+UNIQUE_MERCHANT_REFERENCE = "merchantReference_123456789"
+
 
 async def main():
     await run_checkouts()
-    await run_commerce_case_without_payment_execution()
+    # await run_create_commerce_case() # Please update the merchantReference to a unique value before running this test function
+    await run_get_list_of_commerce_cases()
+    await run_get_commerce_case()
+    await run_update_commerce_case_request()
 
 
 async def run_checkouts():
@@ -104,7 +109,7 @@ async def run_checkouts():
     print("---")
 
 
-async def run_commerce_case_without_payment_execution():
+async def run_create_commerce_case():
     communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
     commerce_case_api_client = CommerceCaseApiClient(communicator_configuration)
 
@@ -149,7 +154,7 @@ async def run_commerce_case_without_payment_execution():
     )
     create_checkout_request.shoppingCart.items = [cart_item]
 
-    create_commerce_case_request.merchantReference = "merchantReference_1234567"
+    create_commerce_case_request.merchantReference = UNIQUE_MERCHANT_REFERENCE
     create_commerce_case_request.customer = customer
     create_commerce_case_request.checkout = create_checkout_request
 
@@ -161,6 +166,49 @@ async def run_commerce_case_without_payment_execution():
 
     print("Created commerce case:")
     print(create_commerce_case_response)
+
+
+async def run_get_list_of_commerce_cases():
+    communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
+    commerce_case_api_client = CommerceCaseApiClient(communicator_configuration)
+
+    commerce_cases = await commerce_case_api_client.get_commerce_cases_request(
+        MERCHANT_ID
+    )
+    print("Commerce cases:")
+    print(commerce_cases)
+
+
+async def run_get_commerce_case():
+    communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
+    commerce_case_api_client = CommerceCaseApiClient(communicator_configuration)
+
+    commerce_case = await commerce_case_api_client.get_commerce_case_request(
+        MERCHANT_ID, COMMERCE_CASE_ID
+    )
+    print("Commerce case:")
+    print(commerce_case)
+
+
+async def run_update_commerce_case_request():
+    communicator_configuration = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
+    commerce_case_api_client = CommerceCaseApiClient(communicator_configuration)
+
+    commerce_case = await commerce_case_api_client.get_commerce_case_request(
+        MERCHANT_ID, COMMERCE_CASE_ID
+    )
+    print("Commerce case:")
+    print(commerce_case)
+
+    updated_customer = commerce_case.customer
+    updated_customer.personalInformation.name.firstName = "Jane"
+    updated_customer.personalInformation.name.surname = "Doe"
+    updated_customer.contactDetails.emailAddress = "new_email@new_email.com"
+
+    await commerce_case_api_client.update_commerce_case_request(
+        MERCHANT_ID, COMMERCE_CASE_ID, updated_customer
+    )
+    print("Successfully updated commerce case!")
 
 
 if __name__ == "__main__":
