@@ -1,11 +1,12 @@
 import pytest
 
-from pcp_serversdk_python import (
-    GetCheckoutsQuery,
+from pcp_serversdk_python.models import (
     ExtendedCheckoutStatus,
     PaymentChannel,
     StatusCheckout,
 )
+
+from pcp_serversdk_python.queries import GetCheckoutsQuery
 
 
 def testToQueryMap():
