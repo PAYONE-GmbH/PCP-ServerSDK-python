@@ -1,5 +1,6 @@
-from typing import Optional
 from dataclasses import dataclass
+from typing import Optional
+
 from .CreateCheckoutResponse import CreateCheckoutResponse
 from .CreationDateTime import CreationDateTime
 from .Customer import Customer

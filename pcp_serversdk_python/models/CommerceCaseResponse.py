@@ -1,5 +1,6 @@
-from typing import Optional, List
 from dataclasses import dataclass
+from typing import List, Optional
+
 from .CheckoutResponse import CheckoutResponse
 from .CreationDateTime import CreationDateTime
 from .Customer import Customer

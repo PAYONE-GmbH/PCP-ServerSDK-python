@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict
+from typing import Dict, List, Optional
 
 # Import enums and other necessary classes
-from ..models import PaymentChannel, StatusCheckout, ExtendedCheckoutStatus
+from ..models import ExtendedCheckoutStatus, PaymentChannel, StatusCheckout
 
 
 @dataclass

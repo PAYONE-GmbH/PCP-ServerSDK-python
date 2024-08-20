@@ -1,5 +1,6 @@
-from typing import Optional
 from dataclasses import dataclass
+from typing import Optional
+
 from .CancellationReason import CancellationReason
 from .DeliveryInformation import DeliveryInformation
 from .PaymentReferences import PaymentReferences

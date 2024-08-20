@@ -1,21 +1,21 @@
 import json
+from dataclasses import asdict
 from typing import Optional
+from urllib.parse import urljoin
 
 import httpx
-from urllib.parse import urljoin
-from dataclasses import asdict
 
-from .BaseApiClient import (
-    BaseApiClient,
-)
 from ..CommunicatorConfiguration import CommunicatorConfiguration
-from ..queries import GetCheckoutsQuery
 from ..models import (
-    CheckoutsResponse,
     CheckoutResponse,
+    CheckoutsResponse,
     CreateCheckoutRequest,
     CreateCheckoutResponse,
     PatchCheckoutRequest,
+)
+from ..queries import GetCheckoutsQuery
+from .BaseApiClient import (
+    BaseApiClient,
 )
 
 

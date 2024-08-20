@@ -1,8 +1,8 @@
 from ..models import (
-    MobilePaymentMethodSpecificInput,
-    ApplePayPayment,
-    Network,
     ApplePaymentTokenVersion,
+    ApplePayPayment,
+    MobilePaymentMethodSpecificInput,
+    Network,
 )
 
 

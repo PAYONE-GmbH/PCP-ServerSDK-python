@@ -1,5 +1,6 @@
-from typing import Optional
 from dataclasses import dataclass
+from typing import Optional
+
 from .AmountOfMoney import AmountOfMoney
 from .Customer import Customer
 from .References import References

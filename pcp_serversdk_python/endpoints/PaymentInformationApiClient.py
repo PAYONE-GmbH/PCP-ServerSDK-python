@@ -1,15 +1,14 @@
 import json
+from dataclasses import asdict
+from urllib.parse import urljoin
 
 import httpx
-from urllib.parse import urljoin
-from dataclasses import asdict
 
-
+from ..CommunicatorConfiguration import CommunicatorConfiguration
+from ..models import PaymentInformationRequest, PaymentInformationResponse
 from .BaseApiClient import (
     BaseApiClient,
 )
-from ..CommunicatorConfiguration import CommunicatorConfiguration
-from ..models import PaymentInformationRequest, PaymentInformationResponse
 
 
 class PaymentInformationApiClient(BaseApiClient):

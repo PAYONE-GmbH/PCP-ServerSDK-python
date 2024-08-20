@@ -1,5 +1,6 @@
-from typing import Optional
 from dataclasses import dataclass
+from typing import Optional
+
 from .PaymentOutput import PaymentOutput
 from .PaymentStatusOutput import PaymentStatusOutput
 from .StatusValue import StatusValue

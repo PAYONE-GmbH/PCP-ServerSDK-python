@@ -1,8 +1,9 @@
-from typing import Optional, List
 from dataclasses import dataclass
-from .CancelType import CancelType
-from .CancellationReason import CancellationReason
+from typing import List, Optional
+
 from .CancelItem import CancelItem
+from .CancellationReason import CancellationReason
+from .CancelType import CancelType
 
 
 @dataclass(kw_only=True)

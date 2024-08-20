@@ -1,5 +1,6 @@
-from typing import Optional
 from dataclasses import dataclass
+from typing import Optional
+
 from .RedirectionData import RedirectionData
 from .RedirectPaymentProduct840SpecificInput import (
     RedirectPaymentProduct840SpecificInput,

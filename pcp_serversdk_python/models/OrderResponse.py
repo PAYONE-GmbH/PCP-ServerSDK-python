@@ -1,5 +1,6 @@
-from typing import Optional
 from dataclasses import dataclass
+from typing import Optional
+
 from .CreatePaymentResponse import CreatePaymentResponse
 from .ShoppingCartResult import ShoppingCartResult
 

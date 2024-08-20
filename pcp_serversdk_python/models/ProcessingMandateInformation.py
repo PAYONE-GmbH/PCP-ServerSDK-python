@@ -1,7 +1,8 @@
 from dataclasses import dataclass
+from typing import Optional
+
 from .BankAccountInformation import BankAccountInformation
 from .MandateRecurrenceType import MandateRecurrenceType
-from typing import Optional
 
 
 @dataclass(kw_only=True)

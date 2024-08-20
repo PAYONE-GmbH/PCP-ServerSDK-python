@@ -4,6 +4,7 @@ from urllib.parse import urljoin
 
 import httpx
 
+from ..CommunicatorConfiguration import CommunicatorConfiguration
 from ..models import (
     CancelPaymentRequest,
     CancelPaymentResponse,
@@ -16,8 +17,6 @@ from ..models import (
     RefundPaymentResponse,
     RefundRequest,
 )
-
-from ..CommunicatorConfiguration import CommunicatorConfiguration
 from .BaseApiClient import BaseApiClient
 
 

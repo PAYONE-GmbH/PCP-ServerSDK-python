@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+
 from .AmountOfMoney import AmountOfMoney
 from .LinkInformation import LinkInformation
 

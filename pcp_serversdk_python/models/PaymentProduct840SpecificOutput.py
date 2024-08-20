@@ -1,5 +1,6 @@
-from typing import Optional
 from dataclasses import dataclass
+from typing import Optional
+
 from .Address import Address
 from .PaymentProduct840CustomerAccount import PaymentProduct840CustomerAccount
 

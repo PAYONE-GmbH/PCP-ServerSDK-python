@@ -1,5 +1,5 @@
-from enum import Enum
 import json
+from enum import Enum
 from typing import (
     Any,
     Dict,
@@ -9,17 +9,17 @@ from typing import (
     get_args,
     get_origin,
 )
+
 import httpx
 from dacite import Config, from_dict
 
 from ..CommunicatorConfiguration import CommunicatorConfiguration
-from ..RequestHeaderGenerator import RequestHeaderGenerator
 from ..errors import (
     ApiErrorResponseException,
     ApiResponseRetrievalException,
 )
 from ..models import ErrorResponse
-
+from ..RequestHeaderGenerator import RequestHeaderGenerator
 
 T = TypeVar("T")
 
@@ -36,7 +36,7 @@ def is_error_response(parsed: Any) -> bool:
         return False
     if "errorId" in parsed and not isinstance(parsed["errorId"], str):
         return False
-    if "errors" in parsed and not isinstance(parsed["errors"], list):
+    if "errors" in parsed and not isinstance(parsed["errors"], list):  # noqa: SIM103
         return False
     return True
 
@@ -102,7 +102,7 @@ class BaseApiClient:
                 response.status_code, response_body, error.errors
             )
         except json.JSONDecodeError as e:
-            raise ApiResponseRetrievalException(response.status_code, response_body, e)
+            raise ApiResponseRetrievalException(response.status_code, response_body, e)  # noqa: B904
 
     async def get_response(self, request: httpx.Request) -> httpx.Response:
         async with httpx.AsyncClient() as client:

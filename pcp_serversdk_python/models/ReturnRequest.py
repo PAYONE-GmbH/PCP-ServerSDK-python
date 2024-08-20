@@ -1,5 +1,6 @@
-from typing import Optional, List
 from dataclasses import dataclass
+from typing import List, Optional
+
 from .ReturnItem import ReturnItem
 from .ReturnType import ReturnType
 

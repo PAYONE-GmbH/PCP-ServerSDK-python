@@ -1,9 +1,10 @@
-from typing import Optional
 from dataclasses import dataclass
-from .ApplePaymentTokenVersion import ApplePaymentTokenVersion
+from typing import Optional
+
 from .ApplePaymentDataTokenHeaderInformation import (
     ApplePaymentDataTokenHeaderInformation,
 )
+from .ApplePaymentTokenVersion import ApplePaymentTokenVersion
 
 
 @dataclass(kw_only=True)

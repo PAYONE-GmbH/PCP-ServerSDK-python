@@ -1,12 +1,9 @@
 import json
+from dataclasses import asdict
+from urllib.parse import urljoin
 
 import httpx
-from urllib.parse import urljoin
-from dataclasses import asdict
 
-from .BaseApiClient import (
-    BaseApiClient,
-)
 from ..CommunicatorConfiguration import CommunicatorConfiguration
 from ..models import (
     CancelRequest,
@@ -17,6 +14,9 @@ from ..models import (
     OrderResponse,
     ReturnRequest,
     ReturnResponse,
+)
+from .BaseApiClient import (
+    BaseApiClient,
 )
 
 

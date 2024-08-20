@@ -1,5 +1,6 @@
-from typing import Optional
 from dataclasses import dataclass
+from typing import Optional
+
 from .AuthorizationMode import AuthorizationMode
 from .CardInfo import CardInfo
 from .CardOnFileRecurringFrequency import CardOnFileRecurringFrequency

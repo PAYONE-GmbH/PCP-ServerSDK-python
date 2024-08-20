@@ -1,20 +1,20 @@
 import json
-from typing import Optional, List
+from dataclasses import asdict
+from typing import List, Optional
+from urllib.parse import urljoin
 
 import httpx
-from urllib.parse import urljoin
-from dataclasses import asdict
 
-from .BaseApiClient import (
-    BaseApiClient,
-)
 from ..CommunicatorConfiguration import CommunicatorConfiguration
-from ..queries import GetCommerceCasesQuery
 from ..models import (
     CommerceCaseResponse,
     CreateCommerceCaseRequest,
     CreateCommerceCaseResponse,
     Customer,
+)
+from ..queries import GetCommerceCasesQuery
+from .BaseApiClient import (
+    BaseApiClient,
 )
 
 
