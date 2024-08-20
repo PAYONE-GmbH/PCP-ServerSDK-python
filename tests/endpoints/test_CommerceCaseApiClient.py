@@ -3,15 +3,13 @@ import httpx
 import json
 from dataclasses import asdict
 
-from pcp_serversdk_python.CommunicatorConfiguration import ( 
-    CommunicatorConfiguration
-)
+from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
 
 from pcp_serversdk_python.models import (
     CommerceCaseResponse,
     CreateCommerceCaseRequest,
     CreateCommerceCaseResponse,
-    Customer
+    Customer,
 )
 
 from pcp_serversdk_python.endpoints import CommerceCaseApiClient

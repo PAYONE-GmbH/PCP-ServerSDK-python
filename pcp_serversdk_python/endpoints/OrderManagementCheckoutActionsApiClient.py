@@ -1,5 +1,4 @@
 import json
-from typing import Optional
 
 import httpx
 from urllib.parse import urljoin

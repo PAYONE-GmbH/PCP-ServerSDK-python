@@ -18,3 +18,4 @@ pcp_serversdk_python/include
 pcp_serversdk_python/lib
 pcp_serversdk_python/pyvenv.cfg
 .eggs
+.ruff_cache

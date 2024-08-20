@@ -1,5 +1,3 @@
-import pytest
-
 from pcp_serversdk_python.models import (
     ExtendedCheckoutStatus,
     PaymentChannel,

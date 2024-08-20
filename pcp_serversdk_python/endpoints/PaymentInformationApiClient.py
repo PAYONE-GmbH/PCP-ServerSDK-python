@@ -1,5 +1,4 @@
 import json
-from typing import Optional
 
 import httpx
 from urllib.parse import urljoin
@@ -10,12 +9,10 @@ from .BaseApiClient import (
     BaseApiClient,
 )
 from ..CommunicatorConfiguration import CommunicatorConfiguration
-from ..queries import GetCheckoutsQuery
 from ..models import PaymentInformationRequest, PaymentInformationResponse
 
 
 class PaymentInformationApiClient(BaseApiClient):
-
     def __init__(self, config: CommunicatorConfiguration):
         super().__init__(config)
 

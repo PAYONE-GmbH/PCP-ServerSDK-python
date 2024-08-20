@@ -13,7 +13,6 @@ from pcp_serversdk_python.endpoints import (
     CheckoutApiClient,
     CommerceCaseApiClient,
     PaymentInformationApiClient,
-    OrderManagementCheckoutActionsApiClient,
 )
 from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
 
@@ -80,7 +79,6 @@ async def main():
 
 
 async def run_checkouts():
-
     checkout_api_client = CheckoutApiClient(COMMUNICATOR_CONFIGURATION)
 
     # All checkouts:

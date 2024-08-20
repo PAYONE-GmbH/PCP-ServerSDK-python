@@ -1,17 +1,14 @@
-import json
 from enum import Enum
+import json
 from typing import (
     Any,
-    Callable,
     Dict,
     Optional,
     Type,
     TypeVar,
-    Union,
     get_args,
     get_origin,
 )
-
 import httpx
 from dacite import Config, from_dict
 

@@ -1,5 +1,6 @@
-import pytest
-from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration  # Update import as needed
+from pcp_serversdk_python.CommunicatorConfiguration import (
+    CommunicatorConfiguration,
+)  # Update import as needed
 
 
 def test_communicator_configuration_initialization():

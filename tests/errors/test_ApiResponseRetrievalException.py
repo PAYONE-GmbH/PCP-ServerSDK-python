@@ -1,4 +1,3 @@
-import pytest
 from pcp_serversdk_python.errors.ApiResponseRetrievalException import (
     ApiResponseRetrievalException,
 )

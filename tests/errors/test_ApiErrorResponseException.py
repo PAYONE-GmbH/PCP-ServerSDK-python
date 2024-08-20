@@ -1,4 +1,3 @@
-import pytest
 from pcp_serversdk_python.errors import ApiErrorResponseException
 from pcp_serversdk_python.models import APIError
 

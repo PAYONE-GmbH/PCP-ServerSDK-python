@@ -150,7 +150,7 @@ from .CartItemResult import CartItemResult
 from .CreateCheckoutRequest import CreateCheckoutRequest
 from .CardPaymentMethodSpecificInput import CardPaymentMethodSpecificInput
 from .CommerceCaseResponse import CommerceCaseResponse
-from .applepay import *
+from .applepay import *  # noqa: F403
 
 __all__ = [
     "Address",
@@ -293,4 +293,4 @@ __all__ = [
     "UnscheduledCardOnFileSequenceIndicator",
 ]
 
-__all__.extend(applepay.__all__)
+__all__.extend(applepay.__all__)  # noqa: F405
