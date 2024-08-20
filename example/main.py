@@ -1,36 +1,42 @@
 # example_app/main.py
 
-import sys
-import os
 import asyncio
+import os
+import sys
 import uuid
 
 # Add the parent directory to sys.path so my_package can be found
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
 from pcp_serversdk_python.endpoints import (
-    OrderManagementCheckoutActionsApiClient,
     CheckoutApiClient,
     CommerceCaseApiClient,
+    OrderManagementCheckoutActionsApiClient,
     PaymentInformationApiClient,
 )
-from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
-
-
 from pcp_serversdk_python.models import (
+    Address,
+    AddressPersonal,
+    AmountOfMoney,
     BankAccountInformation,
     CancelRequest,
+    CartItemInput,
+    CartItemInvoiceData,
     CheckoutReferences,
+    ContactDetails,
     CreateCheckoutRequest,
     CreateCommerceCaseRequest,
-    AmountOfMoney,
+    Customer,
     DeliverRequest,
+    OrderLineDetailsInput,
     OrderRequest,
+    PatchCheckoutRequest,
     PaymentChannel,
     PaymentInformationRequest,
+    PaymentMethodSpecificInput,
     PaymentType,
     PersonalInformation,
-    ContactDetails,
     ProcessingMandateInformation,
     References,
     ReturnRequest,
@@ -38,14 +44,6 @@ from pcp_serversdk_python.models import (
     SepaDirectDebitPaymentProduct771SpecificInput,
     Shipping,
     ShoppingCartInput,
-    CartItemInput,
-    CartItemInvoiceData,
-    OrderLineDetailsInput,
-    Customer,
-    Address,
-    PatchCheckoutRequest,
-    AddressPersonal,
-    PaymentMethodSpecificInput,
 )
 
 API_KEY = os.environ["API_KEY"]
