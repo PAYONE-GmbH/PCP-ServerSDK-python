@@ -51,6 +51,7 @@ clear() {
     rm -rf build
     rm -rf .pytest_cache
     rm .rf .eggs
+    rm -rf .ruff_cache
 
     echo "All __pycache__ directories have been removed."
 }
