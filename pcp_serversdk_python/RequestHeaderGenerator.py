@@ -6,8 +6,8 @@ import httpx
 from datetime import datetime, timezone
 from urllib.parse import urlparse, quote
 
-from pcp_serversdk_python import CommunicatorConfiguration
-from pcp_serversdk_python.utils.ServerMetaInfo import ServerMetaInfo
+from .CommunicatorConfiguration import CommunicatorConfiguration
+from .utils.ServerMetaInfo import ServerMetaInfo
 
 
 class RequestHeaderGenerator:

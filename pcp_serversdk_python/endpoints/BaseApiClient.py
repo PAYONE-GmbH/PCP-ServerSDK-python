@@ -5,13 +5,13 @@ from typing import Any, Dict, Optional, TypeVar, Callable, Type, Union
 from dacite import from_dict, Config
 
 
-from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
-from pcp_serversdk_python.RequestHeaderGenerator import RequestHeaderGenerator
-from pcp_serversdk_python.errors import (
+from ..CommunicatorConfiguration import CommunicatorConfiguration
+from ..RequestHeaderGenerator import RequestHeaderGenerator
+from ..errors import (
     ApiErrorResponseException,
     ApiResponseRetrievalException,
 )
-from pcp_serversdk_python.models import ErrorResponse
+from ..models import ErrorResponse
 
 
 T = TypeVar("T")

@@ -8,7 +8,8 @@ from dataclasses import asdict
 from .BaseApiClient import (
     BaseApiClient,
 )
-from pcp_serversdk_python import CommunicatorConfiguration, GetCommerceCasesQuery
+from ..CommunicatorConfiguration import CommunicatorConfiguration
+from ..queries import GetCommerceCasesQuery
 from ..models import (
     CommerceCaseResponse,
     CreateCommerceCaseRequest,
