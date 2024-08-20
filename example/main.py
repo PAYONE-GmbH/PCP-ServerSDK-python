@@ -3,21 +3,24 @@
 import sys
 import os
 import asyncio
-from datetime import datetime, timezone
 import uuid
 
 # Add the parent directory to sys.path so my_package can be found
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+from pcp_serversdk_python.endpoints import (
+    OrderManagementCheckoutActionsApiClient,
+    CheckoutApiClient,
+    CommerceCaseApiClient,
+    PaymentInformationApiClient,
+)
+from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
 
-from pcp_serversdk_python import (
+from pcp_serversdk_python.models import (
     BankAccountInformation,
     CancelRequest,
     CheckoutReferences,
-    CommunicatorConfiguration,
-    CheckoutApiClient,
     CreateCheckoutRequest,
-    CommerceCaseApiClient,
     CreateCommerceCaseRequest,
     AmountOfMoney,
     DeliverRequest,
@@ -40,11 +43,9 @@ from pcp_serversdk_python import (
     Customer,
     Address,
     PatchCheckoutRequest,
-    Shipping,
     AddressPersonal,
     PaymentMethodSpecificInput,
     OrderManagementCheckoutActionsApiClient,
-    PaymentInformationApiClient,
 )
 
 API_KEY = os.environ["API_KEY"]

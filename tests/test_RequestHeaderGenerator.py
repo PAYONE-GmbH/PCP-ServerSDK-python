@@ -5,11 +5,13 @@ import base64
 import json
 import httpx
 
-from pcp_serversdk_python import (
-    CommunicatorConfiguration,
-    RequestHeaderGenerator,
-    ServerMetaInfo,
+from pcp_serversdk_python.CommunicatorConfiguration import (
+    CommunicatorConfiguration
 )
+from pcp_serversdk_python.RequestHeaderGenerator import (
+    RequestHeaderGenerator
+)
+from pcp_serversdk_python.utils import ServerMetaInfo
 
 
 @pytest.fixture

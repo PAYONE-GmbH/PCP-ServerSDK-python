@@ -1,5 +1,5 @@
 import pytest
-from pcp_serversdk_python import (
+from pcp_serversdk_python.models import (
     MobilePaymentMethodSpecificInput,
     ApplePayPayment,
     Network,
