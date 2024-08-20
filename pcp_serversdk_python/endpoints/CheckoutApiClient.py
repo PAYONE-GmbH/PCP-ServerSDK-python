@@ -7,9 +7,6 @@ from dataclasses import asdict
 
 from .BaseApiClient import (
     BaseApiClient,
-    MERCHANT_ID_REQUIRED_ERROR,
-    COMMERCE_CASE_ID_REQUIRED_ERROR,
-    CHECKOUT_ID_REQUIRED_ERROR,
 )
 from pcp_serversdk_python import CommunicatorConfiguration, GetCheckoutsQuery
 from ..models import (
@@ -29,9 +26,9 @@ class CheckoutApiClient(BaseApiClient):
         self, merchant_id: str, commerce_case_id: str, payload: CreateCheckoutRequest
     ) -> CreateCheckoutResponse:
         if not merchant_id:
-            raise TypeError(MERCHANT_ID_REQUIRED_ERROR)
+            raise TypeError(self.MERCHANT_ID_REQUIRED_ERROR)
         if not commerce_case_id:
-            raise TypeError(COMMERCE_CASE_ID_REQUIRED_ERROR)
+            raise TypeError(self.COMMERCE_CASE_ID_REQUIRED_ERROR)
 
         url = urljoin(
             self.get_config().get_host(),
@@ -51,11 +48,11 @@ class CheckoutApiClient(BaseApiClient):
         self, merchant_id: str, commerce_case_id: str, checkout_id: str
     ) -> CheckoutResponse:
         if not merchant_id:
-            raise TypeError(MERCHANT_ID_REQUIRED_ERROR)
+            raise TypeError(self.MERCHANT_ID_REQUIRED_ERROR)
         if not commerce_case_id:
-            raise TypeError(COMMERCE_CASE_ID_REQUIRED_ERROR)
+            raise TypeError(self.COMMERCE_CASE_ID_REQUIRED_ERROR)
         if not checkout_id:
-            raise TypeError(CHECKOUT_ID_REQUIRED_ERROR)
+            raise TypeError(self.CHECKOUT_ID_REQUIRED_ERROR)
 
         url = urljoin(
             self.get_config().get_host(),
@@ -70,7 +67,7 @@ class CheckoutApiClient(BaseApiClient):
         self, merchant_id: str, query_params: Optional[GetCheckoutsQuery] = None
     ) -> CheckoutsResponse:
         if not merchant_id:
-            raise TypeError(MERCHANT_ID_REQUIRED_ERROR)
+            raise TypeError(self.MERCHANT_ID_REQUIRED_ERROR)
 
         url = urljoin(self.get_config().get_host(), f"/v1/{merchant_id}/checkouts")
 
@@ -90,11 +87,11 @@ class CheckoutApiClient(BaseApiClient):
         payload: PatchCheckoutRequest,
     ) -> None:
         if not merchant_id:
-            raise TypeError(MERCHANT_ID_REQUIRED_ERROR)
+            raise TypeError(self.MERCHANT_ID_REQUIRED_ERROR)
         if not commerce_case_id:
-            raise TypeError(COMMERCE_CASE_ID_REQUIRED_ERROR)
+            raise TypeError(self.COMMERCE_CASE_ID_REQUIRED_ERROR)
         if not checkout_id:
-            raise TypeError(CHECKOUT_ID_REQUIRED_ERROR)
+            raise TypeError(self.CHECKOUT_ID_REQUIRED_ERROR)
 
         url = urljoin(
             self.get_config().get_host(),
@@ -114,11 +111,11 @@ class CheckoutApiClient(BaseApiClient):
         self, merchant_id: str, commerce_case_id: str, checkout_id: str
     ) -> None:
         if not merchant_id:
-            raise TypeError(MERCHANT_ID_REQUIRED_ERROR)
+            raise TypeError(self.MERCHANT_ID_REQUIRED_ERROR)
         if not commerce_case_id:
-            raise TypeError(COMMERCE_CASE_ID_REQUIRED_ERROR)
+            raise TypeError(self.COMMERCE_CASE_ID_REQUIRED_ERROR)
         if not checkout_id:
-            raise TypeError(CHECKOUT_ID_REQUIRED_ERROR)
+            raise TypeError(self.CHECKOUT_ID_REQUIRED_ERROR)
 
         url = urljoin(
             self.get_config().get_host(),

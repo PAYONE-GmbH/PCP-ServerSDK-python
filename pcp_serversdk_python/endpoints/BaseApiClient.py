@@ -34,26 +34,14 @@ def is_error_response(parsed: Any) -> bool:
     return True
 
 
-MERCHANT_ID_REQUIRED_ERROR = "Merchant ID is required"
-COMMERCE_CASE_ID_REQUIRED_ERROR = "Commerce Case ID is required"
-CHECKOUT_ID_REQUIRED_ERROR = "Checkout ID is required"
-
-
 class BaseApiClient:
+    MERCHANT_ID_REQUIRED_ERROR = "Merchant ID is required"
+    COMMERCE_CASE_ID_REQUIRED_ERROR = "Commerce Case ID is required"
+    CHECKOUT_ID_REQUIRED_ERROR = "Checkout ID is required"
+
     def __init__(self, config: CommunicatorConfiguration):
         self.config = config
         self.request_header_generator = RequestHeaderGenerator(config)
-
-    @staticmethod
-    def parse_void() -> None:
-        return None
-
-    @staticmethod
-    def parse_json(body: str, cls: Type[T]) -> T:
-        parsed = json.loads(body)
-        if not isinstance(parsed, dict):
-            raise TypeError("Parsed JSON is not an object")
-        return cls(**parsed)
 
     def get_request_header_generator(self) -> Optional[RequestHeaderGenerator]:
         return self.request_header_generator

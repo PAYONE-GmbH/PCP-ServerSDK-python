@@ -7,8 +7,6 @@ from dataclasses import asdict
 
 from .BaseApiClient import (
     BaseApiClient,
-    MERCHANT_ID_REQUIRED_ERROR,
-    COMMERCE_CASE_ID_REQUIRED_ERROR,
 )
 from pcp_serversdk_python import CommunicatorConfiguration, GetCommerceCasesQuery
 from ..models import (
@@ -28,7 +26,7 @@ class CommerceCaseApiClient(BaseApiClient):
         self, merchant_id: str, payload: CreateCommerceCaseRequest
     ) -> CreateCommerceCaseResponse:
         if not merchant_id:
-            raise ValueError(MERCHANT_ID_REQUIRED_ERROR)
+            raise ValueError(self.MERCHANT_ID_REQUIRED_ERROR)
 
         url = urljoin(
             self.get_config().get_host(),
@@ -48,9 +46,9 @@ class CommerceCaseApiClient(BaseApiClient):
         self, merchant_id: str, commerce_case_id: str
     ) -> CommerceCaseResponse:
         if not merchant_id:
-            raise ValueError(MERCHANT_ID_REQUIRED_ERROR)
+            raise ValueError(self.MERCHANT_ID_REQUIRED_ERROR)
         if not commerce_case_id:
-            raise ValueError(COMMERCE_CASE_ID_REQUIRED_ERROR)
+            raise ValueError(self.COMMERCE_CASE_ID_REQUIRED_ERROR)
 
         url = urljoin(
             self.get_config().get_host(),
@@ -65,7 +63,7 @@ class CommerceCaseApiClient(BaseApiClient):
         self, merchant_id: str, query_params: Optional[GetCommerceCasesQuery] = None
     ) -> List[CommerceCaseResponse]:
         if not merchant_id:
-            raise ValueError(MERCHANT_ID_REQUIRED_ERROR)
+            raise ValueError(self.MERCHANT_ID_REQUIRED_ERROR)
 
         url = urljoin(self.get_config().get_host(), f"/v1/{merchant_id}/commerce-cases")
 
@@ -81,9 +79,9 @@ class CommerceCaseApiClient(BaseApiClient):
         self, merchant_id: str, commerce_case_id: str, payload: Customer
     ):
         if not merchant_id:
-            raise ValueError(MERCHANT_ID_REQUIRED_ERROR)
+            raise ValueError(self.MERCHANT_ID_REQUIRED_ERROR)
         if not commerce_case_id:
-            raise ValueError(COMMERCE_CASE_ID_REQUIRED_ERROR)
+            raise ValueError(self.COMMERCE_CASE_ID_REQUIRED_ERROR)
 
         url = urljoin(
             self.get_config().get_host(),

@@ -135,7 +135,9 @@ async def test_update_checkout_request_success(checkout_api_client, mock_httpx_c
         "merchantId",
         "commerceCaseId",
         "checkoutId",
-        PatchCheckoutRequest(amountOfMoney={"currencyCode": "YEN", "amount": 1000}),
+        PatchCheckoutRequest(
+            amountOfMoney=AmountOfMoney(currencyCode="YEN", amount=1000)
+        ),
     )
 
 
