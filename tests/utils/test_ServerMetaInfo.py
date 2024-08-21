@@ -14,7 +14,7 @@ def testServerMetaInfoInitialization():
     assert meta_info.platformIdentifier == expected_platform_identifier
 
     # Check sdkIdentifier
-    assert meta_info.sdkIdentifier == "PythonServerSDK/v0.0.2"
+    assert meta_info.sdkIdentifier == "PythonServerSDK/v0.0.3"
 
     # Check sdkCreator
     assert meta_info.sdkCreator == "PAYONE GmbH"
@@ -33,7 +33,7 @@ def testServerMetaInfoDefaults():
     assert meta_info.platformIdentifier == expected_platform_identifier
 
     # Check sdkIdentifier
-    assert meta_info.sdkIdentifier == "PythonServerSDK/v0.0.2"
+    assert meta_info.sdkIdentifier == "PythonServerSDK/v0.0.3"
 
     # Check sdkCreator
     assert meta_info.sdkCreator == "PAYONE GmbH"
