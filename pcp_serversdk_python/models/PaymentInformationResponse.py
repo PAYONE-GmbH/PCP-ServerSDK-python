@@ -1,5 +1,6 @@
-from typing import Optional, List
 from dataclasses import dataclass
+from typing import List, Optional
+
 from .CardPaymentDetails import CardPaymentDetails
 from .PaymentChannel import PaymentChannel
 from .PaymentEvent import PaymentEvent

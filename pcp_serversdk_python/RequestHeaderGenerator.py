@@ -1,13 +1,14 @@
-import hmac
-import hashlib
 import base64
+import hashlib
+import hmac
 import json
-import httpx
 from datetime import datetime, timezone
-from urllib.parse import urlparse, quote
+from urllib.parse import quote, urlparse
 
-from pcp_serversdk_python import CommunicatorConfiguration
-from pcp_serversdk_python.utils.ServerMetaInfo import ServerMetaInfo
+import httpx
+
+from .CommunicatorConfiguration import CommunicatorConfiguration
+from .utils.ServerMetaInfo import ServerMetaInfo
 
 
 class RequestHeaderGenerator:
@@ -52,9 +53,9 @@ class RequestHeaderGenerator:
         string_to_sign += f"{headers[self.DATE_HEADER_NAME]}\n"
 
         if self.CLIENT_META_INFO_HEADER_NAME in headers:
-            string_to_sign += f"{self.CLIENT_META_INFO_HEADER_NAME.lower()}:{headers[self.CLIENT_META_INFO_HEADER_NAME]}\n"
+            string_to_sign += f"{self.CLIENT_META_INFO_HEADER_NAME.lower()}:{headers[self.CLIENT_META_INFO_HEADER_NAME]}\n"  # noqa: E501
         if self.SERVER_META_INFO_HEADER_NAME in headers:
-            string_to_sign += f"{self.SERVER_META_INFO_HEADER_NAME.lower()}:{headers[self.SERVER_META_INFO_HEADER_NAME]}\n"
+            string_to_sign += f"{self.SERVER_META_INFO_HEADER_NAME.lower()}:{headers[self.SERVER_META_INFO_HEADER_NAME]}\n"  # noqa: E501
 
         url_internal = urlparse(request.url.__str__())
         string_to_sign += url_internal.path

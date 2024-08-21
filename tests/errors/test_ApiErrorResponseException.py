@@ -1,5 +1,5 @@
-import pytest
-from pcp_serversdk_python import ApiErrorResponseException, APIError
+from pcp_serversdk_python.errors import ApiErrorResponseException
+from pcp_serversdk_python.models import APIError
 
 
 def test_api_error_response_exception_initialization():

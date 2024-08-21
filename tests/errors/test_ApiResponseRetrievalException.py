@@ -1,11 +1,10 @@
-import pytest
 from pcp_serversdk_python.errors.ApiException import ApiException
-from pcp_serversdk_python import (
+from pcp_serversdk_python.errors.ApiResponseRetrievalException import (
     ApiResponseRetrievalException,
-)  # Update import as needed
+)
 
 
-def testApiResponseRetrievalExceptionInitialization():
+def test_api_response_retrieval_exception_initialization():
     status_code = 500
     response_body = "Internal Server Error"
 
@@ -18,7 +17,7 @@ def testApiResponseRetrievalExceptionInitialization():
     assert exception.response_body == response_body
 
 
-def testApiResponseRetrievalExceptionInheritance():
+def test_api_response_retrieval_exception_inheritance():
     status_code = 500
     response_body = "Internal Server Error"
 

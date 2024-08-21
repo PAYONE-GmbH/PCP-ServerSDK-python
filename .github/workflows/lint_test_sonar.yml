@@ -26,6 +26,8 @@ jobs:
         run: ./scripts.sh setup
       - name: Install dependencies
         run: ./scripts.sh install
+      - name: Run Lint
+        run: ./scripts.sh lint
       - name: Run Build
         run: ./scripts.sh build
       - name: Run Tests

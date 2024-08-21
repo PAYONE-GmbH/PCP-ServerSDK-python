@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from typing import Optional
-from .ApplePayPaymentMethodType import ApplePayPaymentMethodType
+
 from .ApplePayPaymentContact import ApplePayPaymentContact
+from .ApplePayPaymentMethodType import ApplePayPaymentMethodType
 
 
 @dataclass(kw_only=True)

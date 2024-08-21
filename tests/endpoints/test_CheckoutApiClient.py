@@ -1,25 +1,26 @@
-import pytest
-import httpx
 import json
 from dataclasses import asdict
 
-from pcp_serversdk_python import (
-    CommunicatorConfiguration,
-    GetCheckoutsQuery,
-    CreateCheckoutRequest,
-    CreateCheckoutResponse,
+import httpx
+import pytest
+
+from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
+from pcp_serversdk_python.endpoints import CheckoutApiClient
+from pcp_serversdk_python.models import (
+    AmountOfMoney,
+    CartItemInvoiceData,
+    CartItemResult,
+    CheckoutReferences,
     CheckoutResponse,
     CheckoutsResponse,
-    PatchCheckoutRequest,
-    CheckoutApiClient,
-    AmountOfMoney,
-    ShoppingCartResult,
-    CartItemResult,
-    CartItemInvoiceData,
+    CreateCheckoutRequest,
+    CreateCheckoutResponse,
     OrderLineDetailsResult,
+    PatchCheckoutRequest,
+    ShoppingCartResult,
     StatusCheckout,
-    CheckoutReferences,
 )
+from pcp_serversdk_python.queries import GetCheckoutsQuery
 
 
 @pytest.fixture
@@ -127,21 +128,50 @@ async def test_get_checkouts_request_success(checkout_api_client, mock_httpx_cli
     assert response == expected_response
 
 
-# @pytest.mark.asyncio
-# async def test_update_checkout_request_success(checkout_api_client, mock_httpx_client):
-#     mock_httpx_client.return_value.request.return_value = httpx.Response(200)
+@pytest.mark.asyncio
+async def test_update_checkout_request_success(checkout_api_client, mock_httpx_client):
+    mock_httpx_client.return_value.request.return_value = httpx.Response(200)
 
-#     await checkout_api_client.updateCheckoutRequest(
-#         "merchantId", "commerceCaseId", "checkoutId", PatchCheckoutRequest(
-#             amountOfMoney={"currencyCode": "YEN", "amount": 1000}
-#         )
-#     )
+    await checkout_api_client.update_checkout_request(
+        "merchantId",
+        "commerceCaseId",
+        "checkoutId",
+        PatchCheckoutRequest(
+            amountOfMoney=AmountOfMoney(currencyCode="YEN", amount=1000)
+        ),
+    )
 
 
-# @pytest.mark.asyncio
-# async def test_remove_checkout_request_success(checkout_api_client, mock_httpx_client):
-#     mock_httpx_client.return_value.request.return_value = httpx.Response(200)
+@pytest.mark.asyncio
+async def test_remove_checkout_request_success(checkout_api_client, mock_httpx_client):
+    mock_httpx_client.return_value.request.return_value = httpx.Response(200)
 
-#     await checkout_api_client.removeCheckoutRequest(
-#         "merchantId", "commerceCaseId", "checkoutId"
-#     )
+    await checkout_api_client.remove_checkout_request(
+        "merchantId", "commerceCaseId", "checkoutId"
+    )
+
+
+@pytest.mark.asyncio
+async def test_remove_checkout_request_with_invalid_merchant_id(checkout_api_client):
+    with pytest.raises(ValueError):
+        await checkout_api_client.remove_checkout_request(
+            "", "commerceCaseId", "checkoutId"
+        )
+
+
+@pytest.mark.asyncio
+async def test_remove_checkout_request_with_invalid_commerce_case_id(
+    checkout_api_client,
+):
+    with pytest.raises(ValueError):
+        await checkout_api_client.remove_checkout_request(
+            "merchantId", "", "checkoutId"
+        )
+
+
+@pytest.mark.asyncio
+async def test_remove_checkout_request_with_invalid_checkout_id(checkout_api_client):
+    with pytest.raises(ValueError):
+        await checkout_api_client.remove_checkout_request(
+            "merchantId", "commerceCaseId", ""
+        )

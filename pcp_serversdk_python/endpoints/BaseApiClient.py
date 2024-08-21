@@ -1,18 +1,25 @@
-from enum import Enum
 import json
+from enum import Enum
+from typing import (
+    Any,
+    Dict,
+    Optional,
+    Type,
+    TypeVar,
+    get_args,
+    get_origin,
+)
+
 import httpx
-from typing import Any, Dict, Optional, TypeVar, Callable, Type, Union
-from dacite import from_dict, Config
+from dacite import Config, from_dict
 
-
-from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
-from pcp_serversdk_python.RequestHeaderGenerator import RequestHeaderGenerator
-from pcp_serversdk_python.errors import (
+from ..CommunicatorConfiguration import CommunicatorConfiguration
+from ..errors import (
     ApiErrorResponseException,
     ApiResponseRetrievalException,
 )
-from pcp_serversdk_python.models import ErrorResponse
-
+from ..models import ErrorResponse
+from ..RequestHeaderGenerator import RequestHeaderGenerator
 
 T = TypeVar("T")
 
@@ -29,31 +36,22 @@ def is_error_response(parsed: Any) -> bool:
         return False
     if "errorId" in parsed and not isinstance(parsed["errorId"], str):
         return False
-    if "errors" in parsed and not isinstance(parsed["errors"], list):
+    if "errors" in parsed and not isinstance(parsed["errors"], list):  # noqa: SIM103
         return False
     return True
 
 
-MERCHANT_ID_REQUIRED_ERROR = "Merchant ID is required"
-COMMERCE_CASE_ID_REQUIRED_ERROR = "Commerce Case ID is required"
-CHECKOUT_ID_REQUIRED_ERROR = "Checkout ID is required"
-
-
 class BaseApiClient:
+    CONTENT_TYPE = "application/json"
+    MERCHANT_ID_REQUIRED_ERROR = "Merchant ID is required"
+    COMMERCE_CASE_ID_REQUIRED_ERROR = "Commerce Case ID is required"
+    CHECKOUT_ID_REQUIRED_ERROR = "Checkout ID is required"
+    PAYMENT_INFORMATION_ID_REQUIRED_ERROR = "Payment Information ID is required"
+    PAYMENT_EXECUTION_ID_REQUIRED_ERROR = "Payment Execution ID is required"
+
     def __init__(self, config: CommunicatorConfiguration):
         self.config = config
         self.request_header_generator = RequestHeaderGenerator(config)
-
-    @staticmethod
-    def parse_void() -> None:
-        return None
-
-    @staticmethod
-    def parse_json(body: str, cls: Type[T]) -> T:
-        parsed = json.loads(body)
-        if not isinstance(parsed, dict):
-            raise TypeError("Parsed JSON is not an object")
-        return cls(**parsed)
 
     def get_request_header_generator(self) -> Optional[RequestHeaderGenerator]:
         return self.request_header_generator
@@ -75,16 +73,19 @@ class BaseApiClient:
             request = self.request_header_generator.generate_additional_request_headers(
                 request
             )
-        print("1")
         response = await self.get_response(request)
-        print("2")
         await self.handle_error(response)
         try:
-            print("3")
-            print(response.text)
             data = json.loads(response.text)
-            print("4")
-            return from_dict_with_enum(data_class=type, data=data)
+            # Check if the expected type is a List
+            if get_origin(type) is list:
+                item_type = get_args(type)[0]  # Extract the type of the list's elements
+                return [
+                    from_dict_with_enum(data_class=item_type, data=item)
+                    for item in data
+                ]
+            else:
+                return from_dict_with_enum(data_class=type, data=data)
         except json.JSONDecodeError as e:
             raise AssertionError(self.JSON_PARSE_ERROR) from e
 
@@ -102,7 +103,7 @@ class BaseApiClient:
                 response.status_code, response_body, error.errors
             )
         except json.JSONDecodeError as e:
-            raise ApiResponseRetrievalException(response.status_code, response_body, e)
+            raise ApiResponseRetrievalException(response.status_code, response_body, e)  # noqa: B904
 
     async def get_response(self, request: httpx.Request) -> httpx.Response:
         async with httpx.AsyncClient() as client:
@@ -113,5 +114,4 @@ class BaseApiClient:
                 content=request.content,
             )
 
-        print(response)
         return response

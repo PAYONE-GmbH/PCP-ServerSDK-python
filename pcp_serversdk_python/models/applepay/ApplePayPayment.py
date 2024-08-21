@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from typing import Optional
-from .ApplePayPaymentToken import ApplePayPaymentToken
+
 from .ApplePayPaymentContact import ApplePayPaymentContact
+from .ApplePayPaymentToken import ApplePayPaymentToken
 
 
 @dataclass(kw_only=True)

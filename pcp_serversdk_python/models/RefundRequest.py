@@ -1,5 +1,6 @@
-from typing import Optional
 from dataclasses import dataclass, field
+from typing import Optional
+
 from .PaymentReferences import PaymentReferences
 from .PositiveAmountOfMoney import PositiveAmountOfMoney
 from .ReturnInformation import ReturnInformation

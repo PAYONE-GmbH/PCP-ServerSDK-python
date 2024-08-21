@@ -1,5 +1,6 @@
-from typing import Optional
 from dataclasses import dataclass
+from typing import Optional
+
 from .SepaDirectDebitPaymentProduct771SpecificInput import (
     SepaDirectDebitPaymentProduct771SpecificInput,
 )

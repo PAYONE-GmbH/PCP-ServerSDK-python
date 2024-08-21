@@ -1,6 +1,6 @@
-import pytest
 import platform
-from pcp_serversdk_python import ServerMetaInfo  # Update import as needed
+
+from pcp_serversdk_python.utils import ServerMetaInfo  # Update import as needed
 
 
 def testServerMetaInfoInitialization():
