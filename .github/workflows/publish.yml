@@ -23,5 +23,5 @@ jobs:
         run: ./scripts.sh install
       - name: Run Build
         run: ./scripts.sh build
-      - name: Run Tests
+      - name: Run Publish
         run: ./scripts.sh publish ${{ secrets.PYPI_TOKEN }}
