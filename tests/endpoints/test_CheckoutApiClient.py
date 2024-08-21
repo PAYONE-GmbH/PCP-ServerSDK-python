@@ -149,3 +149,29 @@ async def test_remove_checkout_request_success(checkout_api_client, mock_httpx_c
     await checkout_api_client.remove_checkout_request(
         "merchantId", "commerceCaseId", "checkoutId"
     )
+
+
+@pytest.mark.asyncio
+async def test_remove_checkout_request_with_invalid_merchant_id(checkout_api_client):
+    with pytest.raises(ValueError):
+        await checkout_api_client.remove_checkout_request(
+            "", "commerceCaseId", "checkoutId"
+        )
+
+
+@pytest.mark.asyncio
+async def test_remove_checkout_request_with_invalid_commerce_case_id(
+    checkout_api_client,
+):
+    with pytest.raises(ValueError):
+        await checkout_api_client.remove_checkout_request(
+            "merchantId", "", "checkoutId"
+        )
+
+
+@pytest.mark.asyncio
+async def test_remove_checkout_request_with_invalid_checkout_id(checkout_api_client):
+    with pytest.raises(ValueError):
+        await checkout_api_client.remove_checkout_request(
+            "merchantId", "commerceCaseId", ""
+        )
