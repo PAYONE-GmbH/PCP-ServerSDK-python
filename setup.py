@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="pcp_serversdk_python",
-    version="0.0.1",
+    version="0.0.2",
     author="PAYONE-GmbH",
     author_email="",
     description="",
