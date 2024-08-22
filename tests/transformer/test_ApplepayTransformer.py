@@ -6,7 +6,7 @@ from pcp_serversdk_python.models import (
     MobilePaymentMethodSpecificInput,
     Network,
 )
-from pcp_serversdk_python.transformer.Applepay import (
+from pcp_serversdk_python.transformer.ApplepayTransformer import (
     network_from_string,
     transform_apple_pay_payment_to_mobile_payment_method_specific_input,
     version_from_string,
