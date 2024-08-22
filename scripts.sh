@@ -63,6 +63,7 @@ version() {
     echo "Updated $SERVER_META_INFO_TEST_PATH with version $NEW_VERSION"
     npm run changelog
     git add CHANGELOG.md
+    git tag -a v$NEW_VERSION -m "Version $NEW_VERSION"
     echo "Updated CHANGELOG.md"
 }
 
