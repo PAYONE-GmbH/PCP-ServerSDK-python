@@ -48,23 +48,36 @@ version() {
     SETUP_PY_PATH='./setup.py'
     SERVER_META_INFO_PATH='./pcp_serversdk_python/utils/ServerMetaInfo.py'
     SERVER_META_INFO_TEST_PATH='./tests/utils/test_ServerMetaInfo.py'
+    PACKAGE_JSON_PATH="./package.json"
+    PACKAGE_LOCK_JSON_PATH="./package-lock.json"
     echo "Getting the version..."
     sed -i '' "s/version=\"[0-9]*\.[0-9]*\.[0-9]*\",/version=\"$NEW_VERSION\",/" ${SETUP_PY_PATH}
     sed -i '' "s/PythonServerSDK\/v[0-9]*\.[0-9]*\.[0-9]*/PythonServerSDK\/v$NEW_VERSION/" ${SERVER_META_INFO_PATH}
     sed -i '' "s/PythonServerSDK\/v[0-9]*\.[0-9]*\.[0-9]*/PythonServerSDK\/v$NEW_VERSION/" ${SERVER_META_INFO_TEST_PATH}
 
-    echo "Version complete."
+    # Update the version number in the package.json file for changelog generation
+    sed -i '' -e "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" package.json
+
+    # Update the version number in the package-lock.json file for changelog generation
+    jq --arg version "$VERSION" '
+      .version = $version |
+      .packages[""].version = $version
+    ' package-lock.json >tmp.json && mv tmp.json package-lock.json
+    rm -f tmp.json
 
     git add $SETUP_PY_PATH
     git add $SERVER_META_INFO_PATH
     git add $SERVER_META_INFO_TEST_PATH
-    echo "Updated $SETUP_PY_PATH with version $NEW_VERSION"
-    echo "Updated $SERVER_META_INFO_PATH with version $NEW_VERSION"
-    echo "Updated $SERVER_META_INFO_TEST_PATH with version $NEW_VERSION"
+    git add $PACKAGE_JSON_PATH
+    git add $PACKAGE_LOCK_JSON_PATH
+    git tag -a v$NEW_VERSION -m "Version $NEW_VERSION"
+    npm install
     npm run changelog
     git add CHANGELOG.md
-    git tag -a v$NEW_VERSION -m "Version $NEW_VERSION"
-    echo "Updated CHANGELOG.md"
+    git commit -m "Update version to $VERSION"
+    git push --tags
+    git push origin HEAD
+    echo "Version complete."
 }
 
 clear() {
