@@ -1,7 +1,9 @@
-## 0.0.1 (2024-08-21)
+## 0.0.1 (2024-08-22)
 
 ### Documentation
 
+* docs: add apple pay transformer usage to readme ([cad0caeae8a87a127cc5d8b4361ffb3d40701177](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/cad0caeae8a87a127cc5d8b4361ffb3d40701177))
+* docs: add contributing guidelines and update readme ([ebdae42561c980a022650fef5154b84fe853379c](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/ebdae42561c980a022650fef5154b84fe853379c))
 * docs: update readme ([035d54c32c5a969474ebaec68de3749fcb6a7684](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/035d54c32c5a969474ebaec68de3749fcb6a7684))
 
 ### Features
