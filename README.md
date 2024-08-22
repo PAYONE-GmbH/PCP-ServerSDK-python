@@ -12,19 +12,18 @@ Welcome to the Python SDK for the PAYONE Commerce Platform! This repository cont
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [General](#general)
   - [Error Handling](#error-handling)
   - [Client Side](#client-side)
   - [Apple Pay](#apple-pay)
 - [Demo App](#demo-app)
 - [Contributing](#contributing)
-  - [Build the library](#build-the-library)
-  - [Run tests](#run-tests)
-  - [Releasing the library](#releasing-the-library)
-    - [Preparing the Release](#preparing-the-release)
-    - [Changelog Generation with Conventional Changelog](#changelog-generation-with-conventional-changelog)
-    - [Merging the Release Branch](#merging-the-release-branch)
-    - [GitHub Action for Release](#github-action-for-release)
-    - [Optional: Creating a GitHub Release](#optional-creating-a-github-release)
+- [Releasing the library](#releasing-the-library)
+  - [Preparing the Release](#preparing-the-release)
+  - [Changelog Generation with Conventional Changelog](#changelog-generation-with-conventional-changelog)
+  - [Merging the Release Branch](#merging-the-release-branch)
+  - [GitHub Action for Release](#github-action-for-release)
+  - [Optional: Creating a GitHub Release](#optional-creating-a-github-release)
 - [License](#license)
 
 ## Features
@@ -40,7 +39,11 @@ Welcome to the Python SDK for the PAYONE Commerce Platform! This repository cont
 python3 -m pip install "pcp_serversdk_python"
 ```
 
+**[back to top](#table-of-contents)**
+
 ## Usage
+
+### General
 
 To use this SDK you need to construct a `CommunicatorConfiguration` which encapsulate everything needed to connect to the PAYONE Commerce Platform.
 
@@ -91,7 +94,9 @@ When a client is successfully made a payment via ApplePay it receives a [ApplePa
 # TODO
 ```
 
-### Run the example app
+**[back to top](#table-of-contents)**
+
+## Demo App
 
 ```sh
 API_KEY=api_key API_SECRET=api_secret MERCHANT_ID=123 COMMERCE_CASE_ID=234 CHECKOUT_ID=345 python3 example/main.py
@@ -101,36 +106,13 @@ API_KEY=api_key API_SECRET=api_secret MERCHANT_ID=123 COMMERCE_CASE_ID=234 CHECK
 
 ## Contributing
 
-We welcome contributions from the community. If you want to contribute, please follow these steps:
+See [Contributing](./CONTRIBUTING.md)
 
-Fork the repository.
-Create a new branch (`git checkout -b feature/feature-branch`).
-Make your changes.
-Commit your changes (`git commit -am 'feat: add new feature'`).
-Push to the branch (`git push origin feature/feature-branch`).
-Create a new Pull Request.
-Please make sure to follow the coding standards and write appropriate tests for your changes.
+**[back to top](#table-of-contents)**
 
-### Build the library
+## Releasing the library
 
-```sh
-# setup python environment
-./scripts.sh setup
-# install deps
-./scripts.sh install
-# build
-./scripts.sh build
-```
-
-### Run tests
-
-```sh
-./scripts.sh test
-```
-
-### Releasing the library
-
-#### Preparing the Release
+### Preparing the Release
 
 - Checkout develop branch
 - Create release branch (release/0.1.0)
@@ -145,7 +127,7 @@ git checkout -b release/0.1.0
 ./prepare-release.sh
 ```
 
-#### Changelog Generation with Conventional Changelog
+### Changelog Generation with Conventional Changelog
 
 After calling the `prepare_release.sh` script, it is recommended to manually trigger the changelog generation script (which uses [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)).
 
@@ -166,12 +148,12 @@ After calling the `prepare_release.sh` script, it is recommended to manually tri
      ```
    - Review and commit the updated changelog before proceeding with the release.
 
-#### Merging the Release Branch
+### Merging the Release Branch
 
 - Create PR on `develop` branch
 - Merge `develop` in `main` branch
 
-#### GitHub Action for Release
+### GitHub Action for Release
 
 After successfully merging all changes to the `main` branch, an admin can trigger a GitHub Action to finalize and publish the release. This action ensures that the release process is automated, consistent, and deploys the new release from the `main` branch.
 
@@ -181,7 +163,7 @@ After successfully merging all changes to the `main` branch, an admin can trigge
 - Ensure that all changes are committed to the `main` branch.
 - Navigate to the Actions tab on your GitHub repository and manually trigger the release action for the `main` branch.
 
-#### Optional: Creating a GitHub Release
+### Optional: Creating a GitHub Release
 
 Once the release has been published to PyPi, developers can start using the latest version of the SDK. However, if you want to make the release more visible and include detailed release notes, you can optionally create a GitHub release.
 
