@@ -91,7 +91,23 @@ For most [payment methods](https://docs.payone.com/pcp/commerce-platform-payment
 When a client is successfully made a payment via ApplePay it receives a [ApplePayPayment](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypayment). This structure is accessible as the `ApplePayPayment` class. You can use the `ApplePayTransformer` to map an `ApplePayPayment` to a `MobilePaymentMethodSpecificInput` which can be used for payment executions or order requests. The transformer has a static method `transformApplePayPaymentToMobilePaymentMethodSpecificInput()` which takes an `ApplePayPayment` and returns a `MobilePaymentMethodSpecificInput`. The transformer does not check if the response is complete, if anything is missing the field will be set to `null`.
 
 ```python
-# TODO
+from pcp_serversdk_python.models import ApplePayPayment, MobilePaymentMethodSpecificInput
+from pcp_serversdk_python.transformer.ApplepayTransformer import transform_apple_pay_payment_to_mobile_payment_method_specific_input
+import json
+
+class App:
+    def get_json_string_from_request_somehow(self):
+        # Communicate with the client...
+        message = ""
+        return message
+
+    def prepare_payment_for_apple_pay_payment(self):
+        payment_json = self.get_json_string_from_request_somehow()
+        payment = ApplePayPayment(**json.loads(payment_json))
+        input = transform_apple_pay_payment_to_mobile_payment_method_specific_input(payment)
+        # Wrap the input into a larger request and send to the PCP API
+        # ...
+    ...
 ```
 
 **[back to top](#table-of-contents)**
