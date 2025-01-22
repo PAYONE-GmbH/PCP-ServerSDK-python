@@ -64,7 +64,7 @@ from pcp_serversdk_python import CommunicatorConfiguration, CheckoutApiClient
 commerceCaseClient = CommerceCaseApiClient(communicatorConfiguration)
 ```
 
-All payloads and reponses are availabe as java classes within the `com.payone.commerce.platform.lib.models.*` package. The serialization and deserialization is handled by the SDK internally. For example, to create an empty commerce case you can pass a `CreateCommerceCaseRequest` instance:
+All payloads and reponses are availabe as python classes within the `pcp_serversdk_python.models` package. The serialization and deserialization is handled by the SDK internally. For example, to create an empty commerce case you can pass a `CreateCommerceCaseRequest` instance:
 
 ```python
 createCommerceCaseRequest = CreateCommerceCaseRequest()
@@ -115,7 +115,7 @@ class App:
 ## Demo App
 
 ```sh
-API_KEY=api_key API_SECRET=api_secret MERCHANT_ID=123 COMMERCE_CASE_ID=234 CHECKOUT_ID=345 python3 example/main.py
+API_KEY=api_key API_SECRET=api_secret MERCHANT_ID=123 COMMERCE_CASE_ID=234 CHECKOUT_ID=345 ./scripts.sh run
 ```
 
 **[back to top](#table-of-contents)**
