@@ -113,6 +113,11 @@ publish() {
     echo "Upload complete."
 }
 
+run() {
+    echo "Running the package..."
+    python3 example/main.py
+}
+
 # Check the first argument passed to the script
 case "$1" in
 setup)
