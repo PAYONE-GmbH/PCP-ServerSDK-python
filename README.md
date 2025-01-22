@@ -64,7 +64,7 @@ from pcp_serversdk_python import CommunicatorConfiguration, CheckoutApiClient
 commerceCaseClient = CommerceCaseApiClient(communicatorConfiguration)
 ```
 
-All payloads and reponses are availabe as java classes within the `com.payone.commerce.platform.lib.models.*` package. The serialization and deserialization is handled by the SDK internally. For example, to create an empty commerce case you can pass a `CreateCommerceCaseRequest` instance:
+All payloads and reponses are availabe as python classes within the `pcp_serversdk_python.models` package. The serialization and deserialization is handled by the SDK internally. For example, to create an empty commerce case you can pass a `CreateCommerceCaseRequest` instance:
 
 ```python
 createCommerceCaseRequest = CreateCommerceCaseRequest()
@@ -115,7 +115,7 @@ class App:
 ## Demo App
 
 ```sh
-API_KEY=api_key API_SECRET=api_secret MERCHANT_ID=123 COMMERCE_CASE_ID=234 CHECKOUT_ID=345 python3 example/main.py
+API_KEY=api_key API_SECRET=api_secret MERCHANT_ID=123 COMMERCE_CASE_ID=234 CHECKOUT_ID=345 ./scripts.sh run
 ```
 
 **[back to top](#table-of-contents)**
@@ -137,19 +137,19 @@ See [Contributing](./CONTRIBUTING.md)
 git checkout -b release/0.1.0
 ```
 
-- Run prepare-release.sh script to set correct version
+- Run `scripts.sh` script to set correct version
 
 ```sh
-./prepare-release.sh
+./scripts.sh version 0.1.0
 ```
 
 ### Changelog Generation with Conventional Changelog
 
-After calling the `prepare_release.sh` script, it is recommended to manually trigger the changelog generation script (which uses [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)).
+When calling the `./scripts.sh version` script, the changelog will now be generated automatically using [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog).
 
 1. **Conventional Commit Messages**:
 
-   - Ensure all commit messages follow the conventional commit format, which helps in automatic changelog generation.
+   - Ensure all commit messages follow the conventional commit format, which is crucial for automatic changelog generation.
    - Commit messages should be in the format: `type(scope): subject`.
 
 2. **Enforcing Commit Messages**:
@@ -157,12 +157,10 @@ After calling the `prepare_release.sh` script, it is recommended to manually tri
    - We enforce conventional commit messages using [Lefthook](https://github.com/evilmartians/lefthook) with [commitlint](https://github.com/conventional-changelog/commitlint).
    - This setup ensures that all commit messages are validated before they are committed.
 
-3. **Generate Changelog**:
-   - Run the changelog generation script to update the `CHANGELOG.md` file:
-     ```sh
-     npm run changelog
-     ```
-   - Review and commit the updated changelog before proceeding with the release.
+3. **Automatic Changelog Generation**:
+
+   - The `./scripts.sh version` script will automatically generate and update the `CHANGELOG.md` file.
+   - After running the script, review the updated changelog to ensure accuracy before proceeding with the release.
 
 ### Merging the Release Branch
 
