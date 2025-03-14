@@ -1,3 +1,8 @@
+# [](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/compare/v1.1.0...v) (2025-03-14)
+### Features
+
+* feat: add new endpoints and models according to api-version 1.28.0 ([ecc0095116d5698f681efe9214a4c1ba3cad4fcd](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/ecc0095116d5698f681efe9214a4c1ba3cad4fcd))
+
 ## 0.0.1 (2024-08-22)
 
 ### Documentation
