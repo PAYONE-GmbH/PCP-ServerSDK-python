@@ -13,10 +13,14 @@ from pcp_serversdk_python.models import (
     CheckoutReferences,
     CheckoutResponse,
     CheckoutsResponse,
+    CompleteOrderRequest,
+    CompletePaymentMethodSpecificInput,
+    CompletePaymentResponse,
     CreateCheckoutRequest,
     CreateCheckoutResponse,
     OrderLineDetailsResult,
     PatchCheckoutRequest,
+    PaymentProduct3391SpecificInput,
     ShoppingCartResult,
     StatusCheckout,
 )
@@ -174,4 +178,55 @@ async def test_remove_checkout_request_with_invalid_checkout_id(checkout_api_cli
     with pytest.raises(ValueError):
         await checkout_api_client.remove_checkout_request(
             "merchantId", "commerceCaseId", ""
+        )
+
+
+@pytest.mark.asyncio
+async def test_complete_checkout_request_success(
+    checkout_api_client, mock_httpx_client
+):
+    expected_response = CompletePaymentResponse(
+        payment=None,
+        creationOutput=None,
+        merchantAction=None,
+    )
+
+    res = json.dumps(asdict(expected_response))
+    mock_response = httpx.Response(200, text=res)
+    mock_httpx_client.return_value.__aenter__.return_value.request.return_value = (
+        mock_response
+    )
+
+    payload = CompleteOrderRequest(
+        completePaymentMethodSpecificInput=CompletePaymentMethodSpecificInput(
+            paymentProduct3391SpecificInput=PaymentProduct3391SpecificInput(
+                installmentOptionId="IOP_123",
+                bankAccountInformation=None,
+            ),
+        ),
+    )
+
+    response = await checkout_api_client.complete_checkout_request(
+        "merchantId", "commerceCaseId", "checkoutId", payload
+    )
+    assert response == expected_response
+
+
+@pytest.mark.asyncio
+async def test_complete_checkout_request_with_invalid_inputs(checkout_api_client):
+    payload = CompleteOrderRequest()
+
+    with pytest.raises(ValueError):
+        await checkout_api_client.complete_checkout_request(
+            "", "commerceCaseId", "checkoutId", payload
+        )
+
+    with pytest.raises(ValueError):
+        await checkout_api_client.complete_checkout_request(
+            "merchantId", "", "checkoutId", payload
+        )
+
+    with pytest.raises(ValueError):
+        await checkout_api_client.complete_checkout_request(
+            "merchantId", "commerceCaseId", "", payload
         )

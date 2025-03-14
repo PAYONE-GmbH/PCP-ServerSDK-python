@@ -2,10 +2,14 @@ from enum import Enum
 
 
 class StatusValue(str, Enum):
+    """Current high-level status of the payment in a human-readable form."""
+
     CREATED = "CREATED"
     CANCELLED = "CANCELLED"
     REJECTED = "REJECTED"
     REJECTED_CAPTURE = "REJECTED_CAPTURE"
+    REJECTED_PAUSE = "REJECTED_PAUSE"
+    REJECTED_UPDATE = "REJECTED_UPDATE"
     REDIRECTED = "REDIRECTED"
     PENDING_PAYMENT = "PENDING_PAYMENT"
     PENDING_COMPLETION = "PENDING_COMPLETION"
@@ -25,3 +29,4 @@ class StatusValue(str, Enum):
     ACCOUNT_DEBITED = "ACCOUNT_DEBITED"
     PAYOUT_REQUESTED = "PAYOUT_REQUESTED"
     REJECTED_CREDIT = "REJECTED_CREDIT"
+    UPDATED = "UPDATED"

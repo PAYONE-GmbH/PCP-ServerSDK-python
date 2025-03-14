@@ -12,6 +12,7 @@ from .ApplePaymentTokenVersion import ApplePaymentTokenVersion
 from .AppliedExemption import AppliedExemption
 from .AuthorizationMode import AuthorizationMode
 from .BankAccountInformation import BankAccountInformation
+from .BankPayoutMethodSpecificInput import BankPayoutMethodSpecificInput
 from .CancelItem import CancelItem
 from .CancellationReason import CancellationReason
 from .CancelPaymentRequest import CancelPaymentRequest
@@ -43,6 +44,7 @@ from .CompanyInformation import CompanyInformation
 from .CompleteFinancingPaymentMethodSpecificInput import (
     CompleteFinancingPaymentMethodSpecificInput,
 )
+from .CompleteOrderRequest import CompleteOrderRequest
 from .CompletePaymentMethodSpecificInput import CompletePaymentMethodSpecificInput
 from .CompletePaymentRequest import CompletePaymentRequest
 from .CompletePaymentResponse import CompletePaymentResponse
@@ -71,6 +73,7 @@ from .MandateRecurrenceType import MandateRecurrenceType
 from .MerchantAction import MerchantAction
 from .MobilePaymentMethodSpecificInput import MobilePaymentMethodSpecificInput
 from .MobilePaymentMethodSpecificOutput import MobilePaymentMethodSpecificOutput
+from .MobilePaymentThreeDSecure import MobilePaymentThreeDSecure
 from .Network import Network
 from .Order import Order
 from .OrderItem import OrderItem
@@ -82,17 +85,23 @@ from .OrderResponse import OrderResponse
 from .OrderType import OrderType
 from .PatchCheckoutRequest import PatchCheckoutRequest
 from .PatchCommerceCaseRequest import PatchCommerceCaseRequest
+from .PausePaymentRequest import PausePaymentRequest
+from .PausePaymentResponse import PausePaymentResponse
+from .Payee import Payee
 from .PaymentChannel import PaymentChannel
 from .PaymentCreationOutput import PaymentCreationOutput
 from .PaymentEvent import PaymentEvent
 from .PaymentExecution import PaymentExecution
 from .PaymentExecutionRequest import PaymentExecutionRequest
 from .PaymentExecutionSpecificInput import PaymentExecutionSpecificInput
+from .PaymentInformationRefundRequest import PaymentInformationRefundRequest
+from .PaymentInformationRefundResponse import PaymentInformationRefundResponse
 from .PaymentInformationRequest import PaymentInformationRequest
 from .PaymentInformationResponse import PaymentInformationResponse
+from .PaymentInstructions import PaymentInstructions
 from .PaymentMethodSpecificInput import PaymentMethodSpecificInput
 from .PaymentOutput import PaymentOutput
-from .PaymentProduct320SpecificInput import PaymentProduct320SpecificInput
+from .PaymentProduct302SpecificInput import PaymentProduct302SpecificInput
 from .PaymentProduct771SpecificOutput import PaymentProduct771SpecificOutput
 from .PaymentProduct840CustomerAccount import PaymentProduct840CustomerAccount
 from .PaymentProduct840SpecificOutput import PaymentProduct840SpecificOutput
@@ -119,6 +128,8 @@ from .RedirectPaymentProduct840SpecificInput import (
     RedirectPaymentProduct840SpecificInput,
 )
 from .References import References
+from .RefreshPaymentRequest import RefreshPaymentRequest
+from .RefreshType import RefreshType
 from .RefundErrorResponse import RefundErrorResponse
 from .RefundOutput import RefundOutput
 from .RefundPaymentResponse import RefundPaymentResponse
@@ -136,6 +147,9 @@ from .SepaDirectDebitPaymentMethodSpecificOutput import (
 )
 from .SepaDirectDebitPaymentProduct771SpecificInput import (
     SepaDirectDebitPaymentProduct771SpecificInput,
+)
+from .SepaTransferPaymentProduct772SpecificInput import (
+    SepaTransferPaymentProduct772SpecificInput,
 )
 from .Shipping import Shipping
 from .ShoppingCartInput import ShoppingCartInput
@@ -164,6 +178,7 @@ __all__ = [
     "AppliedExemption",
     "AuthorizationMode",
     "BankAccountInformation",
+    "BankPayoutMethodSpecificInput",
     "CancelItem",
     "CancellationReason",
     "CancelPaymentRequest",
@@ -193,6 +208,7 @@ __all__ = [
     "CommerceCaseResponse",
     "CompanyInformation",
     "CompleteFinancingPaymentMethodSpecificInput",
+    "CompleteOrderRequest",
     "CompletePaymentMethodSpecificInput",
     "CompletePaymentRequest",
     "CompletePaymentResponse",
@@ -221,6 +237,7 @@ __all__ = [
     "MerchantAction",
     "MobilePaymentMethodSpecificInput",
     "MobilePaymentMethodSpecificOutput",
+    "MobilePaymentThreeDSecure",
     "Network",
     "Order",
     "OrderItem",
@@ -232,28 +249,34 @@ __all__ = [
     "OrderType",
     "PatchCheckoutRequest",
     "PatchCommerceCaseRequest",
+    "Payee",
     "PaymentChannel",
     "PaymentCreationOutput",
     "PaymentEvent",
     "PaymentExecution",
     "PaymentExecutionRequest",
     "PaymentExecutionSpecificInput",
+    "PaymentInformationRefundRequest",
+    "PaymentInformationRefundResponse",
     "PaymentInformationRequest",
     "PaymentInformationResponse",
+    "PaymentInstructions",
     "PaymentMethodSpecificInput",
     "PaymentOutput",
-    "PaymentProduct320SpecificInput",
-    "PaymentProduct3391SpecificInput",
-    "PaymentProduct3391SpecificOutput",
-    "PaymentProduct3392SpecificInput",
+    "PaymentProduct302SpecificInput",
     "PaymentProduct771SpecificOutput",
     "PaymentProduct840CustomerAccount",
     "PaymentProduct840SpecificOutput",
+    "PaymentProduct3391SpecificInput",
+    "PaymentProduct3391SpecificOutput",
+    "PaymentProduct3392SpecificInput",
     "PaymentReferences",
     "PaymentResponse",
     "PaymentStatus",
     "PaymentStatusOutput",
     "PaymentType",
+    "PausePaymentRequest",
+    "PausePaymentResponse",
     "PayoutOutput",
     "PayoutResponse",
     "PersonalInformation",
@@ -267,6 +290,8 @@ __all__ = [
     "RedirectPaymentMethodSpecificOutput",
     "RedirectPaymentProduct840SpecificInput",
     "References",
+    "RefreshPaymentRequest",
+    "RefreshType",
     "RefundErrorResponse",
     "RefundOutput",
     "RefundPaymentResponse",
@@ -279,6 +304,7 @@ __all__ = [
     "SepaDirectDebitPaymentMethodSpecificInput",
     "SepaDirectDebitPaymentMethodSpecificOutput",
     "SepaDirectDebitPaymentProduct771SpecificInput",
+    "SepaTransferPaymentProduct772SpecificInput",
     "Shipping",
     "ShoppingCartInput",
     "ShoppingCartPatch",

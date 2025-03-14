@@ -9,8 +9,11 @@ from pcp_serversdk_python.endpoints import PaymentInformationApiClient
 from pcp_serversdk_python.models import (
     AmountOfMoney,
     PaymentChannel,
+    PaymentInformationRefundRequest,
+    PaymentInformationRefundResponse,
     PaymentInformationRequest,
     PaymentInformationResponse,
+    PaymentReferences,
     PaymentType,
 )
 
@@ -72,6 +75,52 @@ async def test_get_payment_information(
         "merchant_id", "commerce_case_id", "checkout_id", "payment_information_id"
     )
     assert response == expected_response
+
+
+@pytest.mark.asyncio
+async def test_refund_payment_information(
+    payment_information_api_client, mock_httpx_client
+):
+    expected_response = PaymentInformationRefundResponse(
+        payment=None,
+        paymentExecutionId=None,
+    )
+
+    res = json.dumps(asdict(expected_response))
+
+    mock_response = httpx.Response(200, text=res)
+
+    mock_httpx_client.return_value.__aenter__.return_value.request.return_value = (
+        mock_response
+    )
+
+    payload = PaymentInformationRefundRequest(
+        amountOfMoney=AmountOfMoney(amount=1000, currencyCode="EUR"),
+        references=PaymentReferences(merchantReference="refund-123"),
+        accountHolder="John Doe",
+    )
+
+    response = await payment_information_api_client.refund_payment_information(
+        "merchant_id",
+        "commerce_case_id",
+        "checkout_id",
+        "payment_information_id",
+        payload,
+    )
+    assert response == expected_response
+
+
+@pytest.mark.asyncio
+async def test_refund_payment_information_with_invalid_payment_information_id(
+    payment_information_api_client,
+):
+    with pytest.raises(ValueError):
+        payload = PaymentInformationRefundRequest(
+            amountOfMoney=AmountOfMoney(amount=1000, currencyCode="EUR")
+        )
+        await payment_information_api_client.refund_payment_information(
+            "merchant_id", "commerce_case_id", "checkout_id", "", payload
+        )
 
 
 @pytest.mark.asyncio
