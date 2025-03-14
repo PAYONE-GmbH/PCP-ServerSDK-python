@@ -34,7 +34,7 @@ class CheckoutApiClient(BaseApiClient):
         req = httpx.Request(
             "POST",
             url,
-            headers={"Content-Type": "application/json"},
+            headers={"Content-Type": self.CONTENT_TYPE},
             data=json.dumps(asdict(payload)),
         )
 
@@ -86,7 +86,7 @@ class CheckoutApiClient(BaseApiClient):
         req = httpx.Request(
             "PATCH",
             url,
-            headers={"Content-Type": "application/json"},
+            headers={"Content-Type": self.CONTENT_TYPE},
             data=json.dumps(asdict(payload)),
         )
 
@@ -138,7 +138,7 @@ class CheckoutApiClient(BaseApiClient):
         req = httpx.Request(
             "POST",
             url,
-            headers={"Content-Type": "application/json"},
+            headers={"Content-Type": self.CONTENT_TYPE},
             data=json.dumps(asdict(payload)),
         )
 

@@ -33,7 +33,7 @@ class PaymentInformationApiClient(BaseApiClient):
         req = httpx.Request(
             "POST",
             url,
-            headers={"Content-Type": "application/json"},
+            headers={"Content-Type": self.CONTENT_TYPE},
             data=json.dumps(asdict(payload)),
         )
 
@@ -97,7 +97,7 @@ class PaymentInformationApiClient(BaseApiClient):
         req = httpx.Request(
             "POST",
             url,
-            headers={"Content-Type": "application/json"},
+            headers={"Content-Type": self.CONTENT_TYPE},
             data=json.dumps(asdict(payload)),
         )
 
