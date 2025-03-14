@@ -8,6 +8,8 @@ import httpx
 from ..models import (
     CheckoutResponse,
     CheckoutsResponse,
+    CompleteOrderRequest,
+    CompletePaymentResponse,
     CreateCheckoutRequest,
     CreateCheckoutResponse,
     PatchCheckoutRequest,
@@ -117,3 +119,27 @@ class CheckoutApiClient(BaseApiClient):
             raise ValueError(self.COMMERCE_CASE_ID_REQUIRED_ERROR)
         if checkout_id is not None and not checkout_id:
             raise ValueError(self.CHECKOUT_ID_REQUIRED_ERROR)
+
+    async def complete_checkout_request(
+        self,
+        merchant_id: str,
+        commerce_case_id: str,
+        checkout_id: str,
+        payload: CompleteOrderRequest,
+    ) -> CompletePaymentResponse:
+        """Complete a checkout request with order details."""
+        self._validate_inputs(merchant_id, commerce_case_id, checkout_id)
+
+        url = urljoin(
+            self.get_config().get_host(),
+            f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}/complete-order",
+        )
+
+        req = httpx.Request(
+            "POST",
+            url,
+            headers={"Content-Type": "application/json"},
+            data=json.dumps(asdict(payload)),
+        )
+
+        return await self.make_api_call_with_type(req, CompletePaymentResponse)

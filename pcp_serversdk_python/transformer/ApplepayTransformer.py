@@ -5,7 +5,7 @@ from ..models import (
     ApplePayPayment,
     MobilePaymentMethodSpecificInput,
     Network,
-    PaymentProduct320SpecificInput,
+    PaymentProduct302SpecificInput,
 )
 
 
@@ -35,7 +35,7 @@ def transform_apple_pay_payment_to_mobile_payment_method_specific_input(
         paymentProductId=302,
         publicKeyHash=header.get("publicKeyHash"),
         ephemeralKey=header.get("ephemeralPublicKey"),
-        paymentProduct302SpecificInput=PaymentProduct320SpecificInput(
+        paymentProduct302SpecificInput=PaymentProduct302SpecificInput(
             network=network_from_string(paymentMethod.get("network", "")),
             token=ApplePaymentDataTokenInformation(
                 version=version_from_string(paymentData.get("version", "")),

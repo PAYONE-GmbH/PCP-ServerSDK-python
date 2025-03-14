@@ -40,6 +40,8 @@ class GetCheckoutsQuery:
     phoneNumber: Optional[str] = None
     dateOfBirth: Optional[str] = None
     companyInformation: Optional[str] = None
+    terminalId: Optional[str] = None
+    reportingToken: Optional[str] = None
 
     # Setters (already provided)
 
@@ -181,6 +183,14 @@ class GetCheckoutsQuery:
         self.companyInformation = companyInformation
         return self
 
+    def set_terminal_id(self, terminalId: str) -> "GetCheckoutsQuery":
+        self.terminalId = terminalId
+        return self
+
+    def set_reporting_token(self, reportingToken: str) -> "GetCheckoutsQuery":
+        self.reportingToken = reportingToken
+        return self
+
     # Getters
     def get_offset(self) -> Optional[int]:
         return self.offset
@@ -275,6 +285,12 @@ class GetCheckoutsQuery:
     def get_company_information(self) -> Optional[str]:
         return self.companyInformation
 
+    def get_terminal_id(self) -> Optional[str]:
+        return self.terminalId
+
+    def get_reporting_token(self) -> Optional[str]:
+        return self.reportingToken
+
     def to_query_map(self) -> Dict[str, str]:
         query = {}
 
@@ -348,5 +364,9 @@ class GetCheckoutsQuery:
             query["dateOfBirth"] = self.dateOfBirth
         if self.companyInformation is not None:
             query["companyInformation"] = self.companyInformation
+        if self.terminalId is not None:
+            query["terminalId"] = self.terminalId
+        if self.reportingToken is not None:
+            query["reportingToken"] = self.reportingToken
 
         return query

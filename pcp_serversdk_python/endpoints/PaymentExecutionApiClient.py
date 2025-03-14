@@ -12,7 +12,11 @@ from ..models import (
     CompletePaymentRequest,
     CompletePaymentResponse,
     CreatePaymentResponse,
+    PausePaymentRequest,
+    PausePaymentResponse,
+    PaymentExecution,
     PaymentExecutionRequest,
+    RefreshPaymentRequest,
     RefundPaymentResponse,
     RefundRequest,
 )
@@ -163,3 +167,57 @@ class PaymentExecutionApiClient(BaseApiClient):
         # Check the payment_execution_id only if it is provided
         if payment_execution_id is not None and not payment_execution_id:
             raise ValueError(self.PAYMENT_EXECUTION_ID_REQUIRED_ERROR)
+
+    async def pause_payment(
+        self,
+        merchant_id: str,
+        commerce_case_id: str,
+        checkout_id: str,
+        payment_execution_id: str,
+        payload: PausePaymentRequest,
+    ) -> PausePaymentResponse:
+        """Pause a payment execution."""
+        self._validate_inputs(
+            merchant_id, commerce_case_id, checkout_id, payment_execution_id
+        )
+
+        url = urljoin(
+            self.get_config().get_host(),
+            f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}/payment-executions/{payment_execution_id}/pause",
+        )
+
+        req = httpx.Request(
+            "POST",
+            url,
+            headers={"Content-Type": self.CONTENT_TYPE},
+            data=json.dumps(asdict(payload)),
+        )
+
+        return await self.make_api_call_with_type(req, PausePaymentResponse)
+
+    async def refresh_payment(
+        self,
+        merchant_id: str,
+        commerce_case_id: str,
+        checkout_id: str,
+        payment_execution_id: str,
+        payload: RefreshPaymentRequest,
+    ) -> PaymentExecution:
+        """Refresh a payment execution."""
+        self._validate_inputs(
+            merchant_id, commerce_case_id, checkout_id, payment_execution_id
+        )
+
+        url = urljoin(
+            self.get_config().get_host(),
+            f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}/payment-executions/{payment_execution_id}/refresh",
+        )
+
+        req = httpx.Request(
+            "POST",
+            url,
+            headers={"Content-Type": self.CONTENT_TYPE},
+            data=json.dumps(asdict(payload)),
+        )
+
+        return await self.make_api_call_with_type(req, PaymentExecution)

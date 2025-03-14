@@ -16,7 +16,11 @@ from pcp_serversdk_python.models import (
     CompletePaymentRequest,
     CompletePaymentResponse,
     CreatePaymentResponse,
+    PausePaymentRequest,
+    PausePaymentResponse,
+    PaymentExecution,
     PaymentExecutionRequest,
+    RefreshPaymentRequest,
     RefundPaymentResponse,
     RefundRequest,
 )
@@ -142,6 +146,78 @@ async def test_complete_payment(payment_execution_api_client, mock_httpx_client)
         CompletePaymentRequest(),
     )
     assert response == expected_response
+
+
+@pytest.mark.asyncio
+async def test_pause_payment(payment_execution_api_client, mock_httpx_client):
+    expected_response = PausePaymentResponse(status=None)
+
+    res = json.dumps(asdict(expected_response))
+
+    mock_response = httpx.Response(200, text=res)
+
+    mock_httpx_client.return_value.__aenter__.return_value.request.return_value = (
+        mock_response
+    )
+
+    response = await payment_execution_api_client.pause_payment(
+        "merchant_id",
+        "commerce_case_id",
+        "checkout_id",
+        "payment_execution_id",
+        PausePaymentRequest(refreshType=None),
+    )
+    assert response == expected_response
+
+
+@pytest.mark.asyncio
+async def test_refresh_payment(payment_execution_api_client, mock_httpx_client):
+    expected_response = PaymentExecution()
+
+    res = json.dumps(asdict(expected_response))
+
+    mock_response = httpx.Response(200, text=res)
+
+    mock_httpx_client.return_value.__aenter__.return_value.request.return_value = (
+        mock_response
+    )
+
+    response = await payment_execution_api_client.refresh_payment(
+        "merchant_id",
+        "commerce_case_id",
+        "checkout_id",
+        "payment_execution_id",
+        RefreshPaymentRequest(refreshType=None),
+    )
+    assert response == expected_response
+
+
+@pytest.mark.asyncio
+async def test_pause_payment_with_invalid_payment_execution_id(
+    payment_execution_api_client,
+):
+    with pytest.raises(ValueError):
+        await payment_execution_api_client.pause_payment(
+            "merchant_id",
+            "commerce_case_id",
+            "checkout_id",
+            "",
+            PausePaymentRequest(refreshType=None),
+        )
+
+
+@pytest.mark.asyncio
+async def test_refresh_payment_with_invalid_payment_execution_id(
+    payment_execution_api_client,
+):
+    with pytest.raises(ValueError):
+        await payment_execution_api_client.refresh_payment(
+            "merchant_id",
+            "commerce_case_id",
+            "checkout_id",
+            "",
+            RefreshPaymentRequest(refreshType=None),
+        )
 
 
 @pytest.mark.asyncio

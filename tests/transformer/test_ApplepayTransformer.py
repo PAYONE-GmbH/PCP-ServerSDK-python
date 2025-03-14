@@ -7,7 +7,7 @@ from pcp_serversdk_python.models import (
     ApplePayPayment,
     MobilePaymentMethodSpecificInput,
     Network,
-    PaymentProduct320SpecificInput,
+    PaymentProduct302SpecificInput,
 )
 from pcp_serversdk_python.transformer.ApplepayTransformer import (
     network_from_string,
@@ -56,7 +56,7 @@ def test_transform_apple_pay_payment_to_mobile_payment_method_specific_input():
         paymentProductId=302,
         publicKeyHash="publicKeyHash123",
         ephemeralKey="ephemeralPublicKey123",
-        paymentProduct302SpecificInput=PaymentProduct320SpecificInput(
+        paymentProduct302SpecificInput=PaymentProduct302SpecificInput(
             network=Network.VISA,
             token=ApplePaymentDataTokenInformation(
                 version=ApplePaymentTokenVersion.EC_V1,

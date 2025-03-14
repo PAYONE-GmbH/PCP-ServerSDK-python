@@ -4,7 +4,12 @@ from urllib.parse import urljoin
 
 import httpx
 
-from ..models import PaymentInformationRequest, PaymentInformationResponse
+from ..models import (
+    PaymentInformationRefundRequest,
+    PaymentInformationRefundResponse,
+    PaymentInformationRequest,
+    PaymentInformationResponse,
+)
 from .BaseApiClient import (
     BaseApiClient,
 )
@@ -70,3 +75,30 @@ class PaymentInformationApiClient(BaseApiClient):
         # Check the payment_information_id only if it is provided
         if payment_information_id is not None and not payment_information_id:
             raise ValueError(self.PAYMENT_INFORMATION_ID_REQUIRED_ERROR)
+
+    async def refund_payment_information(
+        self,
+        merchant_id: str,
+        commerce_case_id: str,
+        checkout_id: str,
+        payment_information_id: str,
+        payload: PaymentInformationRefundRequest,
+    ) -> PaymentInformationRefundResponse:
+        """Refund a payment information."""
+        self._validate_inputs(
+            merchant_id, commerce_case_id, checkout_id, payment_information_id
+        )
+
+        url = urljoin(
+            self.get_config().get_host(),
+            f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}/payment-information/{payment_information_id}/refund",
+        )
+
+        req = httpx.Request(
+            "POST",
+            url,
+            headers={"Content-Type": "application/json"},
+            data=json.dumps(asdict(payload)),
+        )
+
+        return await self.make_api_call_with_type(req, PaymentInformationRefundResponse)
