@@ -1,6 +1,6 @@
 import json
 from dataclasses import asdict
-from typing import List, Optional
+from typing import Optional
 from urllib.parse import urljoin
 
 import httpx
@@ -31,7 +31,7 @@ class CommerceCaseApiClient(BaseApiClient):
         req = httpx.Request(
             "POST",
             url,
-            headers={"Content-Type": "application/json"},
+            headers={"Content-Type": self.CONTENT_TYPE},
             data=json.dumps(asdict(payload)),
         )
 
@@ -53,7 +53,7 @@ class CommerceCaseApiClient(BaseApiClient):
 
     async def get_commerce_cases_request(
         self, merchant_id: str, query_params: Optional[GetCommerceCasesQuery] = None
-    ) -> List[CommerceCaseResponse]:
+    ) -> list[CommerceCaseResponse]:
         self._validate_inputs(merchant_id)
 
         url = urljoin(self.get_config().get_host(), f"/v1/{merchant_id}/commerce-cases")
@@ -64,7 +64,7 @@ class CommerceCaseApiClient(BaseApiClient):
 
         req = httpx.Request("GET", url, headers={})
 
-        return await self.make_api_call_with_type(req, List[CommerceCaseResponse])
+        return await self.make_api_call_with_type(req, list[CommerceCaseResponse])
 
     async def update_commerce_case_request(
         self, merchant_id: str, commerce_case_id: str, payload: Customer
@@ -79,7 +79,7 @@ class CommerceCaseApiClient(BaseApiClient):
         req = httpx.Request(
             "PATCH",
             url,
-            headers={"Content-Type": "application/json"},
+            headers={"Content-Type": self.CONTENT_TYPE},
             data=json.dumps({"customer": asdict(payload)}),
         )
 
