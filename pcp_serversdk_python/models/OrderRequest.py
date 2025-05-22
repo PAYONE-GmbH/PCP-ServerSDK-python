@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import Optional
 
 from .OrderItem import OrderItem
 from .OrderType import OrderType
@@ -11,5 +11,5 @@ from .References import References
 class OrderRequest:
     orderType: Optional[OrderType] = None
     orderReferences: Optional[References] = None
-    items: Optional[List[OrderItem]] = None
+    items: Optional[list[OrderItem]] = None
     paymentMethodSpecificInput: Optional[PaymentMethodSpecificInput] = None

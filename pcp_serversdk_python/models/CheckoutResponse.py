@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import Optional
 
 from .AllowedPaymentActions import AllowedPaymentActions
 from .AmountOfMoney import AmountOfMoney
@@ -22,9 +22,9 @@ class CheckoutResponse:
     references: Optional[CheckoutReferences] = None
     shipping: Optional[Shipping] = None
     shoppingCart: Optional[ShoppingCartResult] = None
-    paymentExecutions: Optional[List[PaymentExecution]] = None
+    paymentExecutions: Optional[list[PaymentExecution]] = None
     checkoutStatus: Optional[StatusCheckout] = None
     statusOutput: Optional[StatusOutput] = None
-    paymentInformation: Optional[List[PaymentInformationResponse]] = None
+    paymentInformation: Optional[list[PaymentInformationResponse]] = None
     creationDateTime: Optional[CreationDateTime] = None
-    allowedPaymentActions: Optional[List[AllowedPaymentActions]] = None
+    allowedPaymentActions: Optional[list[AllowedPaymentActions]] = None
