@@ -5,6 +5,7 @@ from .Address import Address
 from .BusinessRelation import BusinessRelation
 from .CompanyInformation import CompanyInformation
 from .ContactDetails import ContactDetails
+from .CustomerAccount import CustomerAccount
 from .PersonalInformation import PersonalInformation
 
 
@@ -18,3 +19,4 @@ class Customer:
     businessRelation: Optional[BusinessRelation] = None
     locale: Optional[str] = None
     personalInformation: Optional[PersonalInformation] = None
+    account: Optional[CustomerAccount] = None
