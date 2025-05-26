@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import Optional
 
 
 @dataclass(kw_only=True)
@@ -10,7 +10,7 @@ class ApplePayPaymentContact:
     familyName: Optional[str] = None
     phoneticGivenName: Optional[str] = None
     phoneticFamilyName: Optional[str] = None
-    addressLines: Optional[List[str]] = field(default_factory=list)
+    addressLines: Optional[list[str]] = field(default_factory=list)
     locality: Optional[str] = None
     postalCode: Optional[str] = None
     administrativeArea: Optional[str] = None

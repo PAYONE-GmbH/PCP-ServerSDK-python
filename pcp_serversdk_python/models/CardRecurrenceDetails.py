@@ -1,7 +1,11 @@
 from dataclasses import dataclass
 from typing import Optional
 
+from .RecurringPaymentSequenceIndicator import RecurringPaymentSequenceIndicator
+
 
 @dataclass(kw_only=True)
 class CardRecurrenceDetails:
-    recurringPaymentSequenceIndicator: Optional[str] = None
+    recurringPaymentSequenceIndicator: Optional[RecurringPaymentSequenceIndicator] = (
+        None
+    )
