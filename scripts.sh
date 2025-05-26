@@ -54,9 +54,8 @@ version() {
     sed -i '' "s/version=\"[0-9]*\.[0-9]*\.[0-9]*\",/version=\"$NEW_VERSION\",/" ${SETUP_PY_PATH}
     sed -i '' "s/PythonServerSDK\/v[0-9]*\.[0-9]*\.[0-9]*/PythonServerSDK\/v$NEW_VERSION/" ${SERVER_META_INFO_PATH}
     sed -i '' "s/PythonServerSDK\/v[0-9]*\.[0-9]*\.[0-9]*/PythonServerSDK\/v$NEW_VERSION/" ${SERVER_META_INFO_TEST_PATH}
-
-    # Update the version number in the package.json file for changelog generation
-    sed -i '' -e "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" package.json
+    sed -i "" "s/\"version\": \".*\"/\"version\": \"$NEW_VERSION\"/" ${PACKAGE_JSON_PATH}
+    sed -i "" "s/\"version\": \".*\"/\"version\": \"$NEW_VERSION\"/" ${PACKAGE_LOCK_JSON_PATH}
 
     # Update the version number in the package-lock.json file for changelog generation
     jq --arg version "$VERSION" '
