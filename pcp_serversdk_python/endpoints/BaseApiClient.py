@@ -2,9 +2,7 @@ import json
 from enum import Enum
 from typing import (
     Any,
-    Dict,
     Optional,
-    Type,
     TypeVar,
     get_args,
     get_origin,
@@ -25,8 +23,8 @@ T = TypeVar("T")
 
 
 def from_dict_with_enum(
-    data_class: Type[T],
-    data: Dict[str, Any],
+    data_class: type[T],
+    data: dict[str, Any],
 ) -> T:
     return from_dict(data_class=data_class, data=data, config=Config(cast=[Enum]))
 
@@ -68,7 +66,7 @@ class BaseApiClient:
 
         await self.handle_error(response)
 
-    async def make_api_call_with_type(self, request: httpx.Request, type: Type[T]) -> T:
+    async def make_api_call_with_type(self, request: httpx.Request, type: type[T]) -> T:
         if self.request_header_generator:
             request = self.request_header_generator.generate_additional_request_headers(
                 request

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import Optional
 
 from .APIError import APIError
 
@@ -7,4 +7,4 @@ from .APIError import APIError
 @dataclass(kw_only=True)
 class RefundErrorResponse:
     errorId: Optional[str] = None
-    errors: Optional[List[APIError]] = None
+    errors: Optional[list[APIError]] = None

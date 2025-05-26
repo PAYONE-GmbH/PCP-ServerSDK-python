@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import Optional
 
 from .CancellationReason import CancellationReason
 from .DeliverItem import DeliverItem
@@ -11,4 +11,4 @@ class DeliverRequest:
     deliverType: Optional[DeliverType] = None
     isFinal: bool = False
     cancellationReason: Optional[CancellationReason] = None
-    deliverItems: Optional[List[DeliverItem]] = None
+    deliverItems: Optional[list[DeliverItem]] = None

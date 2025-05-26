@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
+from typing import Optional
 
 # Import enums and other necessary classes
 from ..models import ExtendedCheckoutStatus, PaymentChannel, StatusCheckout
@@ -26,12 +26,12 @@ class GetCheckoutsQuery:
     checkoutId: Optional[str] = None
     merchantReference: Optional[str] = None
     merchantCustomerId: Optional[str] = None
-    includePaymentProductId: Optional[List[int]] = field(default_factory=list)
-    includeCheckoutStatus: Optional[List[StatusCheckout]] = field(default_factory=list)
-    includeExtendedCheckoutStatus: Optional[List[ExtendedCheckoutStatus]] = field(
+    includePaymentProductId: Optional[list[int]] = field(default_factory=list)
+    includeCheckoutStatus: Optional[list[StatusCheckout]] = field(default_factory=list)
+    includeExtendedCheckoutStatus: Optional[list[ExtendedCheckoutStatus]] = field(
         default_factory=list
     )
-    includePaymentChannel: Optional[List[PaymentChannel]] = field(default_factory=list)
+    includePaymentChannel: Optional[list[PaymentChannel]] = field(default_factory=list)
     paymentReference: Optional[str] = None
     paymentId: Optional[str] = None
     firstName: Optional[str] = None
@@ -128,25 +128,25 @@ class GetCheckoutsQuery:
         return self
 
     def set_include_payment_product_id(
-        self, includePaymentProductId: List[int]
+        self, includePaymentProductId: list[int]
     ) -> "GetCheckoutsQuery":
         self.includePaymentProductId = includePaymentProductId
         return self
 
     def set_include_checkout_status(
-        self, includeCheckoutStatus: List[StatusCheckout]
+        self, includeCheckoutStatus: list[StatusCheckout]
     ) -> "GetCheckoutsQuery":
         self.includeCheckoutStatus = includeCheckoutStatus
         return self
 
     def set_include_extended_checkout_status(
-        self, includeExtendedCheckoutStatus: List[ExtendedCheckoutStatus]
+        self, includeExtendedCheckoutStatus: list[ExtendedCheckoutStatus]
     ) -> "GetCheckoutsQuery":
         self.includeExtendedCheckoutStatus = includeExtendedCheckoutStatus
         return self
 
     def set_include_payment_channel(
-        self, includePaymentChannel: List[PaymentChannel]
+        self, includePaymentChannel: list[PaymentChannel]
     ) -> "GetCheckoutsQuery":
         self.includePaymentChannel = includePaymentChannel
         return self
@@ -249,16 +249,16 @@ class GetCheckoutsQuery:
     def get_merchant_customer_id(self) -> Optional[str]:
         return self.merchantCustomerId
 
-    def get_include_payment_product_id(self) -> List[int]:
+    def get_include_payment_product_id(self) -> list[int]:
         return self.includePaymentProductId
 
-    def get_include_checkout_status(self) -> List[StatusCheckout]:
+    def get_include_checkout_status(self) -> list[StatusCheckout]:
         return self.includeCheckoutStatus
 
-    def get_include_extended_checkout_status(self) -> List[ExtendedCheckoutStatus]:
+    def get_include_extended_checkout_status(self) -> list[ExtendedCheckoutStatus]:
         return self.includeExtendedCheckoutStatus
 
-    def get_include_payment_channel(self) -> List[PaymentChannel]:
+    def get_include_payment_channel(self) -> list[PaymentChannel]:
         return self.includePaymentChannel
 
     def get_payment_reference(self) -> Optional[str]:
@@ -291,7 +291,7 @@ class GetCheckoutsQuery:
     def get_reporting_token(self) -> Optional[str]:
         return self.reportingToken
 
-    def to_query_map(self) -> Dict[str, str]:
+    def to_query_map(self) -> dict[str, str]:
         query = {}
 
         if self.offset is not None:
