@@ -1,6 +1,6 @@
 {
   "name": "pcp-serversdk-python",
-  "version": "1.1.0",
+  "version": "",
   "type": "commonjs",
   "scripts": {
     "changelog": "conventional-changelog -i CHANGELOG.md -s --config ./changelog.config.js"
