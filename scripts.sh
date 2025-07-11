@@ -136,8 +136,11 @@ version)
 publish)
     publish $@
     ;;
+run)
+    run
+    ;;
 *)
-    echo "Usage: $0 {setup|install|build|test|lint|clear|version|publish}"
+    echo "Usage: $0 {setup|install|build|test|lint|clear|version|publish|run}"
     exit 1
     ;;
 esac

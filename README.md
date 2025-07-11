@@ -13,6 +13,7 @@ Welcome to the Python SDK for the PAYONE Commerce Platform (api-version 1.35.0)!
 - [Installation](#installation)
 - [Usage](#usage)
   - [General](#general)
+  - [Authentication Token Retrieval](#authentication-token-retrieval)
   - [Error Handling](#error-handling)
   - [Client Side](#client-side)
   - [Apple Pay](#apple-pay)
@@ -72,6 +73,26 @@ createCommerceCaseResponse = commerceCaseClient.createCommerceCaseRequest('merch
 ```
 
 The models directly map to the API as described in [PAYONE Commerce Platform API Reference](https://docs.payone.com/pcp/commerce-platform-api). For an in depth example you can take a look at the [demo app](#demo-app).
+
+### Authentication Token Retrieval
+
+To interact with certain client-side SDKs (such as the credit card tokenizer), you need to generate a short-lived authentication JWT token for your merchant. This token can be retrieved using the SDK as follows:
+
+```python
+from pcp_serversdk_python.endpoints import AuthenticationApiClient
+
+# ...
+authentication_api_client = AuthenticationApiClient(communicatorConfiguration)
+token = authentication_api_client.get_authentication_tokens(merchant_id)
+print("JWT Token:", token.token)
+print("Token ID:", token.id)
+print("Created:", token.creationDate)
+print("Expires:", token.expirationDate)
+```
+
+This token can then be used for secure operations such as initializing the credit card tokenizer or other client-side SDKs that require merchant authentication. The token is valid for a limited time (10 minutes) and should be handled securely.
+
+**Note:** The `get_authentication_tokens` method requires a valid `merchant_id`. Optionally, you can provide an `X-Request-ID` header for tracing requests.
 
 ### Error Handling
 

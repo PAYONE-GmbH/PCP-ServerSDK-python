@@ -10,6 +10,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
 from pcp_serversdk_python.endpoints import (
+    AuthenticationApiClient,
     CheckoutApiClient,
     CommerceCaseApiClient,
     OrderManagementCheckoutActionsApiClient,
@@ -19,6 +20,7 @@ from pcp_serversdk_python.models import (
     Address,
     AddressPersonal,
     AmountOfMoney,
+    AuthenticationToken,
     BankAccountInformation,
     CancelRequest,
     CartItemInput,
@@ -63,7 +65,8 @@ UNIQUE_MERCHANT_REFERENCE = str(uuid.uuid4())[:8]
 
 
 async def main():
-    await run_checkouts()
+    await run_authentication_token()
+    # await run_checkouts()
     # await run_create_commerce_case()  # Get your COMMERCE_CASE_ID and CHECKOUT_ID from here
     # await run_get_list_of_commerce_cases()
     # await run_get_commerce_case()
@@ -74,6 +77,17 @@ async def main():
     # await run_cancel_order()
     # await run_create_payment_information()
     # await run_get_payment_information()
+
+
+async def run_authentication_token():
+    authentication_api_client = AuthenticationApiClient(COMMUNICATOR_CONFIGURATION)
+    token: AuthenticationToken = (
+        await authentication_api_client.get_authentication_tokens(MERCHANT_ID)
+    )
+    print("JWT Token:", token)
+    print("Token ID:", token.id)
+    print("Created:", token.creationDate)
+    print("Expires:", token.expirationDate)
 
 
 async def run_checkouts():

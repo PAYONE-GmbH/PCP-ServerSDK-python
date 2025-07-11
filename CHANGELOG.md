@@ -1,3 +1,9 @@
+# [1.3.0](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/compare/v1.2.0...v1.3.0) (2025-07-10)
+
+### Features
+
+* feat: add authentication token retrieval functionality and update documentation ([0352c8bdfefbbe4899b222a04fe002de7be205d6](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/0352c8bdfefbbe4899b222a04fe002de7be205d6))
+
 # [](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/compare/v1.1.0...v) (2025-05-26)
 
 ### Documentation
