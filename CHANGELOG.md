@@ -1,3 +1,13 @@
+## [1.3.1](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/compare/v1.3.0...v1.3.1) (2025-09-04)
+
+### Documentation
+
+* docs: add section about customization to readme ([63642e4e2cc175c0ea62b9d546668f72578ba07e](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/63642e4e2cc175c0ea62b9d546668f72578ba07e))
+
+### Features
+
+* feat: add customization options for http client ([8996bdc33910ae4ef0a1193e56d3ec80c2589d37](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/8996bdc33910ae4ef0a1193e56d3ec80c2589d37))
+
 # [1.3.0](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/compare/v1.2.0...v1.3.0) (2025-07-10)
 
 ### Features
