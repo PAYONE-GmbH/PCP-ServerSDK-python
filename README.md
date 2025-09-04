@@ -94,6 +94,96 @@ This token can then be used for secure operations such as initializing the credi
 
 **Note:** The `get_authentication_tokens` method requires a valid `merchant_id`. Optionally, you can provide an `X-Request-ID` header for tracing requests.
 
+### HTTP Client Customization
+
+The SDK allows you to customize the underlying HTTP client used for API requests. This enables you to configure timeouts, add custom headers, set up proxies, or implement other HTTP-level customizations. You can configure the HTTP client globally or for specific API clients.
+
+#### Global HTTP Client Configuration
+
+You can set a global HTTP client that will be used by all API clients created with a specific `CommunicatorConfiguration`:
+
+```python
+import httpx
+from pcp_serversdk_python import CommunicatorConfiguration
+from pcp_serversdk_python.endpoints import CommerceCaseApiClient
+
+# Create a custom HTTP client with specific configuration
+custom_http_client = httpx.AsyncClient(
+    timeout=httpx.Timeout(30.0),  # 30 second timeout
+    limits=httpx.Limits(max_connections=100, max_keepalive_connections=20),
+    headers={"User-Agent": "MyApp/1.0"}
+)
+
+# Create configuration with custom HTTP client
+config = CommunicatorConfiguration(
+    api_key="your_api_key",
+    api_secret="your_api_secret",
+    host="https://api.preprod.commerce.payone.com",
+    http_client=custom_http_client
+)
+
+# All API clients created with this config will use the custom HTTP client
+commerce_case_client = CommerceCaseApiClient(config)
+```
+
+#### Client-Specific HTTP Client Configuration
+
+You can also set a custom HTTP client for individual API clients, which will override the global configuration:
+
+```python
+import httpx
+from pcp_serversdk_python import CommunicatorConfiguration
+from pcp_serversdk_python.endpoints import CommerceCaseApiClient, CheckoutApiClient
+
+# Create configuration (with or without global HTTP client)
+config = CommunicatorConfiguration("api_key", "api_secret", "https://api.preprod.commerce.payone.com")
+
+# Create API clients
+commerce_case_client = CommerceCaseApiClient(config)
+checkout_client = CheckoutApiClient(config)
+
+# Set custom HTTP client only for the commerce case client
+custom_client = httpx.AsyncClient(timeout=httpx.Timeout(60.0))
+commerce_case_client.set_http_client(custom_client)
+
+# commerce_case_client will use the custom client
+# checkout_client will use the default client
+```
+
+#### Priority Order
+
+The SDK follows this priority order when determining which HTTP client to use:
+
+1. **Client-specific HTTP client** (set via `set_http_client()` on individual API clients)
+2. **Global HTTP client** (set in `CommunicatorConfiguration`)
+3. **Default HTTP client** (created automatically by the SDK)
+
+#### Common Use Cases
+
+**Setting Custom Timeouts:**
+```python
+# Create client with longer timeout for slow operations
+slow_client = httpx.AsyncClient(timeout=httpx.Timeout(120.0))
+config = CommunicatorConfiguration("key", "secret", "host", slow_client)
+```
+
+**Adding Custom Headers:**
+```python
+# Add custom headers to all requests
+headers = {"X-Custom-Header": "value", "User-Agent": "MyApp/2.0"}
+client = httpx.AsyncClient(headers=headers)
+config = CommunicatorConfiguration("key", "secret", "host", client)
+```
+
+**Configuring Proxy:**
+```python
+# Configure HTTP client to use a proxy
+proxy_client = httpx.AsyncClient(proxies="http://proxy.example.com:8080")
+config = CommunicatorConfiguration("key", "secret", "host", proxy_client)
+```
+
+**Note:** When using custom HTTP clients, ensure they are properly configured for your use case and remember to close them when your application shuts down to free up resources.
+
 ### Error Handling
 
 When making a request any client may throw a `ApiException`. There two subtypes of this exception:

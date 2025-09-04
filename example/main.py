@@ -8,6 +8,7 @@ import uuid
 # Add the parent directory to sys.path so my_package can be found
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+import httpx
 from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
 from pcp_serversdk_python.endpoints import (
     AuthenticationApiClient,
@@ -64,7 +65,104 @@ COMMUNICATOR_CONFIGURATION = CommunicatorConfiguration(API_KEY, API_SECRET, API_
 UNIQUE_MERCHANT_REFERENCE = str(uuid.uuid4())[:8]
 
 
+async def demonstrate_http_client_customization():
+    """
+    Demonstrates how to customize HTTP clients globally and per API client.
+    This example shows different ways to configure HTTP clients for various use cases.
+    """
+    print("=== HTTP Client Customization Examples ===")
+
+    # Example 1: Global HTTP client configuration
+    print("\n1. Global HTTP Client Configuration:")
+
+    # Create a custom HTTP client with specific settings
+    global_custom_client = httpx.AsyncClient(
+        timeout=httpx.Timeout(30.0),  # 30 second timeout
+        limits=httpx.Limits(max_connections=100, max_keepalive_connections=20),
+        headers={"User-Agent": "PCP-SDK-Python-Example/1.0"}
+    )
+
+    # Create configuration with global custom HTTP client
+    global_config = CommunicatorConfiguration(
+        API_KEY,
+        API_SECRET,
+        API_URL,
+        http_client=global_custom_client
+    )
+
+    # All API clients created with this config will use the custom HTTP client
+    global_auth_client = AuthenticationApiClient(global_config)
+    global_commerce_client = CommerceCaseApiClient(global_config)
+
+    print(f"Global config HTTP client: {global_config.get_http_client()}")
+    print(f"Auth client HTTP client: {global_auth_client.get_http_client()}")
+    print(f"Commerce client HTTP client: {global_commerce_client.get_http_client()}")
+
+    # Example 2: Client-specific HTTP client configuration
+    print("\n2. Client-Specific HTTP Client Configuration:")
+
+    # Create standard configuration (no global HTTP client)
+    standard_config = CommunicatorConfiguration(API_KEY, API_SECRET, API_URL)
+
+    # Create API clients
+    auth_client = AuthenticationApiClient(standard_config)
+    commerce_client = CommerceCaseApiClient(standard_config)
+    checkout_client = CheckoutApiClient(standard_config)
+
+    # Set custom HTTP client only for the commerce case client
+    commerce_custom_client = httpx.AsyncClient(
+        timeout=httpx.Timeout(60.0),  # Longer timeout for commerce operations
+        headers={"X-Custom-Commerce-Header": "commerce-operations"}
+    )
+    commerce_client.set_http_client(commerce_custom_client)
+
+    # Set different custom HTTP client for checkout client
+    checkout_custom_client = httpx.AsyncClient(
+        timeout=httpx.Timeout(45.0),
+        headers={"X-Custom-Checkout-Header": "checkout-operations"}
+    )
+    checkout_client.set_http_client(checkout_custom_client)
+
+    print(f"Standard config HTTP client: {standard_config.get_http_client()}")
+    print(f"Auth client HTTP client: {auth_client.get_http_client()}")
+    print(f"Commerce client HTTP client: {commerce_client.get_http_client()}")
+    print(f"Checkout client HTTP client: {checkout_client.get_http_client()}")
+
+    # Example 3: Priority demonstration
+    print("\n3. Priority Order Demonstration:")
+
+    # Create config with global HTTP client
+    priority_global_client = httpx.AsyncClient(timeout=httpx.Timeout(20.0))
+    priority_config = CommunicatorConfiguration(
+        API_KEY, API_SECRET, API_URL, priority_global_client
+    )
+
+    priority_client = CommerceCaseApiClient(priority_config)
+    print(f"Before setting client-specific: {priority_client.get_http_client()}")
+
+    # Set client-specific HTTP client (should override global)
+    priority_specific_client = httpx.AsyncClient(timeout=httpx.Timeout(90.0))
+    priority_client.set_http_client(priority_specific_client)
+    print(f"After setting client-specific: {priority_client.get_http_client()}")
+
+    # Remove client-specific (should fall back to global)
+    priority_client.set_http_client(None)
+    print(f"After removing client-specific: {priority_client.get_http_client()}")
+
+    print("\n=== HTTP Client Customization Examples Complete ===")
+
+    # Clean up clients
+    await global_custom_client.aclose()
+    await commerce_custom_client.aclose()
+    await checkout_custom_client.aclose()
+    await priority_global_client.aclose()
+    await priority_specific_client.aclose()
+
+
 async def main():
+    # Demonstrate HTTP client customization
+    await demonstrate_http_client_customization()
+
     await run_authentication_token()
     # await run_checkouts()
     # await run_create_commerce_case()  # Get your COMMERCE_CASE_ID and CHECKOUT_ID from here
