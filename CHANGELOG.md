@@ -1,3 +1,9 @@
+# [1.4.0](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/compare/v1.3.1...v1.4.0) (2025-09-26)
+
+### Features
+
+* feat: add required parameters for PayPal integration ([80f6c3027c18d0e1405cbce51541ee9e07fbd4a1](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/80f6c3027c18d0e1405cbce51541ee9e07fbd4a1))
+
 ## [1.3.1](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/compare/v1.3.0...v1.3.1) (2025-09-04)
 
 ### Documentation
