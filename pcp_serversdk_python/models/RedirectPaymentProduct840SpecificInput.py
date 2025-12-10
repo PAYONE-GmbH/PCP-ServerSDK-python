@@ -16,13 +16,6 @@ class RedirectPaymentProduct840SpecificInput:
         # transactions, when the FraudNet SDK is used, and to be passed in the API
         # request the same tracking ID value (FraudNet Session Identifier).
     )
-    javaScriptSdkFlow: bool = (
-        True  # Required parameter which defines how PayPal is being integrated
-        # inside the checkout page. True = the current integration uses PayPal SDK,
-        # False = classic usage with PayPal Redirect flow
-    )
-    action: Optional[str] = (
-        None  # Required parameter for a COMPLETE CALL (not only an ORDER CALL)
-        # which one value "CONFIRM_ORDER_STATUS" signals process is finished
-        # on merchant side
+    javaScriptSdkFlow: Optional[bool] = (
+        False  # Flag describing if the PayPal JavaScript SDK flow is used
     )

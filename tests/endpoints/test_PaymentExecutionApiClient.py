@@ -13,8 +13,10 @@ from pcp_serversdk_python.models import (
     CancelPaymentResponse,
     CapturePaymentRequest,
     CapturePaymentResponse,
+    CompletePaymentProduct840SpecificInput,
     CompletePaymentRequest,
     CompletePaymentResponse,
+    CompleteRedirectPaymentMethodSpecificInput,
     CreatePaymentResponse,
     PausePaymentRequest,
     PausePaymentResponse,
@@ -138,12 +140,21 @@ async def test_complete_payment(payment_execution_api_client, mock_httpx_client)
         mock_response
     )
 
+    payload = CompletePaymentRequest()
+    redirect_input = CompleteRedirectPaymentMethodSpecificInput()
+    product840_input = CompletePaymentProduct840SpecificInput(
+        action="CONFIRM_ORDER_STATUS",
+        javaScriptSdkFlow=True,
+    )
+    redirect_input.paymentProduct840SpecificInput = product840_input
+    payload.redirectPaymentMethodSpecificInput = redirect_input
+
     response = await payment_execution_api_client.complete_payment(
         "merchant_id",
         "commerce_case_id",
         "checkout_id",
         "payment_execution_id",
-        CompletePaymentRequest(),
+        payload,
     )
     assert response == expected_response
 
