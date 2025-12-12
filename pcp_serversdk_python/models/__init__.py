@@ -44,10 +44,16 @@ from .CompanyInformation import CompanyInformation
 from .CompleteFinancingPaymentMethodSpecificInput import (
     CompleteFinancingPaymentMethodSpecificInput,
 )
+from .CompletePaymentProduct840SpecificInput import (
+    CompletePaymentProduct840SpecificInput,
+)
 from .CompleteOrderRequest import CompleteOrderRequest
 from .CompletePaymentMethodSpecificInput import CompletePaymentMethodSpecificInput
 from .CompletePaymentRequest import CompletePaymentRequest
 from .CompletePaymentResponse import CompletePaymentResponse
+from .CompleteRedirectPaymentMethodSpecificInput import (
+    CompleteRedirectPaymentMethodSpecificInput,
+)
 from .ContactDetails import ContactDetails
 from .CreateCheckoutRequest import CreateCheckoutRequest
 from .CreateCheckoutResponse import CreateCheckoutResponse
@@ -208,10 +214,12 @@ __all__ = [
     "CommerceCaseResponse",
     "CompanyInformation",
     "CompleteFinancingPaymentMethodSpecificInput",
+    "CompletePaymentProduct840SpecificInput",
     "CompleteOrderRequest",
     "CompletePaymentMethodSpecificInput",
     "CompletePaymentRequest",
     "CompletePaymentResponse",
+    "CompleteRedirectPaymentMethodSpecificInput",
     "ContactDetails",
     "CreateCheckoutRequest",
     "CreateCheckoutResponse",

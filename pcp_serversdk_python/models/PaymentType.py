@@ -7,6 +7,7 @@ class PaymentType(str, Enum):
     Capture = "CAPTURE"
     Refund = "REFUND"
     Reversal = "REVERSAL"
+    Chargeback = "CHARGEBACK"
     ChargebackReversal = "CHARGEBACK_REVERSAL"
     CreditNote = "CREDIT_NOTE"
     DebitNote = "DEBIT_NOTE"
