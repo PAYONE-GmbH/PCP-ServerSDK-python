@@ -3,7 +3,7 @@ from enum import Enum, auto
 from typing import Optional
 
 from .ApplePaymentDataTokenInformation import ApplePaymentDataTokenInformation
-from .Network import Network
+from .MobilePaymentNetwork import MobilePaymentNetwork
 
 
 class IntegrationType(Enum):
@@ -24,7 +24,7 @@ class PaymentProduct302SpecificInput:
     - `MERCHANT_CERTIFICATE`: using your own certificate (paid Apple Pay account needed).
     - `MASS_ENABLEMENT`: using PAYONE certificate."""
 
-    network: Optional[Network] = None
+    network: Optional[MobilePaymentNetwork] = None
     """Network/Scheme of the card used for the payment.
     - `MASTERCARD`
     - `VISA`

@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 from .CreatePaymentResponse import CreatePaymentResponse
+from .FundSplit import FundSplit
 from .ShoppingCartResult import ShoppingCartResult
 
 
@@ -9,3 +10,4 @@ from .ShoppingCartResult import ShoppingCartResult
 class OrderResponse:
     createPaymentResponse: Optional[CreatePaymentResponse] = None
     shoppingCart: Optional[ShoppingCartResult] = None
+    fundSplit: Optional[FundSplit] = None

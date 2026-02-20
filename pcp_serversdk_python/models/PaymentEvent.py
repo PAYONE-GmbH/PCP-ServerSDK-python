@@ -12,6 +12,12 @@ from .StatusValue import StatusValue
 class PaymentEvent:
     """Detailed information regarding an occurred payment event."""
 
+    paymentEventId: Optional[str] = None
+    """Unique identifier of the payment event. Read-only UUID."""
+
+    creationDateTime: Optional[str] = None
+    """The date and time when the payment event was created. Read-only."""
+
     type: Optional[PaymentType] = None
     """Type of payment event."""
 
