@@ -10,6 +10,7 @@ from .ApplePaymentDataTokenHeaderInformation import (
 from .ApplePaymentDataTokenInformation import ApplePaymentDataTokenInformation
 from .ApplePaymentTokenVersion import ApplePaymentTokenVersion
 from .AppliedExemption import AppliedExemption
+from .AuthenticationToken import AuthenticationToken
 from .AuthorizationMode import AuthorizationMode
 from .BankAccountInformation import BankAccountInformation
 from .BankPayoutMethodSpecificInput import BankPayoutMethodSpecificInput
@@ -187,6 +188,7 @@ __all__ = [
     "ApplePaymentDataTokenInformation",
     "ApplePaymentTokenVersion",
     "AppliedExemption",
+    "AuthenticationToken",
     "AuthorizationMode",
     "BankAccountInformation",
     "BankPayoutMethodSpecificInput",

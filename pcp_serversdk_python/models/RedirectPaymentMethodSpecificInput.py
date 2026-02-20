@@ -14,7 +14,6 @@ class RedirectPaymentMethodSpecificInput:
     reportingToken: Optional[str] = None
     tokenize: Optional[bool] = None
     paymentProductId: Optional[int] = None
-    javaScriptSdkFlow: Optional[bool] = False
     paymentProduct840SpecificInput: Optional[RedirectPaymentProduct840SpecificInput] = (
         None
     )

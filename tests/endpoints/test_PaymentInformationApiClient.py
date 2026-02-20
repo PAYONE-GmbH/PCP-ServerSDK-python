@@ -169,7 +169,7 @@ def create_payment_information():
             amount=1000,
             currencyCode="EUR",
         ),
-        type=PaymentType.Capture,
+        type=PaymentType.CAPTURE,
         paymentChannel=PaymentChannel.ECOMMERCE,
         paymentProductId=1,
         merchantReference="merchantReference",
