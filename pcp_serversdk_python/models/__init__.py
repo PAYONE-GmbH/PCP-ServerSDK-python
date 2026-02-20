@@ -45,11 +45,11 @@ from .CompanyInformation import CompanyInformation
 from .CompleteFinancingPaymentMethodSpecificInput import (
     CompleteFinancingPaymentMethodSpecificInput,
 )
+from .CompleteOrderRequest import CompleteOrderRequest
+from .CompletePaymentMethodSpecificInput import CompletePaymentMethodSpecificInput
 from .CompletePaymentProduct840SpecificInput import (
     CompletePaymentProduct840SpecificInput,
 )
-from .CompleteOrderRequest import CompleteOrderRequest
-from .CompletePaymentMethodSpecificInput import CompletePaymentMethodSpecificInput
 from .CompletePaymentRequest import CompletePaymentRequest
 from .CompletePaymentResponse import CompletePaymentResponse
 from .CompleteRedirectPaymentMethodSpecificInput import (
@@ -85,7 +85,6 @@ from .MobilePaymentMethodSpecificInput import MobilePaymentMethodSpecificInput
 from .MobilePaymentMethodSpecificOutput import MobilePaymentMethodSpecificOutput
 from .MobilePaymentNetwork import MobilePaymentNetwork
 from .MobilePaymentThreeDSecure import MobilePaymentThreeDSecure
-from .Network import Network
 from .Order import Order
 from .OrderItem import OrderItem
 from .OrderLineDetailsInput import OrderLineDetailsInput
@@ -257,7 +256,6 @@ __all__ = [
     "MobilePaymentMethodSpecificOutput",
     "MobilePaymentNetwork",
     "MobilePaymentThreeDSecure",
-    "Network",
     "Order",
     "OrderItem",
     "OrderLineDetailsInput",
