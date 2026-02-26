@@ -4,6 +4,7 @@ from typing import Optional
 from .AuthorizationMode import AuthorizationMode
 from .MobilePaymentThreeDSecure import MobilePaymentThreeDSecure
 from .PaymentProduct302SpecificInput import PaymentProduct302SpecificInput
+from .PaymentProduct5002SpecificInput import PaymentProduct5002SpecificInput
 
 
 @dataclass(kw_only=True)
@@ -33,3 +34,6 @@ class MobilePaymentMethodSpecificInput:
 
     paymentProduct302SpecificInput: Optional[PaymentProduct302SpecificInput] = None
     """Specific input for payment product 302."""
+
+    paymentProduct5002SpecificInput: Optional[PaymentProduct5002SpecificInput] = None
+    """Specific input for payment product 5002 (Click To Pay)."""

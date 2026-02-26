@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class ActionType(Enum):
+class ActionType(str, Enum):
     """Action merchants needs to take in the online payment process."""
 
     REDIRECT = "REDIRECT"  # The customer needs to be redirected using the details found in redirectData

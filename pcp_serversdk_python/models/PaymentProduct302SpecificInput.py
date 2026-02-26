@@ -1,18 +1,16 @@
 from dataclasses import dataclass
-from enum import Enum, auto
+from enum import Enum
 from typing import Optional
 
 from .ApplePaymentDataTokenInformation import ApplePaymentDataTokenInformation
-from .Network import Network
+from .MobilePaymentNetwork import MobilePaymentNetwork
 
 
-class IntegrationType(Enum):
+class IntegrationType(str, Enum):
     """Type of Apple Pay integration."""
 
-    MERCHANT_CERTIFICATE = (
-        auto()
-    )  # using your own certificate (paid Apple Pay account needed)
-    MASS_ENABLEMENT = auto()  # using PAYONE certificate
+    MERCHANT_CERTIFICATE = "MERCHANT_CERTIFICATE"  # using your own certificate (paid Apple Pay account needed)
+    MASS_ENABLEMENT = "MASS_ENABLEMENT"  # using PAYONE certificate
 
 
 @dataclass(kw_only=True)
@@ -24,7 +22,7 @@ class PaymentProduct302SpecificInput:
     - `MERCHANT_CERTIFICATE`: using your own certificate (paid Apple Pay account needed).
     - `MASS_ENABLEMENT`: using PAYONE certificate."""
 
-    network: Optional[Network] = None
+    network: Optional[MobilePaymentNetwork] = None
     """Network/Scheme of the card used for the payment.
     - `MASTERCARD`
     - `VISA`

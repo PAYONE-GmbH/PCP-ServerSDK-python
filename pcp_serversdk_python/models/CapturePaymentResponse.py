@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 from .CaptureOutput import CaptureOutput
+from .FundSplit import FundSplit
 from .PaymentStatusOutput import PaymentStatusOutput
 from .StatusValue import StatusValue
 
@@ -12,3 +13,4 @@ class CapturePaymentResponse:
     status: Optional[StatusValue] = None
     statusOutput: Optional[PaymentStatusOutput] = None
     id: Optional[str] = None
+    fundSplit: Optional[FundSplit] = None

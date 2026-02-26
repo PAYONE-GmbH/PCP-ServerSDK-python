@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Optional
 
+from .FundSplit import FundSplit
 from .PaymentReferences import PaymentReferences
 from .PositiveAmountOfMoney import PositiveAmountOfMoney
 from .ReturnInformation import ReturnInformation
@@ -14,6 +15,7 @@ class RefundRequest:
     return_info: Optional[ReturnInformation] = field(
         default=None, metadata={"name": "return"}
     )
+    fundSplit: Optional[FundSplit] = None
 
     # To adhere to the PAYONE API Schema, we need to use the name "return" externally.
     # However, to avoid conflicts with Python's reserved keyword "return",
@@ -27,5 +29,6 @@ class RefundRequest:
             "amountOfMoney": self.amountOfMoney,
             "references": self.references,
             "return": self.return_info,
+            "fundSplit": self.fundSplit,
         }
         return result

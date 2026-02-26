@@ -478,7 +478,7 @@ async def run_create_payment_information():
 
     create_request = PaymentInformationRequest(
         amountOfMoney=AmountOfMoney(amount=1000, currencyCode="EUR"),
-        type=PaymentType.Sale,
+        type=PaymentType.SALE,
         paymentChannel=PaymentChannel.ECOMMERCE,
         paymentProductId=771,
         merchantReference="p-" + UNIQUE_MERCHANT_REFERENCE,

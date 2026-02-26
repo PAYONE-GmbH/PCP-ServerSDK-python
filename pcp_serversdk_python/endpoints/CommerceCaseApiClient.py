@@ -9,7 +9,7 @@ from ..models import (
     CommerceCaseResponse,
     CreateCommerceCaseRequest,
     CreateCommerceCaseResponse,
-    Customer,
+    PatchCommerceCaseRequest,
 )
 from ..queries import GetCommerceCasesQuery
 from .BaseApiClient import (
@@ -67,7 +67,7 @@ class CommerceCaseApiClient(BaseApiClient):
         return await self.make_api_call_with_type(req, list[CommerceCaseResponse])
 
     async def update_commerce_case_request(
-        self, merchant_id: str, commerce_case_id: str, payload: Customer
+        self, merchant_id: str, commerce_case_id: str, payload: PatchCommerceCaseRequest
     ):
         self._validate_inputs(merchant_id, commerce_case_id)
 
@@ -80,7 +80,7 @@ class CommerceCaseApiClient(BaseApiClient):
             "PATCH",
             url,
             headers={"Content-Type": self.CONTENT_TYPE},
-            data=json.dumps({"customer": asdict(payload)}),
+            data=json.dumps(asdict(payload)),
         )
 
         return await self.make_api_call(req)

@@ -23,6 +23,7 @@ from pcp_serversdk_python.models import (
     PaymentExecution,
     PaymentExecutionRequest,
     RefreshPaymentRequest,
+    RefreshType,
     RefundPaymentResponse,
     RefundRequest,
 )
@@ -176,7 +177,7 @@ async def test_pause_payment(payment_execution_api_client, mock_httpx_client):
         "commerce_case_id",
         "checkout_id",
         "payment_execution_id",
-        PausePaymentRequest(refreshType=None),
+        PausePaymentRequest(),
     )
     assert response == expected_response
 
@@ -198,7 +199,7 @@ async def test_refresh_payment(payment_execution_api_client, mock_httpx_client):
         "commerce_case_id",
         "checkout_id",
         "payment_execution_id",
-        RefreshPaymentRequest(refreshType=None),
+        RefreshPaymentRequest(refreshType=RefreshType.PAYMENT_EVENTS),
     )
     assert response == expected_response
 
@@ -213,7 +214,7 @@ async def test_pause_payment_with_invalid_payment_execution_id(
             "commerce_case_id",
             "checkout_id",
             "",
-            PausePaymentRequest(refreshType=None),
+            PausePaymentRequest(),
         )
 
 
@@ -227,7 +228,7 @@ async def test_refresh_payment_with_invalid_payment_execution_id(
             "commerce_case_id",
             "checkout_id",
             "",
-            RefreshPaymentRequest(refreshType=None),
+            RefreshPaymentRequest(refreshType=RefreshType.PAYMENT_EVENTS),
         )
 
 
