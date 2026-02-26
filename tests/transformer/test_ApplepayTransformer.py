@@ -6,7 +6,7 @@ from pcp_serversdk_python.models import (
     ApplePaymentTokenVersion,
     ApplePayPayment,
     MobilePaymentMethodSpecificInput,
-    Network,
+    MobilePaymentNetwork,
     PaymentProduct302SpecificInput,
 )
 from pcp_serversdk_python.transformer.ApplepayTransformer import (
@@ -17,12 +17,12 @@ from pcp_serversdk_python.transformer.ApplepayTransformer import (
 
 
 def test_network_from_string():
-    assert network_from_string("mastercard") == Network.MASTERCARD
-    assert network_from_string("VISA") == Network.VISA
-    assert network_from_string("AmEx") == Network.AMEX
-    assert network_from_string("GIROCARD") == Network.GIROCARD
-    assert network_from_string("discover") == Network.DISCOVER
-    assert network_from_string("JCB") == Network.JCB
+    assert network_from_string("mastercard") == MobilePaymentNetwork.MASTERCARD
+    assert network_from_string("VISA") == MobilePaymentNetwork.VISA
+    assert network_from_string("AmEx") == MobilePaymentNetwork.AMEX
+    assert network_from_string("GIROCARD") == MobilePaymentNetwork.GIROCARD
+    assert network_from_string("discover") == MobilePaymentNetwork.DISCOVER
+    assert network_from_string("JCB") == MobilePaymentNetwork.JCB
     with pytest.raises(TypeError):
         network_from_string("UNKNOWN")
 
@@ -57,7 +57,7 @@ def test_transform_apple_pay_payment_to_mobile_payment_method_specific_input():
         publicKeyHash="publicKeyHash123",
         ephemeralKey="ephemeralPublicKey123",
         paymentProduct302SpecificInput=PaymentProduct302SpecificInput(
-            network=Network.VISA,
+            network=MobilePaymentNetwork.VISA,
             token=ApplePaymentDataTokenInformation(
                 version=ApplePaymentTokenVersion.EC_V1,
                 signature="signature123",

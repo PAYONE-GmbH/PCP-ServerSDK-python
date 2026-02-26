@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class AvsResult(Enum):
+class AvsResult(str, Enum):
     """Result of the Address Verification Service checks."""
 
     A = "A"  # Address (Street) matches, Zip does not

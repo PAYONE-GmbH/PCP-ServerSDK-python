@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
+from .FundSplit import FundSplit
 from .MerchantAction import MerchantAction
 from .PaymentCreationOutput import PaymentCreationOutput
 from .PaymentResponse import PaymentResponse
@@ -12,3 +13,4 @@ class CreatePaymentResponse:
     merchantAction: Optional[MerchantAction] = None
     payment: Optional[PaymentResponse] = None
     paymentExecutionId: Optional[str] = None
+    fundSplit: Optional[FundSplit] = None

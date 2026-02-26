@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 from .CartItemInvoiceData import CartItemInvoiceData
+from .CartItemSupplierReferences import CartItemSupplierReferences
 from .OrderLineDetailsPatch import OrderLineDetailsPatch
 
 
@@ -9,3 +10,4 @@ from .OrderLineDetailsPatch import OrderLineDetailsPatch
 class CartItemPatch:
     invoiceData: Optional[CartItemInvoiceData] = None
     orderLineDetails: Optional[OrderLineDetailsPatch] = None
+    supplierReferences: Optional[CartItemSupplierReferences] = None

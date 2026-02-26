@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
+from .FundSplit import FundSplit
 from .PaymentStatusOutput import PaymentStatusOutput
 from .RefundOutput import RefundOutput
 from .StatusValue import StatusValue
@@ -12,3 +13,4 @@ class RefundPaymentResponse:
     status: Optional[StatusValue] = None
     statusOutput: Optional[PaymentStatusOutput] = None
     id: Optional[str] = None
+    fundSplit: Optional[FundSplit] = None

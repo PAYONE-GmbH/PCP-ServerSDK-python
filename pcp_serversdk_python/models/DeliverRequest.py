@@ -4,6 +4,7 @@ from typing import Optional
 from .CancellationReason import CancellationReason
 from .DeliverItem import DeliverItem
 from .DeliverType import DeliverType
+from .FundSplit import FundSplit
 
 
 @dataclass(kw_only=True)
@@ -12,3 +13,4 @@ class DeliverRequest:
     isFinal: bool = False
     cancellationReason: Optional[CancellationReason] = None
     deliverItems: Optional[list[DeliverItem]] = None
+    fundSplit: Optional[FundSplit] = None

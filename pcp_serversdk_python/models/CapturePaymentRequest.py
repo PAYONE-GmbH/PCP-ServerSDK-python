@@ -3,6 +3,7 @@ from typing import Optional
 
 from .CancellationReason import CancellationReason
 from .DeliveryInformation import DeliveryInformation
+from .FundSplit import FundSplit
 from .PaymentReferences import PaymentReferences
 
 
@@ -13,3 +14,4 @@ class CapturePaymentRequest:
     cancellationReason: Optional[CancellationReason] = None
     references: Optional[PaymentReferences] = None
     delivery: Optional[DeliveryInformation] = None
+    fundSplit: Optional[FundSplit] = None

@@ -4,6 +4,7 @@ from typing import Optional
 from .BankPayoutMethodSpecificInput import BankPayoutMethodSpecificInput
 from .CardPaymentMethodSpecificInput import CardPaymentMethodSpecificInput
 from .FinancingPaymentMethodSpecificInput import FinancingPaymentMethodSpecificInput
+from .FundSplit import FundSplit
 from .MobilePaymentMethodSpecificInput import MobilePaymentMethodSpecificInput
 from .PaymentChannel import PaymentChannel
 from .PaymentEvent import PaymentEvent
@@ -49,3 +50,6 @@ class PaymentExecution:
 
     events: Optional[list[PaymentEvent]] = None
     """List of payment events associated with this payment execution."""
+
+    fundSplits: Optional[list[FundSplit]] = None
+    """List of fund splits associated with this payment execution."""

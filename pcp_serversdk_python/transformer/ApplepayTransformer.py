@@ -4,16 +4,16 @@ from ..models import (
     ApplePaymentTokenVersion,
     ApplePayPayment,
     MobilePaymentMethodSpecificInput,
-    Network,
+    MobilePaymentNetwork,
     PaymentProduct302SpecificInput,
 )
 
 
-def network_from_string(value: str) -> str:
-    for network in Network:
+def network_from_string(value: str) -> MobilePaymentNetwork:
+    for network in MobilePaymentNetwork:
         if value.upper() == network.value:
             return network
-    raise TypeError(f"'{value}' can't represent a Network")
+    raise TypeError(f"'{value}' can't represent a MobilePaymentNetwork")
 
 
 def version_from_string(value: str) -> str:

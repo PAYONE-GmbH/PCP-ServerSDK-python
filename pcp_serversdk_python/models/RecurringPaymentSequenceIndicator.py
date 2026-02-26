@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class RecurringPaymentSequenceIndicator(Enum):
+class RecurringPaymentSequenceIndicator(str, Enum):
     """Enum for recurring payment sequence indicator values.\n
     Note: For any first of a recurring the system will automatically create a token as
     you will need to use a token for any subsequent recurring transactions. In case a
