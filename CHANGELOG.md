@@ -1,3 +1,17 @@
+# [1.7.0](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/compare/v1.5.0...v1.7.0) (2026-02-26)
+
+### Features
+
+* feat: add changes for api version 1.47.0 ([25815cc99897202ec5b90dce7f767b24e89ce2de](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/25815cc99897202ec5b90dce7f767b24e89ce2de))
+* feat: update API version to 1.48.0 ([8e52ffe9ed4ee7df10297160f366983c040d5291](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/8e52ffe9ed4ee7df10297160f366983c040d5291))
+* feat: update FundDistribution and PausePaymentRequest models ([04917710da8a91c4ad9a10c067b7e7c33ffbd969](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/04917710da8a91c4ad9a10c067b7e7c33ffbd969))
+* feat: update update_commerce_case_request to use PatchCommerceCaseRequest model ([f22f0677e0a919aefe95912ddb4332c57de73a07](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/f22f0677e0a919aefe95912ddb4332c57de73a07))
+# [1.5.0](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/compare/v1.4.0...v1.5.0) (2025-12-11)
+
+### Features
+
+* feat: add changes for api version 1.40.0 ([d225133e2d1f8df92b032a2e6d76ee3b08b5a003](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/commit/d225133e2d1f8df92b032a2e6d76ee3b08b5a003))
+
 # [1.4.0](https://github.com/PAYONE-GmbH/PCP-ServerSDK-java/compare/v1.3.1...v1.4.0) (2025-09-26)
 
 ### Features
