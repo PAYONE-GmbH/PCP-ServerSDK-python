@@ -4,7 +4,7 @@ from typing import Optional
 
 @dataclass(kw_only=True)
 class APIError:
-    errorCode: Optional[str] = None
+    errorCode: str
     category: Optional[str] = None
     httpStatusCode: Optional[int] = None
     id: Optional[str] = None

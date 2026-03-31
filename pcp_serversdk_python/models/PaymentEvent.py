@@ -35,3 +35,6 @@ class PaymentEvent:
 
     paymentInstructions: Optional[PaymentInstructions] = None
     """Payment instructions associated with this payment event."""
+
+    merchantReference: Optional[str] = None
+    """Unique reference from the merchant that was used when the event was created."""

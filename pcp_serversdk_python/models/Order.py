@@ -10,8 +10,8 @@ from .ShoppingCartInput import ShoppingCartInput
 
 @dataclass(kw_only=True)
 class Order:
+    references: References
     amountOfMoney: Optional[AmountOfMoney] = None
     customer: Optional[Customer] = None
-    references: Optional[References] = None
     shipping: Optional[Shipping] = None
     shoppingCart: Optional[ShoppingCartInput] = None
