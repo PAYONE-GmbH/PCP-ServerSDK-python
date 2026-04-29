@@ -1,3 +1,9 @@
+# [1.9.0](https://github.com/PAYONE-GmbH/PCP-ServerSDK-python/compare/v1.8.0...v1.9.0) (2026-04-29)
+
+### Features
+
+* feat: update API version to 1.50.0 ([55bd1599658484c5d690e39556f309bc17a01c47](https://github.com/PAYONE-GmbH/PCP-ServerSDK-python/commit/55bd1599658484c5d690e39556f309bc17a01c47))
+
 # [1.8.0](https://github.com/PAYONE-GmbH/PCP-ServerSDK-python/compare/v1.7.0...v1.8.0) (2026-03-31)
 
 ### Features
