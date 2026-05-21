@@ -79,6 +79,8 @@ from .FinancingPaymentMethodSpecificOutput import FinancingPaymentMethodSpecific
 from .FundDistribution import FundDistribution
 from .FundDistributionType import FundDistributionType
 from .FundSplit import FundSplit
+from .FundSplitRequest import FundSplitRequest
+from .FundSplitResponse import FundSplitResponse
 from .Gender import Gender
 from .InstallmentOption import InstallmentOption
 from .LinkInformation import LinkInformation
@@ -141,6 +143,9 @@ from .RedirectPaymentMethodSpecificInput import RedirectPaymentMethodSpecificInp
 from .RedirectPaymentMethodSpecificOutput import RedirectPaymentMethodSpecificOutput
 from .RedirectPaymentProduct840SpecificInput import (
     RedirectPaymentProduct840SpecificInput,
+)
+from .RedirectPaymentProduct900SpecificInput import (
+    RedirectPaymentProduct900SpecificInput,
 )
 from .References import References
 from .RefreshPaymentRequest import RefreshPaymentRequest
@@ -254,6 +259,8 @@ __all__ = [
     "FundDistribution",
     "FundDistributionType",
     "FundSplit",
+    "FundSplitRequest",
+    "FundSplitResponse",
     "Gender",
     "InstallmentOption",
     "LinkInformation",
@@ -314,6 +321,7 @@ __all__ = [
     "RedirectionData",
     "RedirectPaymentMethodSpecificInput",
     "RedirectPaymentMethodSpecificOutput",
+    "RedirectPaymentProduct900SpecificInput",
     "RedirectPaymentProduct840SpecificInput",
     "References",
     "RefreshPaymentRequest",
