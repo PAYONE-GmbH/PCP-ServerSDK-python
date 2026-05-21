@@ -7,8 +7,6 @@ import httpx
 from ..models import (
     CancelRequest,
     CancelResponse,
-    CompleteOrderRequest,
-    CompletePaymentResponse,
     DeliverRequest,
     DeliverResponse,
     OrderRequest,
@@ -67,29 +65,6 @@ class OrderManagementCheckoutActionsApiClient(BaseApiClient):
         )
 
         return await self.make_api_call_with_type(req, DeliverResponse)
-
-    async def complete_order(
-        self,
-        merchant_id: str,
-        commerce_case_id: str,
-        checkout_id: str,
-        payload: CompleteOrderRequest,
-    ) -> CompletePaymentResponse:
-        self._validate_inputs(merchant_id, commerce_case_id, checkout_id)
-
-        url = urljoin(
-            self.get_config().get_host(),
-            f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}/complete-order",
-        )
-
-        req = httpx.Request(
-            "POST",
-            url,
-            headers={"Content-Type": self.CONTENT_TYPE},
-            data=json.dumps(asdict(payload)),
-        )
-
-        return await self.make_api_call_with_type(req, CompletePaymentResponse)
 
     async def return_order(
         self,
