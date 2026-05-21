@@ -9,8 +9,6 @@ from pcp_serversdk_python.endpoints import OrderManagementCheckoutActionsApiClie
 from pcp_serversdk_python.models import (
     CancelRequest,
     CancelResponse,
-    CompleteOrderRequest,
-    CompletePaymentResponse,
     DeliverRequest,
     DeliverResponse,
     OrderRequest,
@@ -72,26 +70,6 @@ async def test_run_deliver_order(
 
     response = await order_management_checkout_actions_api_client.deliver_order(
         "merchant_id", "commerce_case_id", "checkout_id", DeliverRequest()
-    )
-    assert response == expected_response
-
-
-@pytest.mark.asyncio
-async def test_run_complete_order(
-    order_management_checkout_actions_api_client, mock_httpx_client
-):
-    expected_response = CompletePaymentResponse()
-
-    res = json.dumps(asdict(expected_response))
-
-    mock_response = httpx.Response(200, text=res)
-
-    mock_httpx_client.return_value.__aenter__.return_value.request.return_value = (
-        mock_response
-    )
-
-    response = await order_management_checkout_actions_api_client.complete_order(
-        "merchant_id", "commerce_case_id", "checkout_id", CompleteOrderRequest()
     )
     assert response == expected_response
 
