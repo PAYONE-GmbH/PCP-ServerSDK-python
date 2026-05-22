@@ -5,6 +5,9 @@ from .RedirectionData import RedirectionData
 from .RedirectPaymentProduct840SpecificInput import (
     RedirectPaymentProduct840SpecificInput,
 )
+from .RedirectPaymentProduct900SpecificInput import (
+    RedirectPaymentProduct900SpecificInput,
+)
 
 
 @dataclass(kw_only=True)
@@ -15,6 +18,9 @@ class RedirectPaymentMethodSpecificInput:
     tokenize: Optional[bool] = None
     paymentProductId: Optional[int] = None
     paymentProduct840SpecificInput: Optional[RedirectPaymentProduct840SpecificInput] = (
+        None
+    )
+    paymentProduct900SpecificInput: Optional[RedirectPaymentProduct900SpecificInput] = (
         None
     )
     redirectionData: Optional[RedirectionData] = None
