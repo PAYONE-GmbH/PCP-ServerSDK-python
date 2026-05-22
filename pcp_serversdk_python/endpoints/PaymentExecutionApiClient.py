@@ -12,6 +12,8 @@ from ..models import (
     CompletePaymentRequest,
     CompletePaymentResponse,
     CreatePaymentResponse,
+    FundSplitRequest,
+    FundSplitResponse,
     PausePaymentRequest,
     PausePaymentResponse,
     PaymentExecution,
@@ -120,7 +122,7 @@ class PaymentExecutionApiClient(BaseApiClient):
             "POST",
             url,
             headers={"Content-Type": self.CONTENT_TYPE},
-            data=json.dumps(asdict(payload)),
+            data=json.dumps(payload.to_dict()),
         )
 
         return await self.make_api_call_with_type(req, RefundPaymentResponse)
@@ -221,3 +223,32 @@ class PaymentExecutionApiClient(BaseApiClient):
         )
 
         return await self.make_api_call_with_type(req, PaymentExecution)
+
+    async def create_fund_split(
+        self,
+        merchant_id: str,
+        commerce_case_id: str,
+        checkout_id: str,
+        payment_execution_id: str,
+        event_id: str,
+        payload: FundSplitRequest,
+    ) -> FundSplitResponse:
+        self._validate_inputs(
+            merchant_id, commerce_case_id, checkout_id, payment_execution_id
+        )
+        if not event_id:
+            raise ValueError("Event ID is required")
+
+        url = urljoin(
+            self.get_config().get_host(),
+            f"/v1/{merchant_id}/commerce-cases/{commerce_case_id}/checkouts/{checkout_id}/payment-executions/{payment_execution_id}/events/{event_id}/fund-splits",
+        )
+
+        req = httpx.Request(
+            "POST",
+            url,
+            headers={"Content-Type": self.CONTENT_TYPE},
+            data=json.dumps(asdict(payload)),
+        )
+
+        return await self.make_api_call_with_type(req, FundSplitResponse)

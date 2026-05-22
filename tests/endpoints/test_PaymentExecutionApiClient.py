@@ -18,6 +18,9 @@ from pcp_serversdk_python.models import (
     CompletePaymentResponse,
     CompleteRedirectPaymentMethodSpecificInput,
     CreatePaymentResponse,
+    FundSplit,
+    FundSplitRequest,
+    FundSplitResponse,
     PausePaymentRequest,
     PausePaymentResponse,
     PaymentExecution,
@@ -26,6 +29,7 @@ from pcp_serversdk_python.models import (
     RefreshType,
     RefundPaymentResponse,
     RefundRequest,
+    ReturnInformation,
 )
 
 
@@ -124,9 +128,16 @@ async def test_refund_payment(payment_execution_api_client, mock_httpx_client):
         "commerce_case_id",
         "checkout_id",
         "payment_execution_id",
-        RefundRequest(),
+        RefundRequest(return_info=ReturnInformation()),
     )
     assert response == expected_response
+
+    request_call = (
+        mock_httpx_client.return_value.__aenter__.return_value.request.call_args.kwargs
+    )
+    request_body = json.loads(request_call["content"].decode())
+    assert "return_info" not in request_body
+    assert request_body["return"] == {"returnReason": None, "items": None}
 
 
 @pytest.mark.asyncio
@@ -202,6 +213,42 @@ async def test_refresh_payment(payment_execution_api_client, mock_httpx_client):
         RefreshPaymentRequest(refreshType=RefreshType.PAYMENT_EVENTS),
     )
     assert response == expected_response
+
+
+@pytest.mark.asyncio
+async def test_create_fund_split(payment_execution_api_client, mock_httpx_client):
+    expected_response = FundSplitResponse()
+
+    res = json.dumps(asdict(expected_response))
+
+    mock_response = httpx.Response(200, text=res)
+
+    mock_httpx_client.return_value.__aenter__.return_value.request.return_value = (
+        mock_response
+    )
+
+    response = await payment_execution_api_client.create_fund_split(
+        "merchant_id",
+        "commerce_case_id",
+        "checkout_id",
+        "payment_execution_id",
+        "event_id",
+        FundSplitRequest(fundSplit=FundSplit()),
+    )
+    assert response == expected_response
+
+
+@pytest.mark.asyncio
+async def test_create_fund_split_with_invalid_event_id(payment_execution_api_client):
+    with pytest.raises(ValueError):
+        await payment_execution_api_client.create_fund_split(
+            "merchant_id",
+            "commerce_case_id",
+            "checkout_id",
+            "payment_execution_id",
+            "",
+            FundSplitRequest(fundSplit=FundSplit()),
+        )
 
 
 @pytest.mark.asyncio
