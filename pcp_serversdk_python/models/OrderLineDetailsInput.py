@@ -49,3 +49,6 @@ class OrderLineDetailsInput:
     merchantShopDeliveryReference: Optional[str] = None
     """Optional parameter to define the delivery shop or touchpoint where an item
     has been collected (e.g., for Click & Collect or Click & Reserve)."""
+
+    productName: Optional[str] = None
+    """The name of the product, will be displayed in Portal if set."""
