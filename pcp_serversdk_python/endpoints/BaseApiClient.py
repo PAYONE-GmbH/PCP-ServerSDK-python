@@ -46,6 +46,7 @@ class BaseApiClient:
     CHECKOUT_ID_REQUIRED_ERROR = "Checkout ID is required"
     PAYMENT_INFORMATION_ID_REQUIRED_ERROR = "Payment Information ID is required"
     PAYMENT_EXECUTION_ID_REQUIRED_ERROR = "Payment Execution ID is required"
+    PAYMENT_INTENT_ID_REQUIRED_ERROR = "Payment Intent ID is required"
     JSON_PARSE_ERROR = "Failed to parse JSON response"
 
     def __init__(self, config: CommunicatorConfiguration):

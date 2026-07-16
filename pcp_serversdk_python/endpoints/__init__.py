@@ -6,6 +6,7 @@ from .OrderManagementCheckoutActionsApiClient import (
 )
 from .PaymentExecutionApiClient import PaymentExecutionApiClient
 from .PaymentInformationApiClient import PaymentInformationApiClient
+from .PaymentIntentApiClient import PaymentIntentApiClient
 
 __all__ = [
     "CheckoutApiClient",
@@ -13,5 +14,6 @@ __all__ = [
     "OrderManagementCheckoutActionsApiClient",
     "PaymentExecutionApiClient",
     "PaymentInformationApiClient",
+    "PaymentIntentApiClient",
     "AuthenticationApiClient",
 ]

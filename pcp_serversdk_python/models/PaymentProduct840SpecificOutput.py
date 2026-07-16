@@ -2,12 +2,9 @@ from dataclasses import dataclass
 from typing import Optional
 
 from .Address import Address
-from .PaymentProduct840CustomerAccount import PaymentProduct840CustomerAccount
+from .PaymentProduct840SpecificOutputData import PaymentProduct840SpecificOutputData
 
 
 @dataclass(kw_only=True)
-class PaymentProduct840SpecificOutput:
-    payPalTransactionId: Optional[str] = None
-    billingAddress: Optional[Address] = None
-    customerAccount: Optional[PaymentProduct840CustomerAccount] = None
+class PaymentProduct840SpecificOutput(PaymentProduct840SpecificOutputData):
     shippingAddress: Optional[Address] = None
