@@ -141,10 +141,10 @@ async def test_get_payment_intent_deserializes_nested_response(
 
 @pytest.mark.asyncio
 async def test_create_payment_intent_requires_merchant_id(payment_intent_api_client):
+    request = CreatePaymentIntentRequest()
+
     with pytest.raises(ValueError, match="Merchant ID is required"):
-        await payment_intent_api_client.create_payment_intent(
-            "", CreatePaymentIntentRequest()
-        )
+        await payment_intent_api_client.create_payment_intent("", request)
 
 
 @pytest.mark.asyncio
