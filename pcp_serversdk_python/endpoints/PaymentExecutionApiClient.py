@@ -1,5 +1,6 @@
 import json
 from dataclasses import asdict
+from typing import Optional
 from urllib.parse import urljoin
 
 import httpx
@@ -176,7 +177,7 @@ class PaymentExecutionApiClient(BaseApiClient):
         commerce_case_id: str,
         checkout_id: str,
         payment_execution_id: str,
-        payload: PausePaymentRequest,
+        payload: Optional[PausePaymentRequest] = None,
     ) -> PausePaymentResponse:
         """Pause a payment execution."""
         self._validate_inputs(
@@ -191,8 +192,8 @@ class PaymentExecutionApiClient(BaseApiClient):
         req = httpx.Request(
             "POST",
             url,
-            headers={"Content-Type": self.CONTENT_TYPE},
-            data=json.dumps(asdict(payload)),
+            headers={"Content-Type": self.CONTENT_TYPE} if payload else {},
+            data=json.dumps(asdict(payload)) if payload else None,
         )
 
         return await self.make_api_call_with_type(req, PausePaymentResponse)
@@ -203,7 +204,7 @@ class PaymentExecutionApiClient(BaseApiClient):
         commerce_case_id: str,
         checkout_id: str,
         payment_execution_id: str,
-        payload: RefreshPaymentRequest,
+        payload: Optional[RefreshPaymentRequest] = None,
     ) -> PaymentExecution:
         """Refresh a payment execution."""
         self._validate_inputs(
@@ -218,8 +219,8 @@ class PaymentExecutionApiClient(BaseApiClient):
         req = httpx.Request(
             "POST",
             url,
-            headers={"Content-Type": self.CONTENT_TYPE},
-            data=json.dumps(asdict(payload)),
+            headers={"Content-Type": self.CONTENT_TYPE} if payload else {},
+            data=json.dumps(asdict(payload)) if payload else None,
         )
 
         return await self.make_api_call_with_type(req, PaymentExecution)

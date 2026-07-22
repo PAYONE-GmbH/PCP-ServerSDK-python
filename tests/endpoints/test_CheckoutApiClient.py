@@ -130,6 +130,12 @@ async def test_get_checkouts_request_success(checkout_api_client, mock_httpx_cli
         "merchantId", query_params
     )
     assert response == expected_response
+    request_url = (
+        mock_httpx_client.return_value.__aenter__.return_value.request.call_args.kwargs[
+            "url"
+        ]
+    )
+    assert request_url.endswith("?offset=60&size=20&checkoutId=checkoutId")
 
 
 @pytest.mark.asyncio

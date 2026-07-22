@@ -1,5 +1,6 @@
 import json
 from dataclasses import asdict
+from typing import Optional
 from urllib.parse import urljoin
 
 import httpx
@@ -71,7 +72,7 @@ class OrderManagementCheckoutActionsApiClient(BaseApiClient):
         merchant_id: str,
         commerce_case_id: str,
         checkout_id: str,
-        payload: ReturnRequest,
+        payload: Optional[ReturnRequest] = None,
     ) -> ReturnResponse:
         self._validate_inputs(merchant_id, commerce_case_id, checkout_id)
 
@@ -83,8 +84,8 @@ class OrderManagementCheckoutActionsApiClient(BaseApiClient):
         req = httpx.Request(
             "POST",
             url,
-            headers={"Content-Type": self.CONTENT_TYPE},
-            data=json.dumps(asdict(payload)),
+            headers={"Content-Type": self.CONTENT_TYPE} if payload else {},
+            data=json.dumps(asdict(payload)) if payload else None,
         )
 
         return await self.make_api_call_with_type(req, ReturnResponse)
@@ -94,7 +95,7 @@ class OrderManagementCheckoutActionsApiClient(BaseApiClient):
         merchant_id: str,
         commerce_case_id: str,
         checkout_id: str,
-        payload: CancelRequest,
+        payload: Optional[CancelRequest] = None,
     ) -> CancelResponse:
         self._validate_inputs(merchant_id, commerce_case_id, checkout_id)
 
@@ -106,8 +107,8 @@ class OrderManagementCheckoutActionsApiClient(BaseApiClient):
         req = httpx.Request(
             "POST",
             url,
-            headers={"Content-Type": self.CONTENT_TYPE},
-            data=json.dumps(asdict(payload)),
+            headers={"Content-Type": self.CONTENT_TYPE} if payload else {},
+            data=json.dumps(asdict(payload)) if payload else None,
         )
 
         return await self.make_api_call_with_type(req, CancelResponse)

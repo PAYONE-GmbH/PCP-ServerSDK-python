@@ -115,6 +115,30 @@ async def test_run_cancel_order(
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize(
+    ("method", "response_type"),
+    [("return_order", ReturnResponse), ("cancel_order", CancelResponse)],
+)
+async def test_optional_order_action_body_is_omitted(
+    order_management_checkout_actions_api_client,
+    mock_httpx_client,
+    method,
+    response_type,
+):
+    mock_httpx_client.return_value.__aenter__.return_value.request.return_value = (
+        httpx.Response(200, text=json.dumps(asdict(response_type())))
+    )
+
+    await getattr(order_management_checkout_actions_api_client, method)(
+        "merchant_id", "commerce_case_id", "checkout_id"
+    )
+
+    request = mock_httpx_client.return_value.__aenter__.return_value.request.call_args
+    assert request.kwargs["content"] == b""
+    assert "content-type" not in request.kwargs["headers"]
+
+
+@pytest.mark.asyncio
 async def test_run_create_order_no_merchant_id_error(
     order_management_checkout_actions_api_client,
 ):

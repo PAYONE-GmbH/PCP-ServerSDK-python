@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class BusinessRelation(Enum):
+class BusinessRelation(str, Enum):
     """Enum for business relation type.
 
     Mandatory for the following payment methods:
