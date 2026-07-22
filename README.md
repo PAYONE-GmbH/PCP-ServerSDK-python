@@ -5,7 +5,7 @@
 ![PyPI - Version](https://img.shields.io/pypi/v/pcp_serversdk_python)
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/pcp_serversdk_python)
 
-Welcome to the Python SDK for the PAYONE Commerce Platform (api-version 1.57.0)! This repository contains a powerful, easy-to-use software development kit (SDK) designed to simplify the integration of online payment processing into your applications.
+Welcome to the Python SDK for the PAYONE Commerce Platform (api-version 1.59.0)! This repository contains a powerful, easy-to-use software development kit (SDK) designed to simplify the integration of online payment processing into your applications.
 
 ## Table of Contents
 

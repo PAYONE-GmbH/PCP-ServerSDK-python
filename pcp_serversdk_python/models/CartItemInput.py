@@ -1,13 +1,10 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from .CartItemInvoiceData import CartItemInvoiceData
+from .CartItemData import CartItemData
 from .CartItemSupplierReferences import CartItemSupplierReferences
-from .OrderLineDetailsInput import OrderLineDetailsInput
 
 
 @dataclass(kw_only=True)
-class CartItemInput:
-    invoiceData: Optional[CartItemInvoiceData] = None
-    orderLineDetails: Optional[OrderLineDetailsInput] = None
+class CartItemInput(CartItemData):
     supplierReferences: Optional[CartItemSupplierReferences] = None
