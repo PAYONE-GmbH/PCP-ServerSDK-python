@@ -32,6 +32,7 @@ from .CardPaymentDetails import CardPaymentDetails
 from .CardPaymentMethodSpecificInput import CardPaymentMethodSpecificInput
 from .CardPaymentMethodSpecificOutput import CardPaymentMethodSpecificOutput
 from .CardRecurrenceDetails import CardRecurrenceDetails
+from .CartItemData import CartItemData
 from .CartItemInput import CartItemInput
 from .CartItemInvoiceData import CartItemInvoiceData
 from .CartItemOrderStatus import CartItemOrderStatus
@@ -62,6 +63,9 @@ from .CreateCheckoutRequest import CreateCheckoutRequest
 from .CreateCheckoutResponse import CreateCheckoutResponse
 from .CreateCommerceCaseRequest import CreateCommerceCaseRequest
 from .CreateCommerceCaseResponse import CreateCommerceCaseResponse
+from .CreatePaymentIntent import CreatePaymentIntent
+from .CreatePaymentIntentRequest import CreatePaymentIntentRequest
+from .CreatePaymentIntentResponse import CreatePaymentIntentResponse
 from .CreatePaymentResponse import CreatePaymentResponse
 from .CreationDateTime import CreationDateTime
 from .Customer import Customer
@@ -114,12 +118,20 @@ from .PaymentInformationRefundResponse import PaymentInformationRefundResponse
 from .PaymentInformationRequest import PaymentInformationRequest
 from .PaymentInformationResponse import PaymentInformationResponse
 from .PaymentInstructions import PaymentInstructions
+from .PaymentIntentOutput import PaymentIntentOutput
+from .PaymentIntentResponse import PaymentIntentResponse
+from .PaymentIntentResponseData import PaymentIntentResponseData
 from .PaymentMethodSpecificInput import PaymentMethodSpecificInput
+from .PaymentMethodSpecificInputForIntent import PaymentMethodSpecificInputForIntent
 from .PaymentOutput import PaymentOutput
 from .PaymentProduct302SpecificInput import PaymentProduct302SpecificInput
 from .PaymentProduct771SpecificOutput import PaymentProduct771SpecificOutput
 from .PaymentProduct840CustomerAccount import PaymentProduct840CustomerAccount
 from .PaymentProduct840SpecificOutput import PaymentProduct840SpecificOutput
+from .PaymentProduct840SpecificOutputData import PaymentProduct840SpecificOutputData
+from .PaymentProduct840SpecificOutputForIntent import (
+    PaymentProduct840SpecificOutputForIntent,
+)
 from .PaymentProduct3391SpecificInput import PaymentProduct3391SpecificInput
 from .PaymentProduct3391SpecificOutput import PaymentProduct3391SpecificOutput
 from .PaymentProduct3392SpecificInput import PaymentProduct3392SpecificInput
@@ -140,9 +152,21 @@ from .ProductType import ProductType
 from .RedirectData import RedirectData
 from .RedirectionData import RedirectionData
 from .RedirectPaymentMethodSpecificInput import RedirectPaymentMethodSpecificInput
+from .RedirectPaymentMethodSpecificInputForIntent import (
+    RedirectPaymentMethodSpecificInputForIntent,
+)
 from .RedirectPaymentMethodSpecificOutput import RedirectPaymentMethodSpecificOutput
+from .RedirectPaymentMethodSpecificOutputForCreateIntent import (
+    RedirectPaymentMethodSpecificOutputForCreateIntent,
+)
+from .RedirectPaymentMethodSpecificOutputForIntent import (
+    RedirectPaymentMethodSpecificOutputForIntent,
+)
 from .RedirectPaymentProduct840SpecificInput import (
     RedirectPaymentProduct840SpecificInput,
+)
+from .RedirectPaymentProduct840SpecificInputData import (
+    RedirectPaymentProduct840SpecificInputData,
 )
 from .RedirectPaymentProduct900SpecificInput import (
     RedirectPaymentProduct900SpecificInput,
@@ -172,6 +196,8 @@ from .SepaTransferPaymentProduct772SpecificInput import (
     SepaTransferPaymentProduct772SpecificInput,
 )
 from .Shipping import Shipping
+from .ShippingAddress import ShippingAddress
+from .ShoppingCartData import ShoppingCartData
 from .ShoppingCartInput import ShoppingCartInput
 from .ShoppingCartPatch import ShoppingCartPatch
 from .ShoppingCartResult import ShoppingCartResult
@@ -219,6 +245,7 @@ __all__ = [
     "CardPaymentMethodSpecificOutput",
     "CardRecurrenceDetails",
     "CartItemInput",
+    "CartItemData",
     "CartItemInvoiceData",
     "CartItemOrderStatus",
     "CartItemPatch",
@@ -242,6 +269,9 @@ __all__ = [
     "CreateCheckoutResponse",
     "CreateCommerceCaseRequest",
     "CreateCommerceCaseResponse",
+    "CreatePaymentIntent",
+    "CreatePaymentIntentRequest",
+    "CreatePaymentIntentResponse",
     "CreatePaymentResponse",
     "CreationDateTime",
     "Customer",
@@ -291,13 +321,19 @@ __all__ = [
     "PaymentInformationRefundResponse",
     "PaymentInformationRequest",
     "PaymentInformationResponse",
+    "PaymentIntentOutput",
+    "PaymentIntentResponse",
+    "PaymentIntentResponseData",
     "PaymentInstructions",
     "PaymentMethodSpecificInput",
+    "PaymentMethodSpecificInputForIntent",
     "PaymentOutput",
     "PaymentProduct302SpecificInput",
     "PaymentProduct771SpecificOutput",
     "PaymentProduct840CustomerAccount",
     "PaymentProduct840SpecificOutput",
+    "PaymentProduct840SpecificOutputData",
+    "PaymentProduct840SpecificOutputForIntent",
     "PaymentProduct3391SpecificInput",
     "PaymentProduct3391SpecificOutput",
     "PaymentProduct3392SpecificInput",
@@ -321,8 +357,12 @@ __all__ = [
     "RedirectionData",
     "RedirectPaymentMethodSpecificInput",
     "RedirectPaymentMethodSpecificOutput",
+    "RedirectPaymentMethodSpecificInputForIntent",
+    "RedirectPaymentMethodSpecificOutputForCreateIntent",
+    "RedirectPaymentMethodSpecificOutputForIntent",
     "RedirectPaymentProduct900SpecificInput",
     "RedirectPaymentProduct840SpecificInput",
+    "RedirectPaymentProduct840SpecificInputData",
     "References",
     "RefreshPaymentRequest",
     "RefreshType",
@@ -341,12 +381,14 @@ __all__ = [
     "SepaTransferPaymentProduct772SpecificInput",
     "Shipping",
     "ShoppingCartInput",
+    "ShoppingCartData",
     "ShoppingCartPatch",
     "ShoppingCartResult",
     "StatusCategoryValue",
     "StatusCheckout",
     "StatusOutput",
     "StatusValue",
+    "ShippingAddress",
     "ThreeDSecureResults",
     "TransactionChannel",
     "UnscheduledCardOnFileRequestor",
