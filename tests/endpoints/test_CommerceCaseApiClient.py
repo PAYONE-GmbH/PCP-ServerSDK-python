@@ -134,9 +134,15 @@ async def test_get_commerce_cases_request_with_query_params(
     )
 
     response = await commerce_case_api_client.get_commerce_cases_request(
-        "merchantId", GetCommerceCasesQuery()
+        "merchantId", GetCommerceCasesQuery(offset=10, merchantReference="ref 1")
     )
     assert response == expected_response
+    request_url = (
+        mock_httpx_client.return_value.__aenter__.return_value.request.call_args.kwargs[
+            "url"
+        ]
+    )
+    assert request_url.endswith("?offset=10&merchantReference=ref+1")
 
 
 @pytest.mark.asyncio

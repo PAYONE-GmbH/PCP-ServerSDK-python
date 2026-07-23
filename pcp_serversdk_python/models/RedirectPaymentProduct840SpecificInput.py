@@ -21,3 +21,7 @@ class RedirectPaymentProduct840SpecificInput(
         # transactions, when the FraudNet SDK is used, and to be passed in the API
         # request the same tracking ID value (FraudNet Session Identifier).
     )
+    paymentId: Optional[str] = (
+        None  # Unique payment transaction identifier of the payment gateway. Required
+        # for PayPal Express to associate the request with the original payment intent.
+    )

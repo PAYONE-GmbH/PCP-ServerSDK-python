@@ -61,11 +61,12 @@ class CheckoutApiClient(BaseApiClient):
 
         url = urljoin(self.get_config().get_host(), f"/v1/{merchant_id}/checkouts")
 
-        if query_params:
-            query_string = query_params.to_query_map()
-            url = f"{url}?{query_string}"
-
-        req = httpx.Request("GET", url, headers={})
+        req = httpx.Request(
+            "GET",
+            url,
+            headers={},
+            params=query_params.to_query_map() if query_params else None,
+        )
 
         return await self.make_api_call_with_type(req, CheckoutsResponse)
 
