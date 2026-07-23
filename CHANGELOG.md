@@ -1,3 +1,11 @@
+# [1.13.0](https://github.com/PAYONE-GmbH/PCP-ServerSDK-python/compare/v1.12.0...v1.13.0) (2026-07-23)
+
+### Features
+
+* feat: update API version to 1.59.0 ([298d18e1de1ed8f8980e7f4ae62c369622c9603a](https://github.com/PAYONE-GmbH/PCP-ServerSDK-python/commit/298d18e1de1ed8f8980e7f4ae62c369622c9603a))
+* feat: update API version to 1.60.0 ([bab14a7bad23859412a203cb5a85815fc54466a6](https://github.com/PAYONE-GmbH/PCP-ServerSDK-python/commit/bab14a7bad23859412a203cb5a85815fc54466a6))
+* feat: update API version to 1.61.0 ([a27054e2d4bb59984c32215041e16d4659233583](https://github.com/PAYONE-GmbH/PCP-ServerSDK-python/commit/a27054e2d4bb59984c32215041e16d4659233583))
+
 # [1.12.0](https://github.com/PAYONE-GmbH/PCP-ServerSDK-python/compare/v1.11.0...v1.12.0) (2026-07-08)
 
 ### Features
