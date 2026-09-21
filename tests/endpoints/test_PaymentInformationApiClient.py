@@ -38,7 +38,9 @@ def mock_httpx_client(mocker):
 async def test_create_payment_information(
     payment_information_api_client, mock_httpx_client
 ):
-    expected_response = PaymentInformationResponse()
+    expected_response = PaymentInformationResponse(
+        traceNumber="012345", receiptNumber="0321"
+    )
 
     res = json.dumps(asdict(expected_response))
 
@@ -61,7 +63,9 @@ async def test_create_payment_information(
 async def test_get_payment_information(
     payment_information_api_client, mock_httpx_client
 ):
-    expected_response = PaymentInformationResponse()
+    expected_response = PaymentInformationResponse(
+        traceNumber="012345", receiptNumber="0321"
+    )
 
     res = json.dumps(asdict(expected_response))
 
