@@ -6,7 +6,8 @@ from .MobilePaymentNetwork import MobilePaymentNetwork
 
 @dataclass(kw_only=True)
 class PaymentProduct5002SpecificInput:
-    """Object containing specific input details for Click To Pay payment transactions."""
+    """Object containing specific input details for Click To Pay payment
+    transactions."""
 
     network: Optional[MobilePaymentNetwork] = None
     """Network/Scheme of the card used for the payment."""

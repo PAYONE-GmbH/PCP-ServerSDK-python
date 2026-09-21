@@ -4,6 +4,7 @@ from .CommerceCaseApiClient import CommerceCaseApiClient
 from .OrderManagementCheckoutActionsApiClient import (
     OrderManagementCheckoutActionsApiClient,
 )
+from .PayByLinkApiClient import PayByLinkApiClient
 from .PaymentExecutionApiClient import PaymentExecutionApiClient
 from .PaymentInformationApiClient import PaymentInformationApiClient
 from .PaymentIntentApiClient import PaymentIntentApiClient
@@ -16,4 +17,5 @@ __all__ = [
     "PaymentInformationApiClient",
     "PaymentIntentApiClient",
     "AuthenticationApiClient",
+    "PayByLinkApiClient",
 ]

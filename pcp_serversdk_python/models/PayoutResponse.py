@@ -8,7 +8,8 @@ from .StatusValue import StatusValue
 
 @dataclass(kw_only=True)
 class PayoutResponse:
-    """Object that holds the payment-related properties for the refund of a Payment Information."""
+    """Object that holds the payment-related properties for the refund of a Payment
+    Information."""
 
     payoutOutput: Optional[PayoutOutput] = None
     """Payout output details."""

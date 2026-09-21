@@ -11,4 +11,5 @@ class RecurringPaymentSequenceIndicator(str, Enum):
     FIRST = (
         "first"  # This transaction is the first of a series of recurring transactions
     )
-    RECURRING = "recurring"  # This transaction is a subsequent transaction in a series of recurring transactions
+    RECURRING = "recurring"  # This transaction is a subsequent transaction in a series
+    # of recurring transactions

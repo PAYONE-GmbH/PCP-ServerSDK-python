@@ -9,17 +9,19 @@ from .MobilePaymentNetwork import MobilePaymentNetwork
 class IntegrationType(str, Enum):
     """Type of Apple Pay integration."""
 
-    MERCHANT_CERTIFICATE = "MERCHANT_CERTIFICATE"  # using your own certificate (paid Apple Pay account needed)
+    MERCHANT_CERTIFICATE = "MERCHANT_CERTIFICATE"  # using your own certificate
+    # (paid Apple Pay account needed)
     MASS_ENABLEMENT = "MASS_ENABLEMENT"  # using PAYONE certificate
 
 
 @dataclass(kw_only=True)
 class PaymentProduct302SpecificInput:
-    """Object containing additional information needed for Apple Pay payment transactions."""
+    """Object containing additional information needed for Apple Pay payment
+    transactions."""
 
     integrationType: Optional[IntegrationType] = None
     """Type of your Apple Pay integration.
-    - `MERCHANT_CERTIFICATE`: using your own certificate (paid Apple Pay account needed).
+    - `MERCHANT_CERTIFICATE`: using your own certificate (paid Apple Pay account needed)
     - `MASS_ENABLEMENT`: using PAYONE certificate."""
 
     network: Optional[MobilePaymentNetwork] = None

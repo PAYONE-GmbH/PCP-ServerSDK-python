@@ -45,6 +45,9 @@ def testToQueryMap():
     query.set_company_information("Company Inc.")
     query.set_terminal_id("1234")
     query.set_reporting_token("5678")
+    query.set_card_authorization_id("260042")
+    query.set_receipt_number("0321")
+    query.set_trace_number("012345")
 
     query_map = query.to_query_map()
 
@@ -81,6 +84,9 @@ def testToQueryMap():
     assert query_map.get("companyInformation") == "Company Inc."
     assert query_map.get("terminalId") == "1234"
     assert query_map.get("reportingToken") == "5678"
+    assert query_map.get("cardAuthorizationId") == "260042"
+    assert query_map.get("receiptNumber") == "0321"
+    assert query_map.get("traceNumber") == "012345"
 
 
 def testGetters():
@@ -122,6 +128,9 @@ def testGetters():
     query.set_company_information("Company Inc.")
     query.set_terminal_id("1234")
     query.set_reporting_token("5678")
+    query.set_card_authorization_id("260042")
+    query.set_receipt_number("0321")
+    query.set_trace_number("012345")
 
     assert query.get_offset() == 1
     assert query.get_size() == 10
@@ -165,6 +174,9 @@ def testGetters():
     assert query.get_company_information() == "Company Inc."
     assert query.get_terminal_id() == "1234"
     assert query.get_reporting_token() == "5678"
+    assert query.get_card_authorization_id() == "260042"
+    assert query.get_receipt_number() == "0321"
+    assert query.get_trace_number() == "012345"
 
 
 def testNulls():

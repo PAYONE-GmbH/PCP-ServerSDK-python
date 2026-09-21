@@ -6,6 +6,7 @@ import pytest
 from pcp_serversdk_python.CommunicatorConfiguration import CommunicatorConfiguration
 from pcp_serversdk_python.endpoints import PaymentIntentApiClient
 from pcp_serversdk_python.models import (
+    Address,
     AmountOfMoney,
     CartItemData,
     CreatePaymentIntentRequest,
@@ -13,7 +14,9 @@ from pcp_serversdk_python.models import (
     PaymentIntentOutput,
     PaymentIntentResponse,
     PaymentMethodSpecificInputForIntent,
+    PaymentProduct840CustomerAccountForIntent,
     PaymentProduct840SpecificOutputForIntent,
+    PaymentReferencesForPaymentIntent,
     RedirectPaymentMethodSpecificInputForIntent,
     RedirectPaymentMethodSpecificOutputForCreateIntent,
     RedirectPaymentMethodSpecificOutputForIntent,
@@ -55,6 +58,7 @@ async def test_create_payment_intent_serializes_request(
     )
     payload = CreatePaymentIntentRequest(
         amountOfMoney=AmountOfMoney(amount=1000, currencyCode="EUR"),
+        references=PaymentReferencesForPaymentIntent(merchantReference="order-123"),
         paymentMethodSpecificInput=PaymentMethodSpecificInputForIntent(
             redirectPaymentMethodSpecificInput=RedirectPaymentMethodSpecificInputForIntent(
                 paymentProductId=840,
@@ -89,7 +93,7 @@ async def test_create_payment_intent_serializes_request(
     )
     assert json.loads(request.await_args.kwargs["content"]) == {
         "amountOfMoney": {"amount": 1000, "currencyCode": "EUR"},
-        "references": None,
+        "references": {"merchantReference": "order-123"},
         "shoppingCart": None,
         "paymentMethodSpecificInput": {
             "redirectPaymentMethodSpecificInput": {
@@ -117,7 +121,13 @@ async def test_get_payment_intent_deserializes_nested_response(
                 "redirectPaymentMethodSpecificOutput": {
                     "paymentProductId": 840,
                     "paymentProduct840SpecificOutput": {
-                        "shippingAddress": {"companyName": "Example Ltd"}
+                        "billingAddress": {"city": "Berlin"},
+                        "customerAccount": {
+                            "companyName": "Example Ltd",
+                            "emailAddress": "customer@example.com",
+                        },
+                        "payPalTransactionId": "paypal-transaction-id",
+                        "shippingAddress": {"companyName": "Example Ltd"},
                     },
                 },
             },
@@ -133,7 +143,12 @@ async def test_get_payment_intent_deserializes_nested_response(
         redirectPaymentMethodSpecificOutput=RedirectPaymentMethodSpecificOutputForIntent(
             paymentProductId=840,
             paymentProduct840SpecificOutput=PaymentProduct840SpecificOutputForIntent(
-                shippingAddress=ShippingAddress(companyName="Example Ltd")
+                billingAddress=Address(city="Berlin"),
+                customerAccount=PaymentProduct840CustomerAccountForIntent(
+                    companyName="Example Ltd", emailAddress="customer@example.com"
+                ),
+                payPalTransactionId="paypal-transaction-id",
+                shippingAddress=ShippingAddress(companyName="Example Ltd"),
             ),
         ),
     )
@@ -141,7 +156,9 @@ async def test_get_payment_intent_deserializes_nested_response(
 
 @pytest.mark.asyncio
 async def test_create_payment_intent_requires_merchant_id(payment_intent_api_client):
-    request = CreatePaymentIntentRequest()
+    request = CreatePaymentIntentRequest(
+        references=PaymentReferencesForPaymentIntent(merchantReference="order-123")
+    )
 
     with pytest.raises(ValueError, match="Merchant ID is required"):
         await payment_intent_api_client.create_payment_intent("", request)
