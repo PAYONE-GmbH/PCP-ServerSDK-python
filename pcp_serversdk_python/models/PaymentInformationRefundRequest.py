@@ -23,5 +23,5 @@ class PaymentInformationRefundRequest:
     """Account holder of the bank account. 
     
     Does not necessarily have to be the customer (e.g., joint accounts).
-    The name of the account holder is required for payment methods that use a credit transfer
-    for the refund (e.g., girocard, SEPA Direct Debit)."""
+    The name of the account holder is required for payment methods that use a credit 
+    transfer for the refund (e.g., girocard, SEPA Direct Debit)."""

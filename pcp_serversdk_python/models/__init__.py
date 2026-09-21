@@ -63,6 +63,8 @@ from .CreateCheckoutRequest import CreateCheckoutRequest
 from .CreateCheckoutResponse import CreateCheckoutResponse
 from .CreateCommerceCaseRequest import CreateCommerceCaseRequest
 from .CreateCommerceCaseResponse import CreateCommerceCaseResponse
+from .CreatePayByLinkRequest import CreatePayByLinkRequest
+from .CreatePayByLinkResponse import CreatePayByLinkResponse
 from .CreatePaymentIntent import CreatePaymentIntent
 from .CreatePaymentIntentRequest import CreatePaymentIntentRequest
 from .CreatePaymentIntentResponse import CreatePaymentIntentResponse
@@ -107,6 +109,7 @@ from .PatchCommerceCaseRequest import PatchCommerceCaseRequest
 from .PausePaymentRequest import PausePaymentRequest
 from .PausePaymentResponse import PausePaymentResponse
 from .Payee import Payee
+from .PayLinkStatusValue import PayLinkStatusValue
 from .PaymentChannel import PaymentChannel
 from .PaymentCreationOutput import PaymentCreationOutput
 from .PaymentEvent import PaymentEvent
@@ -121,14 +124,18 @@ from .PaymentInstructions import PaymentInstructions
 from .PaymentIntentOutput import PaymentIntentOutput
 from .PaymentIntentResponse import PaymentIntentResponse
 from .PaymentIntentResponseData import PaymentIntentResponseData
+from .PaymentLinkOrder import PaymentLinkOrder
+from .PaymentLinkSpecificInput import PaymentLinkSpecificInput
 from .PaymentMethodSpecificInput import PaymentMethodSpecificInput
 from .PaymentMethodSpecificInputForIntent import PaymentMethodSpecificInputForIntent
 from .PaymentOutput import PaymentOutput
 from .PaymentProduct302SpecificInput import PaymentProduct302SpecificInput
 from .PaymentProduct771SpecificOutput import PaymentProduct771SpecificOutput
 from .PaymentProduct840CustomerAccount import PaymentProduct840CustomerAccount
+from .PaymentProduct840CustomerAccountForIntent import (
+    PaymentProduct840CustomerAccountForIntent,
+)
 from .PaymentProduct840SpecificOutput import PaymentProduct840SpecificOutput
-from .PaymentProduct840SpecificOutputData import PaymentProduct840SpecificOutputData
 from .PaymentProduct840SpecificOutputForIntent import (
     PaymentProduct840SpecificOutputForIntent,
 )
@@ -137,6 +144,7 @@ from .PaymentProduct3391SpecificOutput import PaymentProduct3391SpecificOutput
 from .PaymentProduct3392SpecificInput import PaymentProduct3392SpecificInput
 from .PaymentProduct5002SpecificInput import PaymentProduct5002SpecificInput
 from .PaymentReferences import PaymentReferences
+from .PaymentReferencesForPaymentIntent import PaymentReferencesForPaymentIntent
 from .PaymentReferencesForRefund import PaymentReferencesForRefund
 from .PaymentResponse import PaymentResponse
 from .PaymentStatus import PaymentStatus
@@ -269,6 +277,8 @@ __all__ = [
     "CreateCheckoutResponse",
     "CreateCommerceCaseRequest",
     "CreateCommerceCaseResponse",
+    "CreatePayByLinkRequest",
+    "CreatePayByLinkResponse",
     "CreatePaymentIntent",
     "CreatePaymentIntentRequest",
     "CreatePaymentIntentResponse",
@@ -331,14 +341,15 @@ __all__ = [
     "PaymentProduct302SpecificInput",
     "PaymentProduct771SpecificOutput",
     "PaymentProduct840CustomerAccount",
+    "PaymentProduct840CustomerAccountForIntent",
     "PaymentProduct840SpecificOutput",
-    "PaymentProduct840SpecificOutputData",
     "PaymentProduct840SpecificOutputForIntent",
     "PaymentProduct3391SpecificInput",
     "PaymentProduct3391SpecificOutput",
     "PaymentProduct3392SpecificInput",
     "PaymentProduct5002SpecificInput",
     "PaymentReferences",
+    "PaymentReferencesForPaymentIntent",
     "PaymentReferencesForRefund",
     "PaymentResponse",
     "PaymentStatus",
@@ -348,9 +359,12 @@ __all__ = [
     "PausePaymentResponse",
     "PayoutOutput",
     "PayoutResponse",
+    "PayLinkStatusValue",
     "PersonalInformation",
     "PersonalName",
     "PositiveAmountOfMoney",
+    "PaymentLinkOrder",
+    "PaymentLinkSpecificInput",
     "ProcessingMandateInformation",
     "ProductType",
     "RedirectData",

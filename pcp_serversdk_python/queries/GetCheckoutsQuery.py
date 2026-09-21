@@ -42,6 +42,9 @@ class GetCheckoutsQuery:
     companyInformation: Optional[str] = None
     terminalId: Optional[str] = None
     reportingToken: Optional[str] = None
+    cardAuthorizationId: Optional[str] = None
+    receiptNumber: Optional[str] = None
+    traceNumber: Optional[str] = None
 
     # Setters (already provided)
 
@@ -191,6 +194,20 @@ class GetCheckoutsQuery:
         self.reportingToken = reportingToken
         return self
 
+    def set_card_authorization_id(
+        self, cardAuthorizationId: str
+    ) -> "GetCheckoutsQuery":
+        self.cardAuthorizationId = cardAuthorizationId
+        return self
+
+    def set_receipt_number(self, receiptNumber: str) -> "GetCheckoutsQuery":
+        self.receiptNumber = receiptNumber
+        return self
+
+    def set_trace_number(self, traceNumber: str) -> "GetCheckoutsQuery":
+        self.traceNumber = traceNumber
+        return self
+
     # Getters
     def get_offset(self) -> Optional[int]:
         return self.offset
@@ -291,6 +308,15 @@ class GetCheckoutsQuery:
     def get_reporting_token(self) -> Optional[str]:
         return self.reportingToken
 
+    def get_card_authorization_id(self) -> Optional[str]:
+        return self.cardAuthorizationId
+
+    def get_receipt_number(self) -> Optional[str]:
+        return self.receiptNumber
+
+    def get_trace_number(self) -> Optional[str]:
+        return self.traceNumber
+
     def to_query_map(self) -> dict[str, str]:
         query = {}
 
@@ -368,5 +394,11 @@ class GetCheckoutsQuery:
             query["terminalId"] = self.terminalId
         if self.reportingToken is not None:
             query["reportingToken"] = self.reportingToken
+        if self.cardAuthorizationId is not None:
+            query["cardAuthorizationId"] = self.cardAuthorizationId
+        if self.receiptNumber is not None:
+            query["receiptNumber"] = self.receiptNumber
+        if self.traceNumber is not None:
+            query["traceNumber"] = self.traceNumber
 
         return query
