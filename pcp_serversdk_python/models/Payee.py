@@ -11,8 +11,8 @@ class Payee:
 
     iban: str
     """IBAN of the payee's or beneficiary's bank account.
-    The IBAN is the International Bank Account Number. It is an internationally agreed format for
-    the BBAN and includes the ISO country code and two check digits."""
+    The IBAN is the International Bank Account Number. It is an internationally agreed 
+    format for the BBAN and includes the ISO country code and two check digits."""
 
     name: str
     """Name of the payee."""

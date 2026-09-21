@@ -12,7 +12,8 @@ class MobilePaymentMethodSpecificInput:
     """Object containing the specific input details for mobile payments."""
 
     paymentProductId: Optional[int] = None
-    """Payment product identifier - please check product documentation for possible values.
+    """Payment product identifier - please check product documentation for possible 
+    values.
     @minimum 0
     @maximum 99999"""
 
@@ -21,10 +22,12 @@ class MobilePaymentMethodSpecificInput:
 
     encryptedPaymentData: Optional[str] = None
     """The encrypted payment data, if decryption is required.
-    Typically, you'd use encryptedCustomerInput in the root of the create payment request instead."""
+    Typically, you'd use encryptedCustomerInput in the root of the create payment 
+    request instead."""
 
     publicKeyHash: Optional[str] = None
-    """Public Key Hash - A unique identifier to retrieve the key used by Apple to encrypt information."""
+    """Public Key Hash - A unique identifier to retrieve the key used by Apple to 
+    encrypt information."""
 
     ephemeralKey: Optional[str] = None
     """Ephemeral Key - A unique generated key used by Apple to encrypt data."""
