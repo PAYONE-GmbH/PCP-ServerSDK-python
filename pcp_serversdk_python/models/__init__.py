@@ -106,6 +106,8 @@ from .OrderResponse import OrderResponse
 from .OrderType import OrderType
 from .PatchCheckoutRequest import PatchCheckoutRequest
 from .PatchCommerceCaseRequest import PatchCommerceCaseRequest
+from .PatchPaymentIntentRequest import PatchPaymentIntentRequest
+from .PatchPaymentIntentResponse import PatchPaymentIntentResponse
 from .PausePaymentRequest import PausePaymentRequest
 from .PausePaymentResponse import PausePaymentResponse
 from .Payee import Payee
@@ -320,6 +322,8 @@ __all__ = [
     "OrderType",
     "PatchCheckoutRequest",
     "PatchCommerceCaseRequest",
+    "PatchPaymentIntentRequest",
+    "PatchPaymentIntentResponse",
     "Payee",
     "PaymentChannel",
     "PaymentCreationOutput",

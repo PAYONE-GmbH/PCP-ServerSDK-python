@@ -7,6 +7,8 @@ import httpx
 from ..models import (
     CreatePaymentIntentRequest,
     CreatePaymentIntentResponse,
+    PatchPaymentIntentRequest,
+    PatchPaymentIntentResponse,
     PaymentIntentResponse,
 )
 from .BaseApiClient import BaseApiClient
@@ -41,6 +43,26 @@ class PaymentIntentApiClient(BaseApiClient):
         )
         req = httpx.Request("GET", url)
         return await self.make_api_call_with_type(req, PaymentIntentResponse)
+
+    async def patch_payment_intent(
+        self,
+        merchant_id: str,
+        payment_intent_id: str,
+        payload: PatchPaymentIntentRequest,
+    ) -> PatchPaymentIntentResponse:
+        self._validate_inputs(merchant_id, payment_intent_id)
+
+        url = urljoin(
+            self.get_config().get_host(),
+            f"/v1/{merchant_id}/payment-intents/{payment_intent_id}",
+        )
+        req = httpx.Request(
+            "PATCH",
+            url,
+            headers={"Content-Type": self.CONTENT_TYPE},
+            content=json.dumps(asdict(payload)),
+        )
+        return await self.make_api_call_with_type(req, PatchPaymentIntentResponse)
 
     def _validate_inputs(
         self, merchant_id: str, payment_intent_id: str | None = None
