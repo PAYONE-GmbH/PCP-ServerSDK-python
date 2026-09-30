@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from .RedirectionData import RedirectionData
+from .RedirectData import RedirectData
 from .RedirectPaymentProduct840SpecificInputData import (
     RedirectPaymentProduct840SpecificInputData,
 )
@@ -14,4 +14,4 @@ class RedirectPaymentMethodSpecificOutputForCreateIntent:
     paymentProduct840SpecificOutput: Optional[
         RedirectPaymentProduct840SpecificInputData
     ] = None
-    redirectionData: Optional[RedirectionData] = None
+    redirectData: Optional[RedirectData] = None
